@@ -27,8 +27,8 @@ public class Pause : MonoBehaviour
         // need to switch input method
 
         //playerInput.SwitchCurrentActionMap("UI");
-        //playerInputActions.Player.Disable();
-        //playerInputActions.UI.Enable();
+        playerInputActions.Player.Disable();
+        playerInputActions.UI.Enable();
         Time.timeScale = 0f;
         Debug.Log("gameIsPaused = " + gameIsPaused);
 
@@ -37,8 +37,8 @@ public class Pause : MonoBehaviour
     {
         gameIsPaused = false;
         //playerInput.SwitchCurrentActionMap("Player");
-        //playerInputActions.Player.Enable();
-        //playerInputActions.UI.Disable();
+        playerInputActions.Player.Enable();
+        playerInputActions.UI.Disable();
         Time.timeScale = 1f;
         Debug.Log("gameIsPaused = " + gameIsPaused);
     }
