@@ -358,6 +358,8 @@ GameObject:
   - component: {fileID: 292466666}
   - component: {fileID: 292466662}
   - component: {fileID: 292466664}
+  - component: {fileID: 292466668}
+  - component: {fileID: 292466667}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -508,11 +510,58 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: b4bf5ccb-0ebb-4d68-93d1-05d4ae32b1d5
     m_ActionName: Player/Look[/XInputControllerWindows/rightStick,/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 292466668}
+        m_TargetAssemblyTypeName: OmoAnimationController, Assembly-CSharp
+        m_MethodName: DoPoint
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 487d4251-b370-4f66-9344-3d58d2564009
+    m_ActionName: Player/Point[/XInputControllerWindows/buttonWest,/XInputControllerWindows/buttonWest,/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!95 &292466667
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292466660}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 625774ca301d6ad42824d4a65bb74400, type: 3}
+  m_Controller: {fileID: 9100000, guid: 6a35d52bc1a517545aecee2c2f5298f9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &292466668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292466660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 037900dcd91ad1047b9a76448d83d386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &715681097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -624,7 +673,12 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 6a35d52bc1a517545aecee2c2f5298f9, type: 2}
-    m_RemovedComponents: []
+    - target: {fileID: 5866666021909216657, guid: 625774ca301d6ad42824d4a65bb74400, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: 625774ca301d6ad42824d4a65bb74400, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 625774ca301d6ad42824d4a65bb74400, type: 3}
 --- !u!1 &1253751805
 GameObject:
@@ -703,13 +757,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1253751805}
-  m_LocalRotation: {x: 0.23663206, y: 0.000000015715152, z: -0.0000000070077224, w: 0.9715994}
-  m_LocalPosition: {x: 0, y: 5.6439, z: -8.9659}
+  m_LocalRotation: {x: 0.056662545, y: -0.9433332, z: 0.2297478, w: 0.23265369}
+  m_LocalPosition: {x: 2.53, y: 3.68, z: 3.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 27.376, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 27.376, y: -152.291, z: 0}
 --- !u!114 &1253751809
 MonoBehaviour:
   m_ObjectHideFlags: 0

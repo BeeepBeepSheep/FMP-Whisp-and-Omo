@@ -8,13 +8,18 @@ public class OmoMovement : MonoBehaviour
     private Rigidbody rigidbody;
     private PlayerInput playerInput;
 
-    public float movementForce = 1f;
+    [SerializeField]
+    private float movementForce = 1f;
     public float maxSpeed = 5f;
-    public float jumpForce = 10;
+    [SerializeField]
+    private float jumpForce = 10;
     private Vector3 forceDirection = Vector3.zero;
     private InputAction moveAction;
 
-    public Camera cam;
+    [SerializeField]
+    private Camera cam;
+
+    private Animator animator;
 
     private PlayerInputActions playerInputActions;
     private Pause pauseScript;
@@ -24,6 +29,8 @@ public class OmoMovement : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         pauseScript = GetComponent<Pause>();
+        animator = GetComponent<Animator>();
+
         playerInputActions = new PlayerInputActions();
 
         playerInputActions.Player.Jump.started += Jump;
@@ -76,7 +83,7 @@ public class OmoMovement : MonoBehaviour
             forceDirection += Vector3.up * jumpForce;
         }
     }
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         Ray ray = new Ray(this.transform.position + Vector3.up * 0.25f, Vector3.down);
 
