@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class OmoAnimationController : MonoBehaviour
 {
@@ -25,8 +26,11 @@ public class OmoAnimationController : MonoBehaviour
         //jump anim
         animator.SetBool("IsGrounded", omoMovement.IsGrounded());
     }
-    public void DoPoint()
+    public void DoPoint(InputAction.CallbackContext context)
     {
-        animator.SetTrigger("Point");
+        if (context.started)
+        {
+            animator.SetTrigger("Point");
+        }
     }
 }

@@ -501,7 +501,19 @@ MonoBehaviour:
     m_ActionId: 793eaae7-d058-4af8-bec2-abd10c080bfd
     m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/leftStick]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 292466662}
+        m_TargetAssemblyTypeName: OmoMovement, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: fbb410e0-616e-4704-8e23-0c1776c610dd
     m_ActionName: Player/Jump[/Keyboard/space,/XInputControllerWindows/buttonSouth]
   - m_PersistentCalls:
@@ -545,7 +557,7 @@ MonoBehaviour:
       - m_Target: {fileID: 292466668}
         m_TargetAssemblyTypeName: OmoAnimationController, Assembly-CSharp
         m_MethodName: DoPoint
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -556,6 +568,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 487d4251-b370-4f66-9344-3d58d2564009
     m_ActionName: Player/Point[/XInputControllerWindows/buttonWest,/XInputControllerWindows/buttonWest,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1253751815}
+        m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
+        m_MethodName: ShoulderToggle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1bdb7d1e-150b-4c5a-b685-629ebf84a168
+    m_ActionName: Player/Toggle Camera Shoulder[/Keyboard/1]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -719,7 +747,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.5459183, y: 1}
+    m_SensorSize: {x: 1.7667638, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -735,7 +763,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 584517667}
-  m_LocalRotation: {x: -0.000000014901161, y: 0.000000006971117, z: -0.0000000014173898, w: 1}
+  m_LocalRotation: {x: -0.000000014901161, y: 0.000000007684498, z: -0.0000000015624366, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -749,7 +777,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-286980
+  m_Name: pb_Mesh23910
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1157,7 +1185,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-6550
+  m_Name: pb_Mesh23924
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1332,6 +1360,7 @@ GameObject:
   - component: {fileID: 1253751812}
   - component: {fileID: 1253751814}
   - component: {fileID: 1253751813}
+  - component: {fileID: 1253751815}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -1397,7 +1426,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1253751805}
-  m_LocalRotation: {x: 0.100126386, y: 0.000000003944798, z: -3.9697318e-10, w: 0.99497473}
+  m_LocalRotation: {x: 0.100126386, y: 0.0000000036734302, z: -3.696649e-10, w: 0.99497473}
   m_LocalPosition: {x: 7.53, y: 3.422286, z: -3.6651993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1469,7 +1498,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.5459183, y: 1}
+    m_SensorSize: {x: 1.7667638, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1637,6 +1666,20 @@ MonoBehaviour:
   m_Damping: 0
   m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
+--- !u!114 &1253751815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253751805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb5b9f95be305741afb1b8193ac2987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSHoulderNum: 1
+  camOffset: {fileID: 0}
 --- !u!1 &1311464883
 GameObject:
   m_ObjectHideFlags: 3
@@ -1690,7 +1733,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.5459183, y: 1}
+    m_SensorSize: {x: 1.7667638, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1706,7 +1749,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311464883}
-  m_LocalRotation: {x: -0.000000014901161, y: 0.000000006118305, z: -0.000000001243993, w: 1}
+  m_LocalRotation: {x: -0.000000014901161, y: 0.000000007684498, z: -0.0000000015624366, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2054,7 +2097,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.5459183, y: 1}
+    m_SensorSize: {x: 1.7667638, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2070,8 +2113,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1631918138}
-  m_LocalRotation: {x: -0.05744883, y: -0.000000017701405, z: 0.0000000025506561, w: 0.9983485}
-  m_LocalPosition: {x: 2, y: -0.0000000019548634, z: -0.0000000096145625}
+  m_LocalRotation: {x: -0.05744883, y: -0.00000001851592, z: 0.0000000026680222, w: 0.9983485}
+  m_LocalPosition: {x: 2, y: -0.0000000033072889, z: -0.000000016266167}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1343302996}

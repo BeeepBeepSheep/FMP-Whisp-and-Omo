@@ -33,7 +33,7 @@ public class OmoMovement : MonoBehaviour
 
         playerInputActions = new PlayerInputActions();
 
-        playerInputActions.Player.Jump.started += Jump;
+        //playerInputActions.Player.Jump.started += Jump;
         moveAction = playerInputActions.Player.Movement;
 
         playerInputActions.Player.Enable();
@@ -78,7 +78,7 @@ public class OmoMovement : MonoBehaviour
     }
     public void Jump(InputAction.CallbackContext context)
     {
-        if (IsGrounded())
+        if (IsGrounded() && context.started)
         {
             forceDirection += Vector3.up * jumpForce;
         }
