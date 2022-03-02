@@ -10,6 +10,7 @@ public class WhispOrbitController : MonoBehaviour
     public Transform myTargetPosition;
 
     public float tickPositionResetTime;
+
     void Start()
     {
         StartCoroutine(PositioTick());
