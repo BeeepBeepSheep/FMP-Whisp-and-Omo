@@ -7,8 +7,9 @@ public class OmoAnimationController : MonoBehaviour
 {
     public Animator animator;
     private Rigidbody rigidbody;
-    private float maxSpeed;
+    public float maxSpeed;
     private OmoMovement omoMovement;
+    private MoodController moodController;
 
     public float groundedCheckTickRate = 0.01f;
 
@@ -16,8 +17,9 @@ public class OmoAnimationController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
-
         omoMovement = GetComponent<OmoMovement>();
+        moodController = GetComponent<MoodController>();
+
         maxSpeed = omoMovement.currentMaxSpeed;
     }
 
@@ -43,7 +45,7 @@ public class OmoAnimationController : MonoBehaviour
             //jump anim
             animator.SetBool("IsGrounded", omoMovement.IsGrounded());
 
-            //speed
+            ////speed
             animator.SetFloat("Speed", rigidbody.velocity.magnitude / maxSpeed);
         }
     }

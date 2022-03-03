@@ -55,6 +55,8 @@ public class MoodController : MonoBehaviour
             happyBeard.SetActive(true);
             sadBeard.SetActive(false);
         }
+
+        omoAnimatorScript.maxSpeed = omoMovement.currentMaxSpeed;
         omoAnimatorScript.animator.SetFloat("Mood", fullMood);
     }
 }
