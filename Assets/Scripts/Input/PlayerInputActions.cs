@@ -65,6 +65,14 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""(testing only) ToggleMood"",
+                    ""type"": ""Button"",
+                    ""id"": ""a3b617e0-bb15-459d-b0e5-25bbad961f42"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -309,6 +317,28 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""action"": ""ToggleCameraShoulder"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff7dbea5-7e4c-4582-9a68-3c5f5d489140"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""(testing only) ToggleMood"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8d62a56e-457d-43fa-9e47-22b86a23e8ff"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""(testing only) ToggleMood"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -400,6 +430,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Point = m_Player.FindAction("Point", throwIfNotFound: true);
         m_Player_ToggleCameraShoulder = m_Player.FindAction("ToggleCameraShoulder", throwIfNotFound: true);
+        m_Player_testingonlyToggleMood = m_Player.FindAction("(testing only) ToggleMood", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_UnPause = m_UI.FindAction("UnPause", throwIfNotFound: true);
@@ -458,6 +489,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Point;
     private readonly InputAction m_Player_ToggleCameraShoulder;
+    private readonly InputAction m_Player_testingonlyToggleMood;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -468,6 +500,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Point => m_Wrapper.m_Player_Point;
         public InputAction @ToggleCameraShoulder => m_Wrapper.m_Player_ToggleCameraShoulder;
+        public InputAction @testingonlyToggleMood => m_Wrapper.m_Player_testingonlyToggleMood;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -495,6 +528,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @ToggleCameraShoulder.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleCameraShoulder;
                 @ToggleCameraShoulder.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleCameraShoulder;
                 @ToggleCameraShoulder.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleCameraShoulder;
+                @testingonlyToggleMood.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTestingonlyToggleMood;
+                @testingonlyToggleMood.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTestingonlyToggleMood;
+                @testingonlyToggleMood.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTestingonlyToggleMood;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -517,6 +553,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @ToggleCameraShoulder.started += instance.OnToggleCameraShoulder;
                 @ToggleCameraShoulder.performed += instance.OnToggleCameraShoulder;
                 @ToggleCameraShoulder.canceled += instance.OnToggleCameraShoulder;
+                @testingonlyToggleMood.started += instance.OnTestingonlyToggleMood;
+                @testingonlyToggleMood.performed += instance.OnTestingonlyToggleMood;
+                @testingonlyToggleMood.canceled += instance.OnTestingonlyToggleMood;
             }
         }
     }
@@ -580,6 +619,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnPoint(InputAction.CallbackContext context);
         void OnToggleCameraShoulder(InputAction.CallbackContext context);
+        void OnTestingonlyToggleMood(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

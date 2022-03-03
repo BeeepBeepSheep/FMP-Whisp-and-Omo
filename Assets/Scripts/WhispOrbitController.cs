@@ -18,6 +18,8 @@ public class WhispOrbitController : MonoBehaviour
     void Update()
     {
         transform.Rotate(Vector3.up * Time.deltaTime * speed);
+
+        //transform.position = myTargetPosition.position;
     }
 
     IEnumerator PositioTick()

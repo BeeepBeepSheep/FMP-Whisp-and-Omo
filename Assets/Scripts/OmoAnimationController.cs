@@ -5,10 +5,12 @@ using UnityEngine.InputSystem;
 
 public class OmoAnimationController : MonoBehaviour
 {
-    private Animator animator;
+    public Animator animator;
     private Rigidbody rigidbody;
     private float maxSpeed;
     private OmoMovement omoMovement;
+
+    public float groundedCheckTickRate = 0.01f;
 
     private void Start()
     {
@@ -16,21 +18,33 @@ public class OmoAnimationController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
 
         omoMovement = GetComponent<OmoMovement>();
-        maxSpeed = omoMovement.maxSpeed;
+        maxSpeed = omoMovement.currentMaxSpeed;
     }
 
     private void Update()
     {
-        animator.SetFloat("Speed", rigidbody.velocity.magnitude / maxSpeed);
+        //animator.SetFloat("Speed", rigidbody.velocity.magnitude / maxSpeed);
 
-        //jump anim
-        animator.SetBool("IsGrounded", omoMovement.IsGrounded());
+        StartCoroutine(MyUpdate());
     }
     public void DoPoint(InputAction.CallbackContext context)
     {
         if (context.started)
         {
             animator.SetTrigger("Point");
+        }
+    }
+    IEnumerator MyUpdate()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(groundedCheckTickRate);
+
+            //jump anim
+            animator.SetBool("IsGrounded", omoMovement.IsGrounded());
+
+            //speed
+            animator.SetFloat("Speed", rigidbody.velocity.magnitude / maxSpeed);
         }
     }
 }

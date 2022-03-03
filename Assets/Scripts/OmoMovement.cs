@@ -10,7 +10,9 @@ public class OmoMovement : MonoBehaviour
 
     [SerializeField]
     private float movementForce = 1f;
-    public float maxSpeed = 5f;
+    public float currentMaxSpeed = 5f;
+    public float happyMaxSpeed = 5f;
+    public float sadMaxSpeed = 3f;
     [SerializeField]
     private float jumpForce = 10;
     private Vector3 forceDirection = Vector3.zero;
@@ -57,9 +59,9 @@ public class OmoMovement : MonoBehaviour
 
         Vector3 horizontalVelocity = rigidbody.velocity;
         horizontalVelocity.y = 0;
-        if (horizontalVelocity.sqrMagnitude > maxSpeed * maxSpeed)
+        if (horizontalVelocity.sqrMagnitude > currentMaxSpeed * currentMaxSpeed)
         {
-            rigidbody.velocity = horizontalVelocity.normalized * maxSpeed + Vector3.up * rigidbody.velocity.y;
+            rigidbody.velocity = horizontalVelocity.normalized * currentMaxSpeed + Vector3.up * rigidbody.velocity.y;
         }
     }
     private void LookAt()
