@@ -51,7 +51,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""interactions"": ""Press""
                 },
                 {
-                    ""name"": ""Point"",
+                    ""name"": ""WhispAbility1"",
                     ""type"": ""Button"",
                     ""id"": ""487d4251-b370-4f66-9344-3d58d2564009"",
                     ""expectedControlType"": ""Button"",
@@ -70,6 +70,14 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""name"": ""(testing only) ToggleMood"",
                     ""type"": ""Button"",
                     ""id"": ""a3b617e0-bb15-459d-b0e5-25bbad961f42"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""ReturnWhisp"",
+                    ""type"": ""Button"",
+                    ""id"": ""9cf5eeb1-5a8e-40c7-8d3f-1fb93d471d33"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
@@ -281,7 +289,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Point"",
+                    ""action"": ""WhispAbility1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -292,7 +300,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""Point"",
+                    ""action"": ""WhispAbility1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -332,11 +340,33 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8d62a56e-457d-43fa-9e47-22b86a23e8ff"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""(testing only) ToggleMood"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""56762864-8e21-4b34-81a3-a02dac20b24e"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReturnWhisp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""002c1e01-278e-4635-9943-2d225bc55cba"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReturnWhisp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -428,9 +458,10 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-        m_Player_Point = m_Player.FindAction("Point", throwIfNotFound: true);
+        m_Player_WhispAbility1 = m_Player.FindAction("WhispAbility1", throwIfNotFound: true);
         m_Player_ToggleCameraShoulder = m_Player.FindAction("ToggleCameraShoulder", throwIfNotFound: true);
         m_Player_testingonlyToggleMood = m_Player.FindAction("(testing only) ToggleMood", throwIfNotFound: true);
+        m_Player_ReturnWhisp = m_Player.FindAction("ReturnWhisp", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_UnPause = m_UI.FindAction("UnPause", throwIfNotFound: true);
@@ -487,9 +518,10 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Look;
-    private readonly InputAction m_Player_Point;
+    private readonly InputAction m_Player_WhispAbility1;
     private readonly InputAction m_Player_ToggleCameraShoulder;
     private readonly InputAction m_Player_testingonlyToggleMood;
+    private readonly InputAction m_Player_ReturnWhisp;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -498,9 +530,10 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @Look => m_Wrapper.m_Player_Look;
-        public InputAction @Point => m_Wrapper.m_Player_Point;
+        public InputAction @WhispAbility1 => m_Wrapper.m_Player_WhispAbility1;
         public InputAction @ToggleCameraShoulder => m_Wrapper.m_Player_ToggleCameraShoulder;
         public InputAction @testingonlyToggleMood => m_Wrapper.m_Player_testingonlyToggleMood;
+        public InputAction @ReturnWhisp => m_Wrapper.m_Player_ReturnWhisp;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -522,15 +555,18 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                @Point.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPoint;
-                @Point.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPoint;
-                @Point.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPoint;
+                @WhispAbility1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWhispAbility1;
+                @WhispAbility1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWhispAbility1;
+                @WhispAbility1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWhispAbility1;
                 @ToggleCameraShoulder.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleCameraShoulder;
                 @ToggleCameraShoulder.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleCameraShoulder;
                 @ToggleCameraShoulder.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleCameraShoulder;
                 @testingonlyToggleMood.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTestingonlyToggleMood;
                 @testingonlyToggleMood.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTestingonlyToggleMood;
                 @testingonlyToggleMood.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTestingonlyToggleMood;
+                @ReturnWhisp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnWhisp;
+                @ReturnWhisp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnWhisp;
+                @ReturnWhisp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnWhisp;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -547,15 +583,18 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
-                @Point.started += instance.OnPoint;
-                @Point.performed += instance.OnPoint;
-                @Point.canceled += instance.OnPoint;
+                @WhispAbility1.started += instance.OnWhispAbility1;
+                @WhispAbility1.performed += instance.OnWhispAbility1;
+                @WhispAbility1.canceled += instance.OnWhispAbility1;
                 @ToggleCameraShoulder.started += instance.OnToggleCameraShoulder;
                 @ToggleCameraShoulder.performed += instance.OnToggleCameraShoulder;
                 @ToggleCameraShoulder.canceled += instance.OnToggleCameraShoulder;
                 @testingonlyToggleMood.started += instance.OnTestingonlyToggleMood;
                 @testingonlyToggleMood.performed += instance.OnTestingonlyToggleMood;
                 @testingonlyToggleMood.canceled += instance.OnTestingonlyToggleMood;
+                @ReturnWhisp.started += instance.OnReturnWhisp;
+                @ReturnWhisp.performed += instance.OnReturnWhisp;
+                @ReturnWhisp.canceled += instance.OnReturnWhisp;
             }
         }
     }
@@ -617,9 +656,10 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
-        void OnPoint(InputAction.CallbackContext context);
+        void OnWhispAbility1(InputAction.CallbackContext context);
         void OnToggleCameraShoulder(InputAction.CallbackContext context);
         void OnTestingonlyToggleMood(InputAction.CallbackContext context);
+        void OnReturnWhisp(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

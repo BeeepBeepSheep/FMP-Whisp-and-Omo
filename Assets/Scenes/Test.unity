@@ -5197,6 +5197,7 @@ GameObject:
   - component: {fileID: 292466664}
   - component: {fileID: 292466668}
   - component: {fileID: 292466669}
+  - component: {fileID: 292466670}
   - component: {fileID: 292466667}
   m_Layer: 8
   m_Name: Player
@@ -5365,6 +5366,18 @@ MonoBehaviour:
     m_ActionName: Player/Look[/XInputControllerWindows/rightStick,/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 292466670}
+        m_TargetAssemblyTypeName: WhispAbility, Assembly-CSharp
+        m_MethodName: DoWhispAbility
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 292466668}
         m_TargetAssemblyTypeName: OmoAnimationController, Assembly-CSharp
         m_MethodName: DoPoint
@@ -5411,6 +5424,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a3b617e0-bb15-459d-b0e5-25bbad961f42
     m_ActionName: Player/(testing only) ToggleMood[/Keyboard/1,/XInputControllerWindows/buttonNorth,/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1165639309}
+        m_TargetAssemblyTypeName: WhispFollow, Assembly-CSharp
+        m_MethodName: ResetTarget
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9cf5eeb1-5a8e-40c7-8d3f-1fb93d471d33
+    m_ActionName: Player/ReturnWhisp[/XInputControllerWindows/buttonNorth,/XInputControllerWindows/buttonNorth,/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -5465,6 +5494,24 @@ MonoBehaviour:
   fullMood: 1
   happyBeard: {fileID: 963571923}
   sadBeard: {fileID: 310378737}
+--- !u!114 &292466670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292466660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7807b7a8db6bf541ad968f4464ed248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whispFollow: {fileID: 1165639309}
+  cam: {fileID: 1253751807}
+  newWhispMovePoint: {fileID: 5110091290893642608, guid: 8b31d6804e422474bbc984661aca2265, type: 3}
+  rayIgnore:
+    serializedVersion: 2
+    m_Bits: 896
 --- !u!1 &310378737 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5353111223794363223, guid: 625774ca301d6ad42824d4a65bb74400, type: 3}
@@ -10567,7 +10614,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8239796, y: 1}
+    m_SensorSize: {x: 1.8380102, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -10583,7 +10630,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 584517667}
-  m_LocalRotation: {x: -0.000000014901161, y: -0.00000000734196, z: 0.0000000014927906, w: 1}
+  m_LocalRotation: {x: -0.000000014901161, y: -0.000000007329703, z: 0.0000000014902984, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11713,9 +11760,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13dc656b982c22e4fb577078b3721965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 883915939}
+  currentTarget: {fileID: 883915939}
+  omoTarget: {fileID: 883915939}
   smoothTime: 0.5
-  speed: 5.5
+  currentSpeed: 1
+  normalSpeed: 5.5
+  flyTooSpeed: 3
 --- !u!135 &1165639310
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11876,7 +11926,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1253751805}
-  m_LocalRotation: {x: 0.100126386, y: -0.000000003727266, z: 3.7508255e-10, w: 0.99497473}
+  m_LocalRotation: {x: 0.100126386, y: -0.000000003730572, z: 3.7541523e-10, w: 0.99497473}
   m_LocalPosition: {x: 13.43, y: 3.422286, z: -2.5751991}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11948,7 +11998,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8239796, y: 1}
+    m_SensorSize: {x: 1.8380102, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -12183,7 +12233,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8239796, y: 1}
+    m_SensorSize: {x: 1.8380102, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -12199,7 +12249,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311464883}
-  m_LocalRotation: {x: -0.000000014901161, y: -0.00000000734196, z: 0.0000000014927906, w: 1}
+  m_LocalRotation: {x: -0.000000014901161, y: -0.000000007329703, z: 0.0000000014902984, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12547,7 +12597,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8239796, y: 1}
+    m_SensorSize: {x: 1.8380102, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -12563,7 +12613,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1631918138}
-  m_LocalRotation: {x: -0.05744883, y: 0.000000013455225, z: -0.0000000019388096, w: 0.9983485}
+  m_LocalRotation: {x: -0.05744883, y: 0.00000001434347, z: -0.0000000020667998, w: 0.9983485}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -17422,7 +17472,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2.2
   m_Direction: 1
-  m_Center: {x: 0, y: 1.1, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1860762051 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 625774ca301d6ad42824d4a65bb74400, type: 3}

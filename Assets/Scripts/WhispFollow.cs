@@ -1,15 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WhispFollow : MonoBehaviour
 {
-    public Transform target;
+    public Transform currentTarget;
+    public Transform omoTarget;
 
     public float smoothTime = 0.5f;
 
-    public float speed = 1.0f;
+    public float currentSpeed = 1.0f;
+    public float normalSpeed = 1.0f;
+    public float flyTooSpeed = 3.0f;
 
+    
+    void Start()
+    {
+        currentSpeed = normalSpeed;
+    }
     void FixedUpdate()
     {
         MoveTowardsTarget();
@@ -17,7 +26,23 @@ public class WhispFollow : MonoBehaviour
 
     void MoveTowardsTarget()
     {
-        float step = speed * Time.deltaTime; // calculate distance to move
-        transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+        float step = currentSpeed * Time.deltaTime; // calculate distance to move
+        transform.position = Vector3.MoveTowards(transform.position, currentTarget.position, step);
+    }
+
+    public void ResetTarget(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            currentTarget = omoTarget;
+
+            GameObject[] oldTargets;
+            oldTargets = GameObject.FindGameObjectsWithTag("WhispTargetUseless");
+
+            foreach (GameObject oldTarget in oldTargets)
+            {
+                Destroy(oldTarget);
+            }
+        }
     }
 }

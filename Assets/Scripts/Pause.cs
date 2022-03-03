@@ -19,7 +19,7 @@ public class Pause : MonoBehaviour
     }
     void Start()
     {
-        UnPause();
+        //UnPause();
     }
     public void Puase()
     {
