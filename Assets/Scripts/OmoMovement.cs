@@ -22,6 +22,7 @@ public class OmoMovement : MonoBehaviour
     private Camera cam;
 
     private Animator animator;
+    private OmoAnimationController omoAnimationController;
 
     private PlayerInputActions playerInputActions;
     private Pause pauseScript;
@@ -32,6 +33,7 @@ public class OmoMovement : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         pauseScript = GetComponent<Pause>();
         animator = GetComponent<Animator>();
+        omoAnimationController = GetComponent<OmoAnimationController>();
 
         playerInputActions = new PlayerInputActions();
 
@@ -62,6 +64,8 @@ public class OmoMovement : MonoBehaviour
         if (horizontalVelocity.sqrMagnitude > currentMaxSpeed * currentMaxSpeed)
         {
             rigidbody.velocity = horizontalVelocity.normalized * currentMaxSpeed + Vector3.up * rigidbody.velocity.y;
+
+            omoAnimationController.CancleIdleActions();
         }
     }
     private void LookAt()

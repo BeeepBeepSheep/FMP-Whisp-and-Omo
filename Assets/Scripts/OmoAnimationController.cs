@@ -12,6 +12,7 @@ public class OmoAnimationController : MonoBehaviour
     private MoodController moodController;
 
     public float groundedCheckTickRate = 0.01f;
+    public float checkIdleTime = 15f;
 
     private void Start()
     {
@@ -23,6 +24,7 @@ public class OmoAnimationController : MonoBehaviour
         maxSpeed = omoMovement.currentMaxSpeed;
 
         StartCoroutine(MyUpdate());
+        StartCoroutine(DoIdleAction());
     }
 
     public void DoPoint(InputAction.CallbackContext context)
@@ -44,5 +46,28 @@ public class OmoAnimationController : MonoBehaviour
             ////speed
             animator.SetFloat("Speed", rigidbody.velocity.magnitude / maxSpeed);
         }
+    }
+
+    IEnumerator DoIdleAction()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(checkIdleTime);
+
+            if(moodController.fullMood == 0)//if sad
+            {
+                animator.SetBool("DoIdleAction", true);
+                animator.SetTrigger("SadIdleKick");
+            }
+            else// if happy
+            {
+                animator.SetBool("DoIdleAction", true);
+                animator.SetTrigger("IdleArmSwing");
+            }
+        }
+    }
+    public void CancleIdleActions()
+    {
+        animator.SetBool("DoIdleAction", false);
     }
 }

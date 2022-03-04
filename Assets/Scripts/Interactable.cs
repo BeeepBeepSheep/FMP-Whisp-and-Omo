@@ -4,18 +4,29 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    private bool hasInteracted = false;
+    private bool isInteracting = false;
+    public bool interactTypeIsHold = true;
+
+    // interact types, door, bridge, light, break, spawn
 
     public void Interacted()
     {
-        hasInteracted = true;
+        isInteracting = true;
     }
 
     void OnTriggerEnter(Collider collider)
     {
-        if(hasInteracted && collider.tag == "Whisp")
+        if(isInteracting && collider.tag == "Whisp")
         {
             Debug.Log("interacted");
+        }
+    }
+    void OnTriggerExit(Collider collider)
+    {
+        if(interactTypeIsHold && isInteracting && collider.tag == "Whisp")
+        {
+            Debug.Log("uninteracted");
+            isInteracting = false;
         }
     }
 }
