@@ -21,14 +21,10 @@ public class OmoAnimationController : MonoBehaviour
         moodController = GetComponent<MoodController>();
 
         maxSpeed = omoMovement.currentMaxSpeed;
-    }
-
-    private void Update()
-    {
-        //animator.SetFloat("Speed", rigidbody.velocity.magnitude / maxSpeed);
 
         StartCoroutine(MyUpdate());
     }
+
     public void DoPoint(InputAction.CallbackContext context)
     {
         if (context.started)
