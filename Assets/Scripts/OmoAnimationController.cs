@@ -61,8 +61,18 @@ public class OmoAnimationController : MonoBehaviour
             }
             else// if happy
             {
-                animator.SetBool("DoIdleAction", true);
-                animator.SetTrigger("IdleArmSwing");
+                int ran = Random.Range(0, 2);
+                Debug.Log(ran);
+                if (ran == 0)
+                {
+                    animator.SetBool("DoIdleAction", true);
+                    animator.SetTrigger("IdleArmSwing");
+                }
+                else
+                {
+                    animator.SetBool("DoIdleAction", true);
+                    animator.SetTrigger("IdleStretch");
+                }
             }
         }
     }
