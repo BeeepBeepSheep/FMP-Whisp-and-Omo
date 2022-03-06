@@ -61,7 +61,7 @@ public class OmoAnimationController : MonoBehaviour
             }
             else// if happy
             {
-                int ran = Random.Range(0, 2);
+                int ran = Random.Range(-1, 2);
                 if (ran == 0)
                 {
                     animator.SetBool("DoIdleAction", true);
