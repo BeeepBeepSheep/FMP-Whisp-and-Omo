@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
-    private int currentSHoulderNum = 1;
+    private int currentShoulderNum = 1;
     [SerializeField]
     private CinemachineCameraOffset camOffset;
     //private CinemachineFreeLook cinemachineFreeLook;
@@ -23,8 +23,8 @@ public class CameraController : MonoBehaviour
         if (context.started)
         {
             //tripple toggle
-            currentSHoulderNum = (currentSHoulderNum % 3) + 1;
-            switch (currentSHoulderNum)
+            currentShoulderNum = (currentShoulderNum % 3) + 1;
+            switch (currentShoulderNum)
             {
                 case 1:
                     camOffset.m_Offset.x = 2;
