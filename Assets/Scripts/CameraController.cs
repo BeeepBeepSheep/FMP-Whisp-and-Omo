@@ -37,6 +37,10 @@ public class CameraController : MonoBehaviour
         freeLook.m_LookAt = targetGroup.transform; ;
 
         StartCoroutine(CheckWallDistance());
+
+        targetGroup.m_Targets[1].target = player;
+        freeLook.m_RecenterToTargetHeading = new AxisState.Recentering(false, 1, 2);
+        RecenterCam();
     }
 
     public void ShoulderToggle(InputAction.CallbackContext context)
@@ -79,13 +83,13 @@ public class CameraController : MonoBehaviour
             {
                 targetGroup.m_Targets[1].target = objectiveManager.objectives[0]; //most importnat objective will always be at 0
                 //enable/ dissable auto recentering
-                freeLook.m_RecenterToTargetHeading = new AxisState.Recentering(true, 1, 2);
+                freeLook.m_RecenterToTargetHeading = new AxisState.Recentering(true, 0f, 0.1f);
                 RecenterCam();
             }
             else
             {
                 targetGroup.m_Targets[1].target = player;
-                freeLook.m_RecenterToTargetHeading = new AxisState.Recentering(false, 1, 2);
+                freeLook.m_RecenterToTargetHeading = new AxisState.Recentering(false, 0f, 0.1f);
             }
         }
     }
