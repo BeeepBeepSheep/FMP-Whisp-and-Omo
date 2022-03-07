@@ -81,6 +81,14 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""FocusToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""dc0f1a3d-34ee-42ec-b86e-f4857c143090"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -369,6 +377,28 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""action"": ""ReturnWhisp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5599e378-cadb-46de-aae4-134147407180"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""FocusToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4673b31c-c801-4c42-ac90-856f6d79f493"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""FocusToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -462,6 +492,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_Player_ToggleCameraShoulder = m_Player.FindAction("ToggleCameraShoulder", throwIfNotFound: true);
         m_Player_testingonlyToggleMood = m_Player.FindAction("(testing only) ToggleMood", throwIfNotFound: true);
         m_Player_ReturnWhisp = m_Player.FindAction("ReturnWhisp", throwIfNotFound: true);
+        m_Player_FocusToggle = m_Player.FindAction("FocusToggle", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_UnPause = m_UI.FindAction("UnPause", throwIfNotFound: true);
@@ -522,6 +553,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_ToggleCameraShoulder;
     private readonly InputAction m_Player_testingonlyToggleMood;
     private readonly InputAction m_Player_ReturnWhisp;
+    private readonly InputAction m_Player_FocusToggle;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -534,6 +566,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @ToggleCameraShoulder => m_Wrapper.m_Player_ToggleCameraShoulder;
         public InputAction @testingonlyToggleMood => m_Wrapper.m_Player_testingonlyToggleMood;
         public InputAction @ReturnWhisp => m_Wrapper.m_Player_ReturnWhisp;
+        public InputAction @FocusToggle => m_Wrapper.m_Player_FocusToggle;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -567,6 +600,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @ReturnWhisp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnWhisp;
                 @ReturnWhisp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnWhisp;
                 @ReturnWhisp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnWhisp;
+                @FocusToggle.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFocusToggle;
+                @FocusToggle.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFocusToggle;
+                @FocusToggle.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFocusToggle;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -595,6 +631,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @ReturnWhisp.started += instance.OnReturnWhisp;
                 @ReturnWhisp.performed += instance.OnReturnWhisp;
                 @ReturnWhisp.canceled += instance.OnReturnWhisp;
+                @FocusToggle.started += instance.OnFocusToggle;
+                @FocusToggle.performed += instance.OnFocusToggle;
+                @FocusToggle.canceled += instance.OnFocusToggle;
             }
         }
     }
@@ -660,6 +699,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnToggleCameraShoulder(InputAction.CallbackContext context);
         void OnTestingonlyToggleMood(InputAction.CallbackContext context);
         void OnReturnWhisp(InputAction.CallbackContext context);
+        void OnFocusToggle(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

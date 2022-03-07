@@ -68,6 +68,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "FocusToggle",
+                    "type": "Button",
+                    "id": "dc0f1a3d-34ee-42ec-b86e-f4857c143090",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -354,6 +362,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "ReturnWhisp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5599e378-cadb-46de-aae4-134147407180",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse and Keyboard",
+                    "action": "FocusToggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4673b31c-c801-4c42-ac90-856f6d79f493",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "FocusToggle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

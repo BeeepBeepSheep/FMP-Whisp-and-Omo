@@ -6,16 +6,37 @@ using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
+    [Header("Offset")]
     [SerializeField]
     private int currentShoulderNum = 1;
     [SerializeField]
     private CinemachineCameraOffset camOffset;
-    //private CinemachineFreeLook cinemachineFreeLook;
+    private float oldOffset = 0f;
+
+    [Header("Collider")]
+    private CinemachineCollider cinemachineCollider;
+    public float wallCheckTickRate = 0.01f;
+    public Camera cam;
+    public LayerMask environmentLayer;
+
+    [Header("Look at")]
+    public ObjectiveManager objectiveManager;
+    public Transform player;
+    private CinemachineFreeLook freeLook;
+    public CinemachineTargetGroup targetGroup;
 
     private void Awake()
     {
-        //cinemachineFreeLook = GetComponent<CinemachineFreeLook>();
         camOffset = GetComponent<CinemachineCameraOffset>();
+        freeLook = GetComponent<CinemachineFreeLook>();
+        cinemachineCollider = GetComponent<CinemachineCollider>();
+    }
+
+    void Start()
+    {
+        freeLook.m_LookAt = targetGroup.transform; ;
+
+        StartCoroutine(CheckWallDistance());
     }
 
     public void ShoulderToggle(InputAction.CallbackContext context)
@@ -30,7 +51,7 @@ public class CameraController : MonoBehaviour
                     camOffset.m_Offset.x = 2;
                     break;
                 case 2:
-                    camOffset.m_Offset.x = 0;
+                    RecenterCam();
                     break;
                 case 3:
                     camOffset.m_Offset.x = -2;
@@ -40,5 +61,49 @@ public class CameraController : MonoBehaviour
             }
         }
     }
-}
+    private void RecenterCam()
+    {
+        oldOffset = camOffset.m_Offset.x;
+        camOffset.m_Offset.x = 0;
+    }
+    private void RevertToOldOffset()
+    {
+        camOffset.m_Offset.x = oldOffset;
+        Debug.Log("old offset");
+    }
+    public void FocusToggle(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (targetGroup.m_Targets[1].target == player) // if looking at player
+            {
+                targetGroup.m_Targets[1].target = objectiveManager.objectives[0]; //most importnat objective will always be at 0
+                //enable/ dissable auto recentering
+                freeLook.m_RecenterToTargetHeading = new AxisState.Recentering(true, 1, 2);
+                RecenterCam();
+            }
+            else
+            {
+                targetGroup.m_Targets[1].target = player;
+                freeLook.m_RecenterToTargetHeading = new AxisState.Recentering(false, 1, 2);
+            }
+        }
+    }
+    IEnumerator CheckWallDistance()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(wallCheckTickRate);
 
+            RaycastHit hit;
+            if (Physics.Raycast(cam.transform.position, cam.transform.right, out hit, 2f))
+            {
+                RecenterCam();
+            }
+            if (Physics.Raycast(cam.transform.position, -cam.transform.right, out hit, 2f))
+            {
+                RecenterCam();
+            }
+        }
+    }
+}

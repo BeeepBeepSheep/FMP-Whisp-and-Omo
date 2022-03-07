@@ -8,11 +8,14 @@ public class OmoMovement : MonoBehaviour
     private Rigidbody rigidbody;
     private PlayerInput playerInput;
 
+    [Header("Speeds")]
     [SerializeField]
     private float movementForce = 1f;
     public float currentMaxSpeed = 5f;
     public float happyMaxSpeed = 5f;
     public float sadMaxSpeed = 3f;
+
+    [Header("-----")]
     [SerializeField]
     private float jumpForce = 10;
     private Vector3 forceDirection = Vector3.zero;

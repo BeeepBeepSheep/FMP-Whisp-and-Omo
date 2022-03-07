@@ -11,6 +11,7 @@ public class OmoAnimationController : MonoBehaviour
     private OmoMovement omoMovement;
     private MoodController moodController;
 
+    [Header("Time tick intervals")]
     public float groundedCheckTickRate = 0.01f;
     public float checkIdleTime = 15f;
 

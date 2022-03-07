@@ -6,8 +6,8 @@ using UnityEngine.InputSystem;
 public class MoodController : MonoBehaviour
 {
     public int fullMood = 1; //1 for fine, 0 for sad, use as int
-
     private OmoMovement omoMovement;
+
     private OmoAnimationController omoAnimatorScript;
 
     public GameObject happyBeard;
