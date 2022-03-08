@@ -284,7 +284,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &67707218
 Light:
   m_ObjectHideFlags: 0
@@ -14824,7 +14824,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineWidth: 2
+  outlineWidth: 3
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -21070,8 +21070,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cb1b9a5762c14a40a3b0e1aa1b4ab86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactTypeIsHold: 0
+  interactTypeIsHold: 1
   isInteractingWithWhisp: 0
+  isInteractingAsPressurePlate: 0
 --- !u!65 &1743442472
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21141,6 +21142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactTypeIsHold: 1
   isInteractingWithWhisp: 0
+  isInteractingAsPressurePlate: 0
 --- !u!64 &1809509532
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21640,6 +21642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactTypeIsHold: 1
   isInteractingWithWhisp: 0
+  isInteractingAsPressurePlate: 0
 --- !u!1 &1968209337 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4191736113113253308, guid: 96c2945370ac21247aff13f62a0f5f41, type: 3}
@@ -21687,6 +21690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactTypeIsHold: 1
   isInteractingWithWhisp: 0
+  isInteractingAsPressurePlate: 0
 --- !u!1 &1989562060
 GameObject:
   m_ObjectHideFlags: 0
