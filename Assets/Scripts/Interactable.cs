@@ -4,29 +4,52 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    private bool isInteracting = false;
+    // interact types, door, bridge, light, break, spawn
     public bool interactTypeIsHold = true;
 
-    // interact types, door, bridge, light, break, spawn
+    [Header("Whisp Only")]
+    [HideInInspector]
+    public bool isInteractingWithWhisp = false;
 
-    public void Interacted()
+    void Awake()
     {
-        isInteracting = true;
+        if(gameObject.tag == "PressurePlate")
+        {
+            interactTypeIsHold = true;
+        }
     }
 
     void OnTriggerEnter(Collider collider)
     {
-        if(isInteracting && collider.tag == "Whisp")
+        //pressure plate
+        if (gameObject.tag == "PressurePlate" && collider.tag == "Player" || collider.tag == "Whisp")
         {
-            Debug.Log("interacted");
+            Debug.Log("interacted with anything");
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+        }
+        //whisp only
+        else if (isInteractingWithWhisp && collider.tag == "Whisp" && gameObject.tag == "WhispOnlyInteractable")
+        {
+            Debug.Log("interacted with whisp");
         }
     }
     void OnTriggerExit(Collider collider)
     {
-        if(interactTypeIsHold && isInteracting && collider.tag == "Whisp")
+        if(interactTypeIsHold)
         {
-            Debug.Log("uninteracted");
-            isInteracting = false;
+            //pressure plate
+            if (gameObject.tag == "PressurePlate" && collider.tag == "Player" || collider.tag == "Whisp")
+            {
+                Debug.Log("uninteracted with anything");
+
+                gameObject.GetComponent<MeshRenderer>().enabled = true;
+            }
+            //whisp only
+            if (interactTypeIsHold && isInteractingWithWhisp && collider.tag == "Whisp" && gameObject.tag == "WhispOnlyInteractable")
+            {
+                Debug.Log("uninteracted with whisp");
+                isInteractingWithWhisp = false;
+            }
         }
     }
 }

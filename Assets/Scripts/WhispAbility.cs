@@ -19,10 +19,11 @@ public class WhispAbility : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 1000f, ~rayIgnore))
             {
-                if(hit.transform.tag == "Interactable")
+                if(hit.transform.tag == "WhispOnlyInteractable")
                 {
-                    hit.transform.GetComponent<Interactable>().Interacted();
+                    hit.transform.GetComponent<Interactable>().isInteractingWithWhisp = true;
                 }
+
                 GameObject whispTargetPoint = Instantiate(newWhispMovePoint, hit.point, Quaternion.LookRotation(hit.normal));
                 whispFollow.currentTarget = whispTargetPoint.transform;
             }

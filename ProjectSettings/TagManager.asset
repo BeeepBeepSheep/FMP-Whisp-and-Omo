@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - WhispTargetUseless
-  - Interactable
   - Whisp
+  - WhispOnlyInteractable
+  - PressurePlate
   layers:
   - Default
   - TransparentFX
