@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3097067193311657821
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 4
 --- !u!21 &2100000
 Material:
   serializedVersion: 6
@@ -7,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Grid Default 3
+  m_Name: DayOmoEyes
   m_Shader: {fileID: -6465566751694194690, guid: 4f9ec1d881d2d294787631d75b186db2, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -20,23 +33,23 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - MainTex:
-        m_Texture: {fileID: 2800000, guid: 6344bf96fbda94141a525046d088fb23, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2ee8292c101065649bf804e82470e134, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - MainTexture:
-        m_Texture: {fileID: 2800000, guid: 6344bf96fbda94141a525046d088fb23, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2ee8292c101065649bf804e82470e134, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Mask:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 31e157872ff82884297021e0eabc3f66, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Mask_R_Emission:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 31e157872ff82884297021e0eabc3f66, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 6344bf96fbda94141a525046d088fb23, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2ee8292c101065649bf804e82470e134, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -60,7 +73,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 6344bf96fbda94141a525046d088fb23, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2ee8292c101065649bf804e82470e134, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -94,13 +107,14 @@ Material:
     m_Ints: []
     m_Floats:
     - Brightness_Rim: 0
-    - RimLightBrightness: 0.2
-    - RimLightSize: 0.62
+    - RimLightBrightness: 0.35
+    - RimLightSize: 0.25
     - Rim_Power: 0
     - RingPower: 5
-    - ToonRampOffset: -0.05
-    - ToonRampSmoothness: 3
-    - Toon_Ramp_Offset: 0.5
+    - Smoothness: 0
+    - ToonRampOffset: 0.25
+    - ToonRampSmoothness: 0.43
+    - Toon_Ramp_Offset: 0
     - Toon_Ramp_Smoothness: 0.05
     - _AlphaClip: 0
     - _Blend: 0
@@ -121,7 +135,8 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 0.05
+    - _SampleGI: 0
+    - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -129,23 +144,10 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - ToonRampTinting: {r: 0, g: 0, b: 0, a: 0}
-    - Toon_Ramp_Tint: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
-    - _BaseColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
-    - _Color: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
+    - ToonRampTinting: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
+    - Toon_Ramp_Tint: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+    - _BaseColor: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
+    - _Color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &4841369693206579386
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 4
