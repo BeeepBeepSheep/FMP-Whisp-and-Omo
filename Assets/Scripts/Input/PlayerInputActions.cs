@@ -89,6 +89,14 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""DoActivateSequence2"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e77bb44-25c7-4073-9e45-17f3913f49c9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -399,6 +407,28 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""action"": ""FocusToggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e3c105b3-88af-4219-8a16-2a830b38deb4"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""DoActivateSequence2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0186fd22-5dbd-4b38-90b5-839158242716"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""DoActivateSequence2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -493,6 +523,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_Player_testingonlyToggleMood = m_Player.FindAction("(testing only) ToggleMood", throwIfNotFound: true);
         m_Player_ReturnWhisp = m_Player.FindAction("ReturnWhisp", throwIfNotFound: true);
         m_Player_FocusToggle = m_Player.FindAction("FocusToggle", throwIfNotFound: true);
+        m_Player_DoActivateSequence2 = m_Player.FindAction("DoActivateSequence2", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_UnPause = m_UI.FindAction("UnPause", throwIfNotFound: true);
@@ -554,6 +585,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_testingonlyToggleMood;
     private readonly InputAction m_Player_ReturnWhisp;
     private readonly InputAction m_Player_FocusToggle;
+    private readonly InputAction m_Player_DoActivateSequence2;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -567,6 +599,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @testingonlyToggleMood => m_Wrapper.m_Player_testingonlyToggleMood;
         public InputAction @ReturnWhisp => m_Wrapper.m_Player_ReturnWhisp;
         public InputAction @FocusToggle => m_Wrapper.m_Player_FocusToggle;
+        public InputAction @DoActivateSequence2 => m_Wrapper.m_Player_DoActivateSequence2;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -603,6 +636,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @FocusToggle.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFocusToggle;
                 @FocusToggle.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFocusToggle;
                 @FocusToggle.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFocusToggle;
+                @DoActivateSequence2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDoActivateSequence2;
+                @DoActivateSequence2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDoActivateSequence2;
+                @DoActivateSequence2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDoActivateSequence2;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -634,6 +670,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @FocusToggle.started += instance.OnFocusToggle;
                 @FocusToggle.performed += instance.OnFocusToggle;
                 @FocusToggle.canceled += instance.OnFocusToggle;
+                @DoActivateSequence2.started += instance.OnDoActivateSequence2;
+                @DoActivateSequence2.performed += instance.OnDoActivateSequence2;
+                @DoActivateSequence2.canceled += instance.OnDoActivateSequence2;
             }
         }
     }
@@ -700,6 +739,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnTestingonlyToggleMood(InputAction.CallbackContext context);
         void OnReturnWhisp(InputAction.CallbackContext context);
         void OnFocusToggle(InputAction.CallbackContext context);
+        void OnDoActivateSequence2(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
