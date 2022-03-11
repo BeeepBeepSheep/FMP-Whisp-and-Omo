@@ -2483,7 +2483,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 706477503}
-  - {fileID: 1171235676}
   m_Father: {fileID: 2087415498}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -27596,7 +27595,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 681936811c7ccf84f9dba8190c32d6f8, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c44f64dd09ca83c41bf7c1324fd91313, type: 2}
+      objectReference: {fileID: 2100000, guid: 1ff9284a13c7d8848a403a15f7d0a12d, type: 2}
     - target: {fileID: 919132149155446097, guid: 681936811c7ccf84f9dba8190c32d6f8, type: 3}
       propertyPath: m_Name
       value: prison blockoutv2 3D
@@ -29915,6 +29914,7 @@ Transform:
   - {fileID: 1085573679}
   - {fileID: 311686806}
   - {fileID: 614001651}
+  - {fileID: 1171235676}
   m_Father: {fileID: 129395840}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -39507,12 +39507,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1171235675}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -3.4370918, y: 0.20047697, z: -4.28}
   m_LocalScale: {x: 1, y: 0.40095395, z: 2.8725843}
   m_Children: []
-  m_Father: {fileID: 129395840}
-  m_RootOrder: 1
+  m_Father: {fileID: 706477503}
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1171235677
 BoxCollider:
@@ -39547,7 +39547,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 059967c5495b7a44192fe80ee13dc153, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -52736,7 +52736,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1631918138}
-  m_LocalRotation: {x: 0.008795194, y: 0.000000015399877, z: -1.3545011e-10, w: 0.9999613}
+  m_LocalRotation: {x: 0.008795192, y: 0.00000001915765, z: -1.6850168e-10, w: 0.9999613}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
