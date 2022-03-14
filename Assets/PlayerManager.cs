@@ -30,6 +30,7 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] private GameObject sendWhispPrompt;
     [SerializeField] private GameObject returnWhispPrompt;
+    [SerializeField] private string secondWalkTitle = "Break Whisp Free";
 
     private bool hasLookedAround = false;
     private bool hasWalkedAround = false;
@@ -124,7 +125,17 @@ public class PlayerManager : MonoBehaviour
     {
         if (hasWalkedAround && !hasJumpedAround && context.started)
         {
-            Debug.Log("first jump");
+            //Debug.Log("first jump");
+            hasJumpedAround = true;
+            StartCoroutine(TutorialStage4());
         }
+    }
+    private IEnumerator TutorialStage4()
+    {
+        //after first jump and before whisp freed
+        movePrompt.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = secondWalkTitle;
+        
+        yield return new WaitForSeconds(1);
+        uiAnim.SetTrigger("JumpTooBreak");
     }
 }
