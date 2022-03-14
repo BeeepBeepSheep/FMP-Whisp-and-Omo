@@ -15,7 +15,6 @@ public class WhispAbility : MonoBehaviour
     {
         if (context.started)
         {
-
             RaycastHit hit;
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 1000f, ~rayIgnore))
             {

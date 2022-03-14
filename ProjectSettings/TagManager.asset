@@ -8,6 +8,7 @@ TagManager:
   - Whisp
   - WhispOnlyInteractable
   - PressurePlate
+  - WhispLightSwitch
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Whisp
   - Player
   - WhispHitsPlayer
-  - 
+  - WhispRayPassThrough
   - 
   - 
   - 

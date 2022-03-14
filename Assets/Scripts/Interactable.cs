@@ -19,6 +19,10 @@ public class Interactable : MonoBehaviour
         {
             interactTypeIsHold = true;
         }
+        else if (gameObject.tag == "WhispLightSwitch")
+        {
+            interactTypeIsHold = false;
+        }
     }
 
     void OnTriggerEnter(Collider collider)
@@ -38,6 +42,11 @@ public class Interactable : MonoBehaviour
         if (isInteractingWithWhisp && collider.tag == "Whisp" && gameObject.tag == "WhispOnlyInteractable")
         {
             Debug.Log("interacted with whisp");
+        }
+
+        if(collider.tag == "Whisp" && gameObject.tag == "WhispLightSwitch")
+        {
+            Debug.Log("lightswitch");
         }
     }
     void OnTriggerExit(Collider collider)
