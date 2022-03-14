@@ -11,9 +11,11 @@ public class WhispAbility : MonoBehaviour
     public GameObject newWhispMovePoint;
     public LayerMask rayIgnore;
 
+    [SerializeField] private PlayerManager playerManager;
+
     public void DoWhispAbility(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && playerManager.hasLearntWhispAbility)
         {
             RaycastHit hit;
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 1000f, ~rayIgnore))
@@ -26,6 +28,10 @@ public class WhispAbility : MonoBehaviour
                 GameObject whispTargetPoint = Instantiate(newWhispMovePoint, hit.point, Quaternion.LookRotation(hit.normal));
                 whispFollow.currentTarget = whispTargetPoint.transform;
             }
+        }
+        else if (context.started && !playerManager.hasLearntWhispAbility)
+        {
+            Debug.Log("not yet");
         }
     }
 }

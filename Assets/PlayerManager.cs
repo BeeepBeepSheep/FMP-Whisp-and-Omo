@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
+using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -22,10 +23,30 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject lookTutorialPromt;
     [SerializeField] private Animator uiAnim;
 
+    [Header("Tutorial")]
+    [SerializeField] private GameObject lookPrompt;
+    [SerializeField] private GameObject movePrompt;
+    [SerializeField] private GameObject jumpPrompt;
+
+    [SerializeField] private GameObject sendWhispPrompt;
+    [SerializeField] private GameObject returnWhispPrompt;
+
     private bool hasLookedAround = false;
     private bool hasWalkedAround = false;
-    public bool introCutsceneHasEnded = false;
+    private bool hasJumpedAround = false;
 
+    public bool introCutsceneHasEnded = false;
+    public bool hasLearntWhispAbility = false;
+
+
+    private void Start()
+    {
+        lookPrompt.SetActive(true);
+        movePrompt.SetActive(false);
+        jumpPrompt.SetActive(false);
+        sendWhispPrompt.SetActive(false);
+        returnWhispPrompt.SetActive(false);
+    }
     public void ActivateSequence1()
     {
         //tutorial part 1
@@ -39,7 +60,7 @@ public class PlayerManager : MonoBehaviour
         finalVirtualCam.enabled = false;
         freeLook.enabled = true;
     }
-    
+
     public void Deactivate()
     {
         gameObject.GetComponent<Rigidbody>().useGravity = false;
@@ -63,7 +84,7 @@ public class PlayerManager : MonoBehaviour
     }
     public void FirstTimeLook()
     {
-        if(!hasLookedAround && introCutsceneHasEnded)
+        if (!hasLookedAround && introCutsceneHasEnded)
         {
             //Debug.Log("first look");
             StartCoroutine(TutorialStage2());
@@ -72,7 +93,7 @@ public class PlayerManager : MonoBehaviour
     }
     private IEnumerator TutorialStage2()
     {
-        //after look
+        //after first look and before walk
         yield return new WaitForSeconds(1);
         uiAnim.SetTrigger("LookTooMove");
 
@@ -81,15 +102,29 @@ public class PlayerManager : MonoBehaviour
 
         omoAnimationController.animator.SetTrigger("SitToStand");
 
-        yield return new WaitForSeconds(3); // time for stand up anim
+        yield return new WaitForSeconds(3); // wait for stand up anim
         omoMovement.enabled = true;
     }
     public void FirstTimeWalk()
     {
         if (hasLookedAround && omoMovement.isActiveAndEnabled && !hasWalkedAround)
         {
-            Debug.Log("first walk");
+            //Debug.Log("first walk");
+            StartCoroutine(TutorialStage3());
             hasWalkedAround = true;
+        }
+    }
+    private IEnumerator TutorialStage3()
+    {
+        //after first walk and before jump
+        yield return new WaitForSeconds(1);
+        uiAnim.SetTrigger("MoveTooJump");
+    }
+    public void FirstTimeJump(InputAction.CallbackContext context)
+    {
+        if (hasWalkedAround && !hasJumpedAround && context.started)
+        {
+            Debug.Log("first jump");
         }
     }
 }

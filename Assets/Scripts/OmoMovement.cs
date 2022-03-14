@@ -9,20 +9,18 @@ public class OmoMovement : MonoBehaviour
     private PlayerInput playerInput;
 
     [Header("Speeds")]
-    [SerializeField]
+    [SerializeField] private Animator uiAnim;
     private float movementForce = 1f;
     public float currentMaxSpeed = 5f;
     public float happyMaxSpeed = 5f;
     public float sadMaxSpeed = 3f;
 
     [Header("-----")]
-    [SerializeField]
-    private float jumpForce = 10;
+    [SerializeField] private float jumpForce = 10;
     private Vector3 forceDirection = Vector3.zero;
     private InputAction moveAction;
 
-    [SerializeField]
-    private Camera cam;
+    [SerializeField] private Camera cam;
 
     private Animator animator;
     private OmoAnimationController omoAnimationController;
