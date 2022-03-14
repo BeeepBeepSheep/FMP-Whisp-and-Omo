@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private WhispFollow whispFollow;
     [SerializeField] private CameraController cameraController;
     [SerializeField] private ObjectiveManager objectiveManager;
+    [SerializeField] private CinemachineVirtualCamera finalVirtualCam;
+    [SerializeField] private CinemachineFreeLook freeLook;
 
     public void ActivateSequence1()
     {
@@ -21,6 +24,9 @@ public class PlayerManager : MonoBehaviour
         whispOrbitController.enabled = true;
         cameraController.enabled = true;
         objectiveManager.enabled = true;
+
+        finalVirtualCam.enabled = false;
+        freeLook.enabled = true;
     }
     public void ActivateSequence2(InputAction.CallbackContext context)
     {
@@ -44,5 +50,8 @@ public class PlayerManager : MonoBehaviour
         whispFollow.enabled = false;
         cameraController.enabled = false;
         objectiveManager.enabled = false;
+
+        freeLook.enabled = false;
+        finalVirtualCam.enabled = true;
     }
 }
