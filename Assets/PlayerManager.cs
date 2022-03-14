@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private ObjectiveManager objectiveManager;
     [SerializeField] private CinemachineVirtualCamera finalVirtualCam;
     [SerializeField] private CinemachineFreeLook freeLook;
+    [SerializeField] private GameObject hud;
 
     public void ActivateSequence1()
     {
@@ -24,6 +25,7 @@ public class PlayerManager : MonoBehaviour
         whispOrbitController.enabled = true;
         cameraController.enabled = true;
         objectiveManager.enabled = true;
+        hud.SetActive(true);
 
         finalVirtualCam.enabled = false;
         freeLook.enabled = true;
@@ -50,6 +52,7 @@ public class PlayerManager : MonoBehaviour
         whispFollow.enabled = false;
         cameraController.enabled = false;
         objectiveManager.enabled = false;
+        hud.SetActive(false);
 
         freeLook.enabled = false;
         finalVirtualCam.enabled = true;
