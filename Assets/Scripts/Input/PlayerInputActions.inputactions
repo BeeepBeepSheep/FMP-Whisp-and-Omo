@@ -76,14 +76,6 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
-                },
-                {
-                    "name": "DoActivateSequence2",
-                    "type": "Button",
-                    "id": "6e77bb44-25c7-4073-9e45-17f3913f49c9",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -392,28 +384,6 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "FocusToggle",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e3c105b3-88af-4219-8a16-2a830b38deb4",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mouse and Keyboard",
-                    "action": "DoActivateSequence2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0186fd22-5dbd-4b38-90b5-839158242716",
-                    "path": "<Gamepad>/dpad/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "DoActivateSequence2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

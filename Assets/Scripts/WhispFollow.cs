@@ -45,8 +45,4 @@ public class WhispFollow : MonoBehaviour
             }
         }
     }
-    void OnDestroy()
-    {
-        Debug.Log("dead");
-    }
 }

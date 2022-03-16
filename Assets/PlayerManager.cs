@@ -15,9 +15,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private WhispFollow whispFollow;
     [SerializeField] private WhispAbility whispAbility;
     [SerializeField] private CameraController cameraController;
-    [SerializeField] private ObjectiveManager objectiveManager;
     [SerializeField] private CinemachineVirtualCamera finalVirtualCam;
     [SerializeField] private CinemachineFreeLook freeLook;
+    [SerializeField] private ObjectiveManagerChapterOne objectiveManagerChapterOne;
 
     [Header("UI")]
     [SerializeField] private CanvasGroup hudGroup;
@@ -29,8 +29,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject movePrompt;
     [SerializeField] private GameObject jumpPrompt;
 
-    [SerializeField] private GameObject sendWhispPrompt;
     [SerializeField] private GameObject returnWhispPrompt;
+    [SerializeField] private GameObject sendWhispPrompt;
+
     [SerializeField] private string secondWalkTitle = "Break Whisp Free";
     [SerializeField] private Outline jarOutline;
     [SerializeField] private GameObject whisp;
@@ -39,9 +40,14 @@ public class PlayerManager : MonoBehaviour
     private bool hasLookedAround = false;
     private bool hasWalkedAround = false;
     public bool hasJumpedOnTable = false;
+    public bool hasFreedWhisp = false;
+    public bool hasReturnedWhisp = false;
+    private bool hasSwitchedShoulder = false;
 
     public bool introCutsceneHasEnded = false;
     public bool hasLearntWhispAbility = false;
+
+    public bool hasCompletedTutorial = false;
 
 
     private void Start()
@@ -60,7 +66,7 @@ public class PlayerManager : MonoBehaviour
         omoAnimationController.enabled = true;
         whispOrbitController.enabled = true;
         cameraController.enabled = true;
-        objectiveManager.enabled = true;
+        objectiveManagerChapterOne.enabled = true;
 
         finalVirtualCam.enabled = false;
         freeLook.enabled = true;
@@ -78,7 +84,7 @@ public class PlayerManager : MonoBehaviour
         whispOrbitController.enabled = false;
         whispFollow.enabled = false;
         cameraController.enabled = false;
-        objectiveManager.enabled = false;
+        objectiveManagerChapterOne.enabled = false;
 
         freeLook.enabled = false;
         finalVirtualCam.enabled = true;
@@ -142,23 +148,38 @@ public class PlayerManager : MonoBehaviour
     {
         //after first jump and before whisp freed
         movePrompt.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = secondWalkTitle;
-        
+
         yield return new WaitForSeconds(1);
         uiAnim.SetTrigger("JumpTooBreak");
     }
-    public bool WhispIsFree()
+    public void WhispIsFree()
     {
         whispOrbitController.enabled = true;
         whispFollow.enabled = true;
         whispFollow.currentTarget = whispFollow.transform;
-        return true;
+        hasFreedWhisp = true;
+
+        uiAnim.SetTrigger("BreakTooReturn");
     }
-    public void FirstTimeWhispReturn()
+    public void FirstTimeWhispReturn(InputAction.CallbackContext context)
     {
-        if (hasJumpedOnTable && WhispIsFree())
+        if (hasFreedWhisp && !hasReturnedWhisp && context.started)
         {
-            //hasJumpedOnTable = true;
-            //StartCoroutine(TutorialStage4());
+            hasReturnedWhisp = true;
+            whispAbility.enabled = true;
+            hasLearntWhispAbility = true;
+
+            hasCompletedTutorial = true;
+            objectiveManagerChapterOne.CheckObjective();
+            uiAnim.SetTrigger("ReturnTooShoulder");
+        }
+    }
+    public void FirstTimeShoulderChange(InputAction.CallbackContext context)
+    {
+        if (hasReturnedWhisp && !hasSwitchedShoulder && context.started)
+        {
+            hasSwitchedShoulder = true;
+            uiAnim.SetTrigger("ShoulderTooSend");
         }
     }
 }

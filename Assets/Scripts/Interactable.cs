@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Interactable : MonoBehaviour
 {
@@ -11,8 +12,8 @@ public class Interactable : MonoBehaviour
     [HideInInspector]
     public bool isInteractingWithWhisp = false;
 
-    public bool isInteractingAsPressurePlate = false;
-
+    [SerializeField] private bool isInteractingAsPressurePlate = false;
+    [SerializeField] private ObjectiveManagerChapterOne objectiveManagerChapterOne;
     void Awake()
     {
         if (gameObject.tag == "PressurePlate")
@@ -35,6 +36,12 @@ public class Interactable : MonoBehaviour
                 Debug.Log("interacted with anything");
                 isInteractingAsPressurePlate = true;
                 gameObject.GetComponent<MeshRenderer>().enabled = false;
+
+                Scene scene = SceneManager.GetActiveScene();
+                if (scene.name == "ChapterOne")
+                {
+                    objectiveManagerChapterOne.CheckObjective();
+                }
             }
         }
 
