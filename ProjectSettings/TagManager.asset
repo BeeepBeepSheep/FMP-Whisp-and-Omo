@@ -9,6 +9,7 @@ TagManager:
   - WhispOnlyInteractable
   - PressurePlate
   - WhispLightSwitch
+  - Jar
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - WhispHitsPlayer
   - WhispRayPassThrough
   - Jar
-  - 
+  - BreakJar
   - 
   - 
   - 

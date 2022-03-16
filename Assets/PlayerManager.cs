@@ -13,6 +13,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private OmoAnimationController omoAnimationController;
     [SerializeField] private WhispOrbitController whispOrbitController;
     [SerializeField] private WhispFollow whispFollow;
+    [SerializeField] private WhispAbility whispAbility;
     [SerializeField] private CameraController cameraController;
     [SerializeField] private ObjectiveManager objectiveManager;
     [SerializeField] private CinemachineVirtualCamera finalVirtualCam;
@@ -31,10 +32,13 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject sendWhispPrompt;
     [SerializeField] private GameObject returnWhispPrompt;
     [SerializeField] private string secondWalkTitle = "Break Whisp Free";
+    [SerializeField] private Outline jarOutline;
+    [SerializeField] private GameObject whisp;
+    [SerializeField] private GameObject sadWhisp;
 
     private bool hasLookedAround = false;
     private bool hasWalkedAround = false;
-    private bool hasJumpedAround = false;
+    public bool hasJumpedOnTable = false;
 
     public bool introCutsceneHasEnded = false;
     public bool hasLearntWhispAbility = false;
@@ -78,6 +82,9 @@ public class PlayerManager : MonoBehaviour
 
         freeLook.enabled = false;
         finalVirtualCam.enabled = true;
+        jarOutline.enabled = false;
+        whisp.SetActive(false);
+        sadWhisp.SetActive(true);
     }
     public void IntroCutsceneEnded()
     {
@@ -105,6 +112,7 @@ public class PlayerManager : MonoBehaviour
 
         yield return new WaitForSeconds(3); // wait for stand up anim
         omoMovement.enabled = true;
+        jarOutline.enabled = true;
     }
     public void FirstTimeWalk()
     {
@@ -123,10 +131,10 @@ public class PlayerManager : MonoBehaviour
     }
     public void FirstTimeJump(InputAction.CallbackContext context)
     {
-        if (hasWalkedAround && !hasJumpedAround && context.started)
+        if (hasWalkedAround && !hasJumpedOnTable && context.started)
         {
             //Debug.Log("first jump");
-            hasJumpedAround = true;
+            hasJumpedOnTable = true;
             StartCoroutine(TutorialStage4());
         }
     }
@@ -137,5 +145,20 @@ public class PlayerManager : MonoBehaviour
         
         yield return new WaitForSeconds(1);
         uiAnim.SetTrigger("JumpTooBreak");
+    }
+    public bool WhispIsFree()
+    {
+        whispOrbitController.enabled = true;
+        whispFollow.enabled = true;
+        whispFollow.currentTarget = whispFollow.transform;
+        return true;
+    }
+    public void FirstTimeWhispReturn()
+    {
+        if (hasJumpedOnTable && WhispIsFree())
+        {
+            //hasJumpedOnTable = true;
+            //StartCoroutine(TutorialStage4());
+        }
     }
 }
