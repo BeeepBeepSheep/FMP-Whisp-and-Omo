@@ -170,7 +170,7 @@ public class PlayerManager : MonoBehaviour
             hasLearntWhispAbility = true;
 
             hasCompletedTutorial = true;
-            objectiveManagerChapterOne.CheckObjective();
+            objectiveManagerChapterOne.CheckObjective(null); //send no tag
             uiAnim.SetTrigger("ReturnTooShoulder");
         }
     }

@@ -40,7 +40,7 @@ public class Interactable : MonoBehaviour
                 Scene scene = SceneManager.GetActiveScene();
                 if (scene.name == "ChapterOne")
                 {
-                    objectiveManagerChapterOne.CheckObjective();
+                    objectiveManagerChapterOne.CheckObjective(transform.tag);
                 }
             }
         }

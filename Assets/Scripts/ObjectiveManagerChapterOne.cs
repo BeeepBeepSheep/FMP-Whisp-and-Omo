@@ -19,16 +19,17 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
             objective.GetComponent<Outline>().enabled = false;
         }
     }
-    public void CheckObjective()
+    public void CheckObjective(string type) // recieves tag
     {
         if(playerManager.hasCompletedTutorial)
         {
             Debug.Log("tutorialComplete");
             InitiatePuzzleOne();
         }
-        if (currentPuzzle == 1)
+        if (currentPuzzle == 1 && type == "PressurePlate")
         {
             uiAnim.SetTrigger("SendTooComplete");
+            Debug.Log("work");
         }
     }
     private void InitiatePuzzleOne()
