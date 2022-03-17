@@ -19,27 +19,33 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
             objective.GetComponent<Outline>().enabled = false;
         }
     }
-    public void CheckObjective(string type) // recieves tag
+    public void CheckObjective(string type, bool isInteracting) // recieves tag, check if it is start or end of interactable
     {
-        if(playerManager.hasCompletedTutorial)
+        Debug.Log("check obj: " + currentPuzzle + ", is interacting = " + isInteracting + ", type is: " + type);
+
+        if (playerManager.hasCompletedTutorial && currentPuzzle == 0 && type == null)
         {
-            Debug.Log("tutorialComplete");
+            //Debug.Log("tutorialComplete");
             InitiatePuzzleOne();
         }
-        if (currentPuzzle == 1 && type == "PressurePlate")
+        if (currentPuzzle == 1 && type == "PressurePlate" && isInteracting)
         {
             uiAnim.SetTrigger("SendTooComplete");
-            Debug.Log("work");
+            currentPuzzle = 2;
+            //do open cell doors
+        }
+        if (currentPuzzle == 2 && type == "PressurePlate" && !isInteracting)
+        {
+            objectives[0].GetComponent<Outline>().enabled = false; // dissable first pressure plate
+            Debug.Log("dissable that");
+            //do close cell doors
         }
     }
     private void InitiatePuzzleOne()
     {
-        //playerManager.enabled = false;
-
         currentObjective = objectives[0];
         currentPuzzle = 1;
         currentObjective.GetComponent<Outline>().enabled = true;
         currentPuzzle = 1;
-        Debug.Log("test");
     }
 }

@@ -12,7 +12,7 @@ public class Interactable : MonoBehaviour
     [HideInInspector]
     public bool isInteractingWithWhisp = false;
 
-    [SerializeField] private bool isInteractingAsPressurePlate = false;
+    [SerializeField] private bool isInteracting = false;
     [SerializeField] private ObjectiveManagerChapterOne objectiveManagerChapterOne;
     void Awake()
     {
@@ -28,20 +28,17 @@ public class Interactable : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
+        isInteracting = true;
+
         //pressure plate
         if (gameObject.tag == "PressurePlate")
         {
             if (collider.tag == "Player" || collider.tag == "Whisp")
             {
-                Debug.Log("interacted with anything");
-                isInteractingAsPressurePlate = true;
+                //Debug.Log("interacted with anything");
                 gameObject.GetComponent<MeshRenderer>().enabled = false;
 
-                Scene scene = SceneManager.GetActiveScene();
-                if (scene.name == "ChapterOne")
-                {
-                    objectiveManagerChapterOne.CheckObjective(transform.tag);
-                }
+                CheckTheObjective();
             }
         }
 
@@ -60,14 +57,16 @@ public class Interactable : MonoBehaviour
     {
         if (interactTypeIsHold)
         {
+            isInteracting = false;
             //pressure plate
             if (gameObject.tag == "PressurePlate")
             {
                 if (collider.tag == "Player" || collider.tag == "Whisp")
                 {
-                    Debug.Log("uninteracted with anything, ");
-                    isInteractingAsPressurePlate = false;
+                    //Debug.Log("uninteracted with anything, ");
                     gameObject.GetComponent<MeshRenderer>().enabled = true;
+
+                    CheckTheObjective();
                 }
             }
             //whisp only
@@ -77,5 +76,14 @@ public class Interactable : MonoBehaviour
                 isInteractingWithWhisp = false;
             }
         }
+    }
+    private void CheckTheObjective()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == "ChapterOne")
+        {
+            objectiveManagerChapterOne.CheckObjective(transform.tag, isInteracting);
+        }
+        // repeat for other chapters
     }
 }

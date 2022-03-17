@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
 {
     [Header("Offset")]
     [SerializeField]
-    private int currentShoulderNum = 1;
+    private int currentShoulderNum = 3;
     [SerializeField]
     private CinemachineCameraOffset camOffset;
     private float oldOffset = 0f;
