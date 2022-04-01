@@ -14,6 +14,7 @@ public class Interactable : MonoBehaviour
 
     [SerializeField] private bool isInteracting = false;
     [SerializeField] private ObjectiveManagerChapterOne objectiveManagerChapterOne;
+
     void Awake()
     {
         if (gameObject.tag == "PressurePlate")
@@ -52,6 +53,7 @@ public class Interactable : MonoBehaviour
         {
             Debug.Log("lightswitch");
         }
+        Debug.Log("interacted");
     }
     void OnTriggerExit(Collider collider)
     {
@@ -76,6 +78,7 @@ public class Interactable : MonoBehaviour
                 isInteractingWithWhisp = false;
             }
         }
+        Debug.Log("uninteracted");
     }
     private void CheckTheObjective()
     {

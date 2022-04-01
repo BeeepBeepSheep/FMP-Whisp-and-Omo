@@ -1790,13 +1790,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 67707217}
-  m_LocalRotation: {x: 0.1271173, y: 0.716907, z: -0.16790405, w: 0.66460055}
+  m_LocalRotation: {x: 0.15965338, y: 0.693576, z: -0.19209713, w: 0.67569363}
   m_LocalPosition: {x: 7.372, y: 3, z: -8.299}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1842024888}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 24.186, y: 93.786, z: -2.571}
+  m_LocalEulerAnglesHint: {x: 28.831, y: 90.855, z: -2.495}
 --- !u!1 &71233241
 GameObject:
   m_ObjectHideFlags: 0
@@ -13426,7 +13426,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4299346263813345887, guid: 45df01f9d46228b49addf5cd8825cafd, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7660445
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4299346263813345887, guid: 45df01f9d46228b49addf5cd8825cafd, type: 3}
       propertyPath: m_LocalRotation.x
@@ -13434,15 +13434,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4299346263813345887, guid: 45df01f9d46228b49addf5cd8825cafd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4299346263813345887, guid: 45df01f9d46228b49addf5cd8825cafd, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.6427876
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4299346263813345887, guid: 45df01f9d46228b49addf5cd8825cafd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 80
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4194048164259952772, guid: 45df01f9d46228b49addf5cd8825cafd, type: 3}
       propertyPath: m_Layer
@@ -31253,7 +31253,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 28856743b94333f46a747e5d63a010f8, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28856743b94333f46a747e5d63a010f8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -31298,10 +31298,18 @@ PrefabInstance:
     - target: {fileID: -106692662655438369, guid: 28856743b94333f46a747e5d63a010f8, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e7234adfce551ac4eb83e80fd287fe88, type: 2}
+      objectReference: {fileID: 2100000, guid: c44f64dd09ca83c41bf7c1324fd91313, type: 2}
     - target: {fileID: 919132149155446097, guid: 28856743b94333f46a747e5d63a010f8, type: 3}
       propertyPath: m_Name
-      value: Pressure Plate Up
+      value: Pressure Plate Broken
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 28856743b94333f46a747e5d63a010f8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 28856743b94333f46a747e5d63a010f8, type: 3}
+      propertyPath: m_TagString
+      value: PressurePlate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28856743b94333f46a747e5d63a010f8, type: 3}
@@ -31339,22 +31347,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2544609100858462436, guid: 28856743b94333f46a747e5d63a010f8, type: 3}
---- !u!114 &474527040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 474527037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cb1b9a5762c14a40a3b0e1aa1b4ab86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactTypeIsHold: 1
-  isInteractingWithWhisp: 0
-  isInteracting: 0
-  objectiveManagerChapterOne: {fileID: 1718549560}
 --- !u!64 &474527041
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -36890,7 +36882,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.024055, y: 1}
+    m_SensorSize: {x: 0.823781, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -57695,7 +57687,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.024055, y: 1}
+    m_SensorSize: {x: 0.823781, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -59803,8 +59795,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1418003145}
-  - {fileID: 474527035}
   - {fileID: 1361617070}
+  - {fileID: 474527035}
   m_Father: {fileID: 1718549559}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -60143,7 +60135,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.024055, y: 1}
+    m_SensorSize: {x: 0.823781, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -61335,7 +61327,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.024055, y: 1}
+    m_SensorSize: {x: 0.823781, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -61351,7 +61343,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311464883}
-  m_LocalRotation: {x: 0.04682975, y: -0.70555437, z: 0.04682975, w: 0.70555437}
+  m_LocalRotation: {x: 0.046829745, y: -0.70555437, z: 0.046829745, w: 0.70555437}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -67344,7 +67336,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 28856743b94333f46a747e5d63a010f8, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28856743b94333f46a747e5d63a010f8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -67393,6 +67385,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 28856743b94333f46a747e5d63a010f8, type: 3}
       propertyPath: m_Name
       value: Pressure Plate Down
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 28856743b94333f46a747e5d63a010f8, type: 3}
+      propertyPath: m_TagString
+      value: PressurePlate
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28856743b94333f46a747e5d63a010f8, type: 3}
@@ -76895,7 +76891,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.024055, y: 1}
+    m_SensorSize: {x: 0.823781, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -76911,7 +76907,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1631918138}
-  m_LocalRotation: {x: 0.0062191426, y: -0.7070794, z: 0.006219142, w: 0.70707947}
+  m_LocalRotation: {x: 0.0062191403, y: -0.7070794, z: 0.0062191393, w: 0.7070795}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -77400,6 +77396,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d88add2050ae35c4686a594c80a1e10e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8510313436015950170, guid: d88add2050ae35c4686a594c80a1e10e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.31
       objectReference: {fileID: 0}
     - target: {fileID: -3797830952315907373, guid: d88add2050ae35c4686a594c80a1e10e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -82492,6 +82492,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1666597460}
   m_CullTransparentMesh: 1
+--- !u!1 &1672337088 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d88add2050ae35c4686a594c80a1e10e, type: 3}
+  m_PrefabInstance: {fileID: 1645779663}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1672337089
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672337088}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dffab10b825490e46b756d8eb106506f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1673871688
 GameObject:
   m_ObjectHideFlags: 0
@@ -83566,12 +83590,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectives:
   - {fileID: 1225414646}
+  - {fileID: 1361617070}
   playerManager: {fileID: 292466671}
-  currentPuzzle: 0
+  section: 1
   currentObjective: {fileID: 1225414646}
   uiAnim: {fileID: 1610904990}
   prisonAnim: {fileID: 164124284}
-  liftAnim: {fileID: 0}
+  craneAnim: {fileID: 1672337089}
 --- !u!1 &1718732524
 GameObject:
   m_ObjectHideFlags: 0
@@ -83618,7 +83643,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.024055, y: 1}
+    m_SensorSize: {x: 0.823781, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -83802,7 +83827,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.024055, y: 1}
+    m_SensorSize: {x: 0.823781, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -94884,7 +94909,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.024055, y: 1}
+    m_SensorSize: {x: 0.823781, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

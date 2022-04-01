@@ -10,6 +10,7 @@ TagManager:
   - PressurePlate
   - WhispLightSwitch
   - Jar
+  - AlternatePressurePlate
   layers:
   - Default
   - TransparentFX

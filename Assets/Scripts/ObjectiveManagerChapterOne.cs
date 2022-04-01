@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class ObjectiveManagerChapterOne : MonoBehaviour
 {
+    [Header("element 0 is first presure plate")]
     [SerializeField] private Transform[] objectives;
+
     [SerializeField] private PlayerManager playerManager;
     
-    [SerializeField] private int currentPuzzle = 0; // puzzle 0 is tutorial, 1 is first pressure plate,
+    [SerializeField] private int section = 1; // puzzle 0 is tutorial, 1 is first pressure plate, 2 is hallway, 
     [SerializeField] private Transform currentObjective;
     [SerializeField] private Animator uiAnim;
 
     [Header("Section One")]
     [SerializeField] private Animator prisonAnim;
+    private int stageInSectionOne = 0; // puzzle 0 is tutorial, 1 is first pressure plate
 
     [Header("Section Three")]
-    [SerializeField] private Animator liftAnim;
+    [SerializeField] private Animator craneAnim;
+    private int stageInSectionThree = 0; 
+
     private void Start()
     {
         currentObjective = null;
@@ -24,34 +29,62 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
             objective.GetComponent<Outline>().enabled = false;
         }
     }
-    public void CheckObjective(string type, bool isInteracting) // recieves tag, check if it is start or end of interactable
+    public void CheckObjective(string recieveType, bool isInteracting) // recieves tag, check if it is start or end of interactable
     {
-        Debug.Log("check obj: " + currentPuzzle + ", is interacting = " + isInteracting + ", type is: " + type);
+        Debug.Log("check obj section: " + section + ", is interacting = " + isInteracting + ", type is: " + recieveType);
 
-        if (playerManager.hasCompletedTutorial && currentPuzzle == 0 && type == null)
+        if (section == 1)//tutorial
         {
-            //Debug.Log("tutorialComplete");
-            InitiatePuzzleOne();
+
+            if (playerManager.hasCompletedTutorial/* && stageInSectionOne == 0*/ && recieveType == null)
+            {
+                InitiateFirstButton();
+            }
+            if (/*stageInSectionOne == 1 && */recieveType == "PressurePlate" && isInteracting)
+            {
+                stageInSectionOne = 2;
+                prisonAnim.SetTrigger("OpenDoor");
+                //do open cell doors
+            }
+            if (/*stageInSectionOne == 2 && */recieveType == "PressurePlate" && !isInteracting)
+            {
+                objectives[0].GetComponent<Outline>().enabled = false; // dissable first pressure plate
+                section = 3; //set to 2 
+                CheckObjective(null, false);
+                //do close cell doors
+            }
+
+            Debug.Log("stage is: " + stageInSectionOne);
         }
-        if (currentPuzzle == 1 && type == "PressurePlate" && isInteracting)
+        else if (section == 2)//hallway
         {
-            uiAnim.SetTrigger("SendTooComplete");
-            currentPuzzle = 2;
-            prisonAnim.SetTrigger("OpenDoor");
-            //do open cell doors
+            Debug.Log("section 222: " + section);
+            /*remove when ready */section = 3;
         }
-        if (currentPuzzle == 2 && type == "PressurePlate" && !isInteracting)
+        else if(section == 3) // crane section
         {
-            objectives[0].GetComponent<Outline>().enabled = false; // dissable first pressure plate
-            Debug.Log("dissable that");
-            //do close cell doors
+            //elements in objectives will change
+
+            Debug.Log("stage in section 3 is: " + stageInSectionThree);
+            objectives[1].GetComponent<Outline>().enabled = true; // enable outline for pressure plate
+
+            if (/*stageInSectionThree == 1 && */recieveType == "PressurePlate" && isInteracting)
+            {
+                craneAnim.SetBool("DoRaise", false);
+                //lower crane
+            }
+            if (/*stageInSectionThree == 2 && */recieveType == "PressurePlate" && !isInteracting)
+            {
+                craneAnim.SetBool("DoRaise", true);
+                //raise crane
+            }
         }
     }
-    private void InitiatePuzzleOne()
+    private void InitiateFirstButton()// turn on tutorial button
     {
-        currentObjective = objectives[0];
-        currentPuzzle = 1;
+        currentObjective = objectives[0]; 
         currentObjective.GetComponent<Outline>().enabled = true;
-        currentPuzzle = 1;
+        stageInSectionOne = 1;
+        section = 1;
     }
 }
