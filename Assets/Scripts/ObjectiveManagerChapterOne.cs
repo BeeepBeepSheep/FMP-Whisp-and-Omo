@@ -6,11 +6,16 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
 {
     [SerializeField] private Transform[] objectives;
     [SerializeField] private PlayerManager playerManager;
-
+    
     [SerializeField] private int currentPuzzle = 0; // puzzle 0 is tutorial, 1 is first pressure plate,
     [SerializeField] private Transform currentObjective;
     [SerializeField] private Animator uiAnim;
 
+    [Header("Section One")]
+    [SerializeField] private Animator prisonAnim;
+
+    [Header("Section Three")]
+    [SerializeField] private Animator liftAnim;
     private void Start()
     {
         currentObjective = null;
@@ -32,6 +37,7 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
         {
             uiAnim.SetTrigger("SendTooComplete");
             currentPuzzle = 2;
+            prisonAnim.SetTrigger("OpenDoor");
             //do open cell doors
         }
         if (currentPuzzle == 2 && type == "PressurePlate" && !isInteracting)
