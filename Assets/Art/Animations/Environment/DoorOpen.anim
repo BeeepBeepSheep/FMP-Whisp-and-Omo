@@ -19,7 +19,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0, y: 0, z: 80}
+        value: {x: 0, y: 0, z: 85}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -29,7 +29,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: bars Door.001/gate.001
+    path: prison.001/bars Door.001/gate.001
   m_PositionCurves: []
   m_ScaleCurves: []
   m_FloatCurves: []
@@ -42,7 +42,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 1290339772
+      path: 4240709122
       attribute: 4
       script: {fileID: 0}
       typeID: 4
@@ -86,7 +86,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: bars Door.001/gate.001
+    path: prison.001/bars Door.001/gate.001
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -105,7 +105,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: bars Door.001/gate.001
+    path: prison.001/bars Door.001/gate.001
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -113,7 +113,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 80
+        value: 85
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -124,7 +124,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: bars Door.001/gate.001
+    path: prison.001/bars Door.001/gate.001
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves:
@@ -134,8 +134,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: bars Door.001/gate.001
+    attribute: m_LocalEulerAngles.z
+    path: prison.001/bars Door.001/gate.001
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -145,7 +145,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: bars Door.001/gate.001
+    path: prison.001/bars Door.001/gate.001
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -154,8 +154,8 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: bars Door.001/gate.001
+    attribute: m_LocalEulerAngles.x
+    path: prison.001/bars Door.001/gate.001
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
