@@ -40,13 +40,13 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
             {
                 InitiateFirstButton();
             }
-            if (/*stageInSectionOne == 1 && */recieveType == "PressurePlate" && isInteracting)
+            if (stageInSectionOne == 1 && recieveType == "PressurePlate" && isInteracting)
             {
                 stageInSectionOne = 2;
                 prisonAnim.SetTrigger("OpenDoor");
                 //do open cell doors
             }
-            if (/*stageInSectionOne == 2 && */recieveType == "PressurePlate" && !isInteracting)
+            if (stageInSectionOne == 2 && recieveType == "PressurePlate" && !isInteracting)
             {
                 objectives[0].GetComponent<Outline>().enabled = false; // dissable first pressure plate
                 section = 3; //set to 2 
@@ -61,24 +61,24 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
             Debug.Log("section 222: " + section);
             /*remove when ready */section = 3;
         }
-        else if(section == 3) // crane section
-        {
-            //elements in objectives will change
+        //else if(section == 3) // crane section
+        //{
+        //    //elements in objectives will change
 
-            Debug.Log("stage in section 3 is: " + stageInSectionThree);
-            objectives[1].GetComponent<Outline>().enabled = true; // enable outline for pressure plate
+        //    Debug.Log("stage in section 3 is: " + stageInSectionThree);
+        //    objectives[1].GetComponent<Outline>().enabled = true; // enable outline for pressure plate
 
-            if (/*stageInSectionThree == 1 && */recieveType == "PressurePlate" && isInteracting)
-            {
-                craneAnim.SetBool("DoRaise", false);
-                //lower crane
-            }
-            if (/*stageInSectionThree == 2 && */recieveType == "PressurePlate" && !isInteracting)
-            {
-                craneAnim.SetBool("DoRaise", true);
-                //raise crane
-            }
-        }
+        //    if (/*stageInSectionThree == 1 && */recieveType == "PressurePlate" && isInteracting)
+        //    {
+        //        craneAnim.SetBool("DoRaise", false);
+        //        //lower crane
+        //    }
+        //    if (/*stageInSectionThree == 2 && */recieveType == "PressurePlate" && !isInteracting)
+        //    {
+        //        craneAnim.SetBool("DoRaise", true);
+        //        //raise crane
+        //    }
+        //}
     }
     private void InitiateFirstButton()// turn on tutorial button
     {

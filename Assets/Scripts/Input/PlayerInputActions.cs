@@ -89,6 +89,14 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""TeleportWhisp"",
+                    ""type"": ""Button"",
+                    ""id"": ""9a1e3f67-299d-4860-8f8c-bb0c35ddc17e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold""
                 }
             ],
             ""bindings"": [
@@ -399,6 +407,28 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""action"": ""FocusToggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0dbb31f5-1775-44fb-8b1b-f671da91ee63"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TeleportWhisp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b9abc8cb-9548-4511-be1e-c2aa565930ac"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TeleportWhisp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -493,6 +523,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_Player_testingonlyToggleMood = m_Player.FindAction("(testing only) ToggleMood", throwIfNotFound: true);
         m_Player_ReturnWhisp = m_Player.FindAction("ReturnWhisp", throwIfNotFound: true);
         m_Player_FocusToggle = m_Player.FindAction("FocusToggle", throwIfNotFound: true);
+        m_Player_TeleportWhisp = m_Player.FindAction("TeleportWhisp", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_UnPause = m_UI.FindAction("UnPause", throwIfNotFound: true);
@@ -554,6 +585,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_testingonlyToggleMood;
     private readonly InputAction m_Player_ReturnWhisp;
     private readonly InputAction m_Player_FocusToggle;
+    private readonly InputAction m_Player_TeleportWhisp;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -567,6 +599,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @testingonlyToggleMood => m_Wrapper.m_Player_testingonlyToggleMood;
         public InputAction @ReturnWhisp => m_Wrapper.m_Player_ReturnWhisp;
         public InputAction @FocusToggle => m_Wrapper.m_Player_FocusToggle;
+        public InputAction @TeleportWhisp => m_Wrapper.m_Player_TeleportWhisp;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -603,6 +636,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @FocusToggle.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFocusToggle;
                 @FocusToggle.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFocusToggle;
                 @FocusToggle.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFocusToggle;
+                @TeleportWhisp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleportWhisp;
+                @TeleportWhisp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleportWhisp;
+                @TeleportWhisp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleportWhisp;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -634,6 +670,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @FocusToggle.started += instance.OnFocusToggle;
                 @FocusToggle.performed += instance.OnFocusToggle;
                 @FocusToggle.canceled += instance.OnFocusToggle;
+                @TeleportWhisp.started += instance.OnTeleportWhisp;
+                @TeleportWhisp.performed += instance.OnTeleportWhisp;
+                @TeleportWhisp.canceled += instance.OnTeleportWhisp;
             }
         }
     }
@@ -700,6 +739,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnTestingonlyToggleMood(InputAction.CallbackContext context);
         void OnReturnWhisp(InputAction.CallbackContext context);
         void OnFocusToggle(InputAction.CallbackContext context);
+        void OnTeleportWhisp(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

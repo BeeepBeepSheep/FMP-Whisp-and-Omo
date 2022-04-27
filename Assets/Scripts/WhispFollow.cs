@@ -14,7 +14,7 @@ public class WhispFollow : MonoBehaviour
     public float normalSpeed = 1.0f;
     public float flyTooSpeed = 3.0f;
 
-    
+
     void Start()
     {
         currentSpeed = normalSpeed;
@@ -45,4 +45,14 @@ public class WhispFollow : MonoBehaviour
             }
         }
     }
+    public void TeleportToOmo(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            currentTarget = omoTarget;
+
+            transform.position = currentTarget.position;
+        }
+    }
 }
+

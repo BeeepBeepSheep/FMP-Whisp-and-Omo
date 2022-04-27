@@ -76,6 +76,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "TeleportWhisp",
+                    "type": "Button",
+                    "id": "9a1e3f67-299d-4860-8f8c-bb0c35ddc17e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold"
                 }
             ],
             "bindings": [
@@ -384,6 +392,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "FocusToggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0dbb31f5-1775-44fb-8b1b-f671da91ee63",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TeleportWhisp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b9abc8cb-9548-4511-be1e-c2aa565930ac",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TeleportWhisp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
