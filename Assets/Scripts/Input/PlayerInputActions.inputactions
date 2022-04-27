@@ -62,14 +62,6 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "ReturnWhisp",
-                    "type": "Button",
-                    "id": "9cf5eeb1-5a8e-40c7-8d3f-1fb93d471d33",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press"
-                },
-                {
                     "name": "FocusToggle",
                     "type": "Button",
                     "id": "dc0f1a3d-34ee-42ec-b86e-f4857c143090",
@@ -78,12 +70,12 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "TeleportWhisp",
+                    "name": "ReturnWhisp",
                     "type": "Button",
-                    "id": "9a1e3f67-299d-4860-8f8c-bb0c35ddc17e",
+                    "id": "9cf5eeb1-5a8e-40c7-8d3f-1fb93d471d33",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold"
+                    "interactions": "Press(behavior=2)"
                 }
             ],
             "bindings": [
@@ -353,28 +345,6 @@
                 },
                 {
                     "name": "",
-                    "id": "56762864-8e21-4b34-81a3-a02dac20b24e",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ReturnWhisp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "002c1e01-278e-4635-9943-2d225bc55cba",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ReturnWhisp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "5599e378-cadb-46de-aae4-134147407180",
                     "path": "<Keyboard>/f",
                     "interactions": "",
@@ -397,23 +367,23 @@
                 },
                 {
                     "name": "",
-                    "id": "0dbb31f5-1775-44fb-8b1b-f671da91ee63",
+                    "id": "56762864-8e21-4b34-81a3-a02dac20b24e",
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TeleportWhisp",
+                    "action": "ReturnWhisp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "b9abc8cb-9548-4511-be1e-c2aa565930ac",
+                    "id": "002c1e01-278e-4635-9943-2d225bc55cba",
                     "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TeleportWhisp",
+                    "action": "ReturnWhisp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

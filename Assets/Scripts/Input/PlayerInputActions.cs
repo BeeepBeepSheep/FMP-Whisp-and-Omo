@@ -75,14 +75,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""interactions"": ""Press""
                 },
                 {
-                    ""name"": ""ReturnWhisp"",
-                    ""type"": ""Button"",
-                    ""id"": ""9cf5eeb1-5a8e-40c7-8d3f-1fb93d471d33"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                },
-                {
                     ""name"": ""FocusToggle"",
                     ""type"": ""Button"",
                     ""id"": ""dc0f1a3d-34ee-42ec-b86e-f4857c143090"",
@@ -91,12 +83,12 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""interactions"": ""Press""
                 },
                 {
-                    ""name"": ""TeleportWhisp"",
+                    ""name"": ""ReturnWhisp"",
                     ""type"": ""Button"",
-                    ""id"": ""9a1e3f67-299d-4860-8f8c-bb0c35ddc17e"",
+                    ""id"": ""9cf5eeb1-5a8e-40c7-8d3f-1fb93d471d33"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold""
+                    ""interactions"": ""Press(behavior=2)""
                 }
             ],
             ""bindings"": [
@@ -366,28 +358,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""56762864-8e21-4b34-81a3-a02dac20b24e"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ReturnWhisp"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""002c1e01-278e-4635-9943-2d225bc55cba"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ReturnWhisp"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""5599e378-cadb-46de-aae4-134147407180"",
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
@@ -410,23 +380,23 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0dbb31f5-1775-44fb-8b1b-f671da91ee63"",
+                    ""id"": ""56762864-8e21-4b34-81a3-a02dac20b24e"",
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""TeleportWhisp"",
+                    ""action"": ""ReturnWhisp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b9abc8cb-9548-4511-be1e-c2aa565930ac"",
+                    ""id"": ""002c1e01-278e-4635-9943-2d225bc55cba"",
                     ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""TeleportWhisp"",
+                    ""action"": ""ReturnWhisp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -521,9 +491,8 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_Player_WhispAbility1 = m_Player.FindAction("WhispAbility1", throwIfNotFound: true);
         m_Player_ToggleCameraShoulder = m_Player.FindAction("ToggleCameraShoulder", throwIfNotFound: true);
         m_Player_testingonlyToggleMood = m_Player.FindAction("(testing only) ToggleMood", throwIfNotFound: true);
-        m_Player_ReturnWhisp = m_Player.FindAction("ReturnWhisp", throwIfNotFound: true);
         m_Player_FocusToggle = m_Player.FindAction("FocusToggle", throwIfNotFound: true);
-        m_Player_TeleportWhisp = m_Player.FindAction("TeleportWhisp", throwIfNotFound: true);
+        m_Player_ReturnWhisp = m_Player.FindAction("ReturnWhisp", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_UnPause = m_UI.FindAction("UnPause", throwIfNotFound: true);
@@ -583,9 +552,8 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_WhispAbility1;
     private readonly InputAction m_Player_ToggleCameraShoulder;
     private readonly InputAction m_Player_testingonlyToggleMood;
-    private readonly InputAction m_Player_ReturnWhisp;
     private readonly InputAction m_Player_FocusToggle;
-    private readonly InputAction m_Player_TeleportWhisp;
+    private readonly InputAction m_Player_ReturnWhisp;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -597,9 +565,8 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @WhispAbility1 => m_Wrapper.m_Player_WhispAbility1;
         public InputAction @ToggleCameraShoulder => m_Wrapper.m_Player_ToggleCameraShoulder;
         public InputAction @testingonlyToggleMood => m_Wrapper.m_Player_testingonlyToggleMood;
-        public InputAction @ReturnWhisp => m_Wrapper.m_Player_ReturnWhisp;
         public InputAction @FocusToggle => m_Wrapper.m_Player_FocusToggle;
-        public InputAction @TeleportWhisp => m_Wrapper.m_Player_TeleportWhisp;
+        public InputAction @ReturnWhisp => m_Wrapper.m_Player_ReturnWhisp;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -630,15 +597,12 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @testingonlyToggleMood.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTestingonlyToggleMood;
                 @testingonlyToggleMood.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTestingonlyToggleMood;
                 @testingonlyToggleMood.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTestingonlyToggleMood;
-                @ReturnWhisp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnWhisp;
-                @ReturnWhisp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnWhisp;
-                @ReturnWhisp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnWhisp;
                 @FocusToggle.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFocusToggle;
                 @FocusToggle.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFocusToggle;
                 @FocusToggle.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFocusToggle;
-                @TeleportWhisp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleportWhisp;
-                @TeleportWhisp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleportWhisp;
-                @TeleportWhisp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleportWhisp;
+                @ReturnWhisp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnWhisp;
+                @ReturnWhisp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnWhisp;
+                @ReturnWhisp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnWhisp;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -664,15 +628,12 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @testingonlyToggleMood.started += instance.OnTestingonlyToggleMood;
                 @testingonlyToggleMood.performed += instance.OnTestingonlyToggleMood;
                 @testingonlyToggleMood.canceled += instance.OnTestingonlyToggleMood;
-                @ReturnWhisp.started += instance.OnReturnWhisp;
-                @ReturnWhisp.performed += instance.OnReturnWhisp;
-                @ReturnWhisp.canceled += instance.OnReturnWhisp;
                 @FocusToggle.started += instance.OnFocusToggle;
                 @FocusToggle.performed += instance.OnFocusToggle;
                 @FocusToggle.canceled += instance.OnFocusToggle;
-                @TeleportWhisp.started += instance.OnTeleportWhisp;
-                @TeleportWhisp.performed += instance.OnTeleportWhisp;
-                @TeleportWhisp.canceled += instance.OnTeleportWhisp;
+                @ReturnWhisp.started += instance.OnReturnWhisp;
+                @ReturnWhisp.performed += instance.OnReturnWhisp;
+                @ReturnWhisp.canceled += instance.OnReturnWhisp;
             }
         }
     }
@@ -737,9 +698,8 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnWhispAbility1(InputAction.CallbackContext context);
         void OnToggleCameraShoulder(InputAction.CallbackContext context);
         void OnTestingonlyToggleMood(InputAction.CallbackContext context);
-        void OnReturnWhisp(InputAction.CallbackContext context);
         void OnFocusToggle(InputAction.CallbackContext context);
-        void OnTeleportWhisp(InputAction.CallbackContext context);
+        void OnReturnWhisp(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

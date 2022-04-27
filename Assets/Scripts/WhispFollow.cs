@@ -14,6 +14,9 @@ public class WhispFollow : MonoBehaviour
     public float normalSpeed = 1.0f;
     public float flyTooSpeed = 3.0f;
 
+    bool isHoldingInput = false;
+
+    public Animator uiAnimator;
 
     void Start()
     {
@@ -32,27 +35,37 @@ public class WhispFollow : MonoBehaviour
 
     public void ResetTarget(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.performed)
         {
-            currentTarget = omoTarget;
-
-            GameObject[] oldTargets;
-            oldTargets = GameObject.FindGameObjectsWithTag("WhispTargetUseless");
-
-            foreach (GameObject oldTarget in oldTargets)
+            if (!isHoldingInput) // pressed button
             {
-                Destroy(oldTarget);
+                isHoldingInput = true;
+
+                currentTarget = omoTarget;
+
+                GameObject[] oldTargets;
+                oldTargets = GameObject.FindGameObjectsWithTag("WhispTargetUseless");
+
+                foreach (GameObject oldTarget in oldTargets)
+                {
+                    Destroy(oldTarget);
+                }
             }
+            else // released button
+            {
+                isHoldingInput = false;
+            }
+
+            uiAnimator.SetBool("ReturnIsPressed", isHoldingInput);
         }
     }
-    public void TeleportToOmo(InputAction.CallbackContext context)
+    public void TeleportToOmo()
     {
-        if (context.started)
-        {
-            currentTarget = omoTarget;
+        currentTarget = omoTarget;
 
-            transform.position = currentTarget.position;
-        }
+        transform.position = currentTarget.position;
+
+        GameObject[] oldTargets;
+        oldTargets = GameObject.FindGameObjectsWithTag("WhispTargetUseless");
     }
 }
-
