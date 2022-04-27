@@ -53,7 +53,7 @@ public class Interactable : MonoBehaviour
         {
             Debug.Log("lightswitch");
         }
-        Debug.Log("interacted");
+        //Debug.Log("interacted");
     }
     void OnTriggerExit(Collider collider)
     {
