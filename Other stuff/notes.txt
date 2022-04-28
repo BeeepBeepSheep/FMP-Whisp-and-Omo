@@ -3,3 +3,7 @@ https://www.mixamo.com/#/?page=1&query=idle+sad&type=Motion%2CMotionPack
 https://www.google.com/search?q=mixamo+how+to+add+multiple+animations&rlz=1C1GCEB_enGB981GB982&oq=mixamo+how+to+add+multiple+&aqs=chrome.0.0i512j69i57j0i390l4.14705j0j1&sourceid=chrome&ie=UTF-8&safe=active&ssui=on#kpvalbx=_wf4YYrfLNIidgQaIo4rADA22
 
 -1.82772 m is distance for wall extrude thickness
+
+
+at 12:56 in tutorial
+https://www.youtube.com/watch?v=XQlFokCzU6M
