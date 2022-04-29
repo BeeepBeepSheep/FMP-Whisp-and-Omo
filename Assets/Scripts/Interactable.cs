@@ -9,8 +9,10 @@ public class Interactable : MonoBehaviour
     public bool interactTypeIsHold = true;
 
     [Header("Whisp Only")]
-    [HideInInspector]
     public bool isInteractingWithWhisp = false;
+    public bool isTorch = false;
+
+    //[SerializeField] private GameObject fire[];
 
     [SerializeField] private bool isInteracting = false;
     [SerializeField] private ObjectiveManagerChapterOne objectiveManagerChapterOne;
@@ -26,7 +28,16 @@ public class Interactable : MonoBehaviour
             interactTypeIsHold = false;
         }
     }
-
+    void Start()
+    {
+        if (isTorch)
+        {
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+    }
     void OnTriggerEnter(Collider collider)
     {
         isInteracting = true;
@@ -44,14 +55,23 @@ public class Interactable : MonoBehaviour
         }
 
         //whisp only
-        if (isInteractingWithWhisp && collider.tag == "Whisp" && gameObject.tag == "WhispOnlyInteractable")
+        if (isInteractingWithWhisp && collider.tag == "Whisp" && gameObject.tag == "WhispOnlyInteractable" || gameObject.tag == "WhispLightSwitch")
         {
-            Debug.Log("interacted with whisp");
+            //Debug.Log("interacted with whisp");
         }
 
         if(collider.tag == "Whisp" && gameObject.tag == "WhispLightSwitch")
         {
-            Debug.Log("lightswitch");
+            
+            //Debug.Log("lightswitch");
+            if(isTorch)
+            {
+                //Debug.Log("torch");
+                foreach (Transform child in transform)
+                {
+                    child.gameObject.SetActive(true);
+                }
+            }
         }
         //Debug.Log("interacted");
     }
@@ -74,11 +94,11 @@ public class Interactable : MonoBehaviour
             //whisp only
             if (isInteractingWithWhisp && collider.tag == "Whisp" && gameObject.tag == "WhispOnlyInteractable")
             {
-                Debug.Log("uninteracted with whisp");
+                //Debug.Log("uninteracted with whisp");
                 isInteractingWithWhisp = false;
             }
         }
-        Debug.Log("uninteracted");
+        //Debug.Log("uninteracted");
     }
     private void CheckTheObjective()
     {

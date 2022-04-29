@@ -31,7 +31,7 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
     }
     public void CheckObjective(string recieveType, bool isInteracting) // recieves tag, check if it is start or end of interactable
     {
-        Debug.Log("check obj section: " + section + ", is interacting = " + isInteracting + ", type is: " + recieveType);
+        //Debug.Log("check obj section: " + section + ", is interacting = " + isInteracting + ", type is: " + recieveType);
 
         if (section == 1)//tutorial
         {
@@ -54,11 +54,11 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
                 //do close cell doors
             }
 
-            Debug.Log("stage is: " + stageInSectionOne);
+            //Debug.Log("stage is: " + stageInSectionOne);
         }
         else if (section == 2)//hallway
         {
-            Debug.Log("section 222: " + section);
+            //Debug.Log("section 222: " + section);
             /*remove when ready */section = 3;
         }
         //else if(section == 3) // crane section
