@@ -11,8 +11,7 @@ public class Interactable : MonoBehaviour
     [Header("Whisp Only")]
     public bool isInteractingWithWhisp = false;
     public bool isTorch = false;
-
-    //[SerializeField] private GameObject fire[];
+    [SerializeField] private float torchLifeTime;
 
     [SerializeField] private bool isInteracting = false;
     [SerializeField] private ObjectiveManagerChapterOne objectiveManagerChapterOne;
@@ -71,6 +70,7 @@ public class Interactable : MonoBehaviour
                 {
                     child.gameObject.SetActive(true);
                 }
+                StartCoroutine(TurnTorchOff());
             }
         }
         //Debug.Log("interacted");
@@ -108,5 +108,14 @@ public class Interactable : MonoBehaviour
             objectiveManagerChapterOne.CheckObjective(transform.tag, isInteracting);
         }
         // repeat for other chapters
+    }
+    IEnumerator TurnTorchOff()
+    {
+        yield return new WaitForSeconds(torchLifeTime);
+
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(false);
+        }
     }
 }
