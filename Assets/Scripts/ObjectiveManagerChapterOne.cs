@@ -48,7 +48,7 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
             if (stageInSectionOne == 1 && recieveType == "PressurePlate" && isInteracting)
             {
                 stageInSectionOne = 2;
-                prisonAnim.SetBool("MainDoorShouldOpen", true);
+                prisonAnim.SetBool("OpenCellDoor", true);
 
                 uiAnim.SetTrigger("SendTooComplete");
                 //do open cell doors
@@ -64,22 +64,34 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
 
             //Debug.Log("stage is: " + stageInSectionOne);
         }
+
         else if (section == 2)//hallway
         {
             stageInSectionTwo = 1;
-            
-            Debug.Log("section 2: " + section);
+            objectives[1].GetComponent<Outline>().enabled = true;
+
+            if (stageInSectionTwo == 1 && recieveType == "PressurePlate" && isInteracting)
+            {
+                prisonAnim.SetBool("MainDoorShouldOpen", true);
+
+                //do open main doors
+            }
+            else if (stageInSectionTwo == 1 && recieveType == "PressurePlate" && !isInteracting)
+            {
+                prisonAnim.SetBool("MainDoorShouldOpen", false);
+            }
+                Debug.Log("section 2: " + section);
         }
 
-
-        else if (section == 3) // crane section
+        else if (section == 3)//crane section
         {
             prisonAnim.SetBool("MainDoorShouldOpen", false);
+            objectives[1].GetComponent<Outline>().enabled = false;
 
             //elements in objectives will change
 
             //Debug.Log("stage in section 3 is: " + stageInSectionThree);
-            objectives[1].GetComponent<Outline>().enabled = true; // enable outline for pressure plate
+            //objectives[2].GetComponent<Outline>().enabled = true; // enable outline for pressure plate
 
             if (/*stageInSectionThree == 1 && */recieveType == "PressurePlate" && isInteracting)
             {

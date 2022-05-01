@@ -70,6 +70,7 @@ public class Interactable : MonoBehaviour
                 {
                     child.gameObject.SetActive(true);
                 }
+                GetComponent<Outline>().enabled = false;
                 StartCoroutine(TurnTorchOff());
             }
         }
@@ -113,6 +114,7 @@ public class Interactable : MonoBehaviour
     {
         yield return new WaitForSeconds(torchLifeTime);
 
+        GetComponent<Outline>().enabled = true;
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(false);
