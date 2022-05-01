@@ -16,13 +16,14 @@ public class Interactable : MonoBehaviour
     [SerializeField] private bool isInteracting = false;
     [SerializeField] private ObjectiveManagerChapterOne objectiveManagerChapterOne;
 
+
     void Awake()
     {
         if (gameObject.tag == "PressurePlate")
         {
             interactTypeIsHold = true;
         }
-        else if (gameObject.tag == "WhispLightSwitch")
+        else if (gameObject.tag == "WhispLightSwitch" || gameObject.tag == "Jar")
         {
             interactTypeIsHold = false;
         }
@@ -72,6 +73,18 @@ public class Interactable : MonoBehaviour
                 }
                 GetComponent<Outline>().enabled = false;
                 StartCoroutine(TurnTorchOff());
+            }
+        }
+
+        //jar
+        if (collider.tag == "Player" || collider.tag == "Whisp")
+        {
+            if (gameObject.tag == "Jar")
+            {
+                GetComponent<BreakJar>().ShatterJar();
+
+                objectiveManagerChapterOne.whispFreed++;
+                Debug.Log("whisps freed: " + objectiveManagerChapterOne.whispFreed);
             }
         }
         //Debug.Log("interacted");

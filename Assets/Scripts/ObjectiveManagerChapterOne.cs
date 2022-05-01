@@ -21,6 +21,7 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
 
     [Header("Section Two")]
     private int stageInSectionTwo = 0;
+    public int whispFreed = 0;
 
     [Header("Section Three")]
     [SerializeField] private Animator craneAnim;
