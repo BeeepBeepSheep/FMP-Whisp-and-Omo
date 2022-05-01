@@ -8,10 +8,10 @@ public class CameraController : MonoBehaviour
 {
     [Header("Offset")]
     [SerializeField]
-    private int currentShoulderNum = 3;
+    private int currentShoulderNum;
     [SerializeField]
     private CinemachineCameraOffset camOffset;
-    private float oldOffset = 0f;
+    private bool firstTimeToggle = true;
 
     [Header("Collider")]
     private CinemachineCollider cinemachineCollider;
@@ -40,56 +40,38 @@ public class CameraController : MonoBehaviour
 
         targetGroup.m_Targets[1].target = player;
         freeLook.m_RecenterToTargetHeading = new AxisState.Recentering(false, 1, 2);
-        RecenterCam();
+        
+        camOffset.m_Offset.x = 0;
+        currentShoulderNum = 3;
     }
 
     public void ShoulderToggle(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            //tripple toggle
-            currentShoulderNum = (currentShoulderNum % 3) + 1;
-            switch (currentShoulderNum)
+            if (firstTimeToggle)
             {
-                case 1:
-                    camOffset.m_Offset.x = 2;
-                    break;
-                case 2:
-                    RecenterCam();
-                    break;
-                case 3:
-                    camOffset.m_Offset.x = -2;
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-    private void RecenterCam()
-    {
-        oldOffset = camOffset.m_Offset.x;
-        camOffset.m_Offset.x = 0;
-    }
-    private void RevertToOldOffset()
-    {
-        camOffset.m_Offset.x = oldOffset;
-        Debug.Log("old offset");
-    }
-    public void FocusToggle(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            if (targetGroup.m_Targets[1].target == player) // if looking at player
-            {
-                targetGroup.m_Targets[1].target = objectiveManager.objectives[0]; //most importnat objective will always be at 0
-                //enable/ dissable auto recentering
-                freeLook.m_RecenterToTargetHeading = new AxisState.Recentering(true, 0f, 0.1f);
-                RecenterCam();
+                camOffset.m_Offset.x = -2; // set left
+                firstTimeToggle = false;
             }
             else
             {
-                targetGroup.m_Targets[1].target = player;
-                freeLook.m_RecenterToTargetHeading = new AxisState.Recentering(false, 0f, 0.1f);
+                //tripple toggle
+                currentShoulderNum = (currentShoulderNum % 3) + 1;
+                switch (currentShoulderNum)
+                {
+                    case 1:
+                        camOffset.m_Offset.x = 2; // set right
+                        break;
+                    case 2:
+                        camOffset.m_Offset.x = 0; // set centre
+                        break;
+                    case 3:
+                        camOffset.m_Offset.x = -2; // set left
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
@@ -102,12 +84,14 @@ public class CameraController : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(cam.transform.position, cam.transform.right, out hit, 2f))
             {
-                RecenterCam();
+                camOffset.m_Offset.x = 0;
             }
+           
             if (Physics.Raycast(cam.transform.position, -cam.transform.right, out hit, 2f))
             {
-                RecenterCam();
+                camOffset.m_Offset.x = 0;
             }
+           
         }
     }
 }
