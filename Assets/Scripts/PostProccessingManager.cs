@@ -5,15 +5,16 @@ using UnityEngine;
 public class PostProccessingManager : MonoBehaviour
 {
     [Header("PostProccessing")]
-    bool isInside = true;
+    [SerializeField] private bool isInside = false;
     [SerializeField] private Animator postProccessAnim;
 
     [Header("objective")]
     [SerializeField] private ObjectiveManagerChapterOne objectiveManager;
     private bool firstTimeEscape = true;
-    void ToggleOutside()
+
+    public void ToggleOutside()
     {
-        if(isInside)
+        if (isInside)
         {
             isInside = false;
         }
@@ -27,10 +28,11 @@ public class PostProccessingManager : MonoBehaviour
     {
         ToggleOutside();
 
-        if(firstTimeEscape)
+        if (firstTimeEscape)
         {
-            objectiveManager.section = 3;
             firstTimeEscape = false;
+            objectiveManager.section = 3;
+            objectiveManager.CheckObjective(null, false);
         }
     }
 }

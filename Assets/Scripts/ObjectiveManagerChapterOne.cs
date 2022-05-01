@@ -81,25 +81,25 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
             {
                 prisonAnim.SetBool("MainDoorShouldOpen", false);
             }
-                Debug.Log("section 2: " + section);
         }
 
         else if (section == 3)//crane section
         {
+            Debug.Log("section is 3");
             prisonAnim.SetBool("MainDoorShouldOpen", false);
             objectives[1].GetComponent<Outline>().enabled = false;
 
             //elements in objectives will change
 
             //Debug.Log("stage in section 3 is: " + stageInSectionThree);
-            //objectives[2].GetComponent<Outline>().enabled = true; // enable outline for pressure plate
+            objectives[2].GetComponent<Outline>().enabled = true; // enable outline for pressure plate
 
-            if (/*stageInSectionThree == 1 && */recieveType == "PressurePlate" && isInteracting)
+            if (recieveType == "PressurePlateCrane" && isInteracting)
             {
                 craneAnim.SetBool("DoRaise", false);
                 //lower crane
             }
-            if (/*stageInSectionThree == 2 && */recieveType == "PressurePlate" && !isInteracting)
+            if (recieveType == "PressurePlateCrane" && !isInteracting)
             {
                 craneAnim.SetBool("DoRaise", true);
                 //raise crane

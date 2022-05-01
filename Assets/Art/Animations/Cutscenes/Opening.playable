@@ -1145,7 +1145,14 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 7.5
+    functionName: ToggleOutsidePostProccessing
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
 --- !u!114 &7702037906291241514
 MonoBehaviour:
   m_ObjectHideFlags: 1
