@@ -12,7 +12,6 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
     public int section = 1; // puzzle 0 is tutorial, 1 is first pressure plate, 2 is hallway, 
     //section value is changed in post proccessing manager
 
-    [SerializeField] private Transform currentObjective;
     [SerializeField] private Animator uiAnim;
 
     [Header("Section One")]
@@ -20,16 +19,14 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
     private int stageInSectionOne = 0; // puzzle 0 is tutorial, 1 is first pressure plate
 
     [Header("Section Two")]
-    private int stageInSectionTwo = 0;
     public int whispFreed = 0;
 
     [Header("Section Three")]
     [SerializeField] private Animator craneAnim;
-    private int stageInSectionThree = 0; 
+    [SerializeField] private Animator drawbridgeAnim;
 
     private void Start()
     {
-        currentObjective = null;
         foreach (Transform objective in objectives)
         {
             objective.GetComponent<Outline>().enabled = false;
@@ -44,7 +41,11 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
 
             if (playerManager.hasCompletedTutorial/* && stageInSectionOne == 0*/ && recieveType == null)
             {
-                InitiateFirstButton();
+                objectives[0].GetComponent<Outline>().enabled = true;
+                stageInSectionOne = 1;
+                section = 1;
+
+                drawbridgeAnim.SetTrigger("DrawbridgeIsReady");
             }
             if (stageInSectionOne == 1 && recieveType == "PressurePlate" && isInteracting)
             {
@@ -68,31 +69,31 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
 
         else if (section == 2)//hallway
         {
-            stageInSectionTwo = 1;
             objectives[1].GetComponent<Outline>().enabled = true;
 
-            if (stageInSectionTwo == 1 && recieveType == "PressurePlate" && isInteracting)
+            if (recieveType == "PressurePlate" && isInteracting)
             {
                 prisonAnim.SetBool("MainDoorShouldOpen", true);
 
                 //do open main doors
             }
-            else if (stageInSectionTwo == 1 && recieveType == "PressurePlate" && !isInteracting)
+            else if (recieveType == "PressurePlate" && !isInteracting)
             {
                 prisonAnim.SetBool("MainDoorShouldOpen", false);
             }
         }
 
-        else if (section == 3)//crane section
+        else if (section == 3)//crane and bridge section
         {
             Debug.Log("section is 3");
             prisonAnim.SetBool("MainDoorShouldOpen", false);
+            uiAnim.SetTrigger("PrisonToCourtyard");
+
+            //outlines
             objectives[1].GetComponent<Outline>().enabled = false;
-
-            //elements in objectives will change
-
-            //Debug.Log("stage in section 3 is: " + stageInSectionThree);
-            objectives[2].GetComponent<Outline>().enabled = true; // enable outline for pressure plate
+            objectives[2].GetComponent<Outline>().enabled = true;
+            objectives[3].GetComponent<Outline>().enabled = true;
+            objectives[4].GetComponent<Outline>().enabled = true;
 
             if (recieveType == "PressurePlateCrane" && isInteracting)
             {
@@ -104,13 +105,17 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
                 craneAnim.SetBool("DoRaise", true);
                 //raise crane
             }
+
+            if (recieveType == "PressurePlateDrawbridge" && isInteracting)
+            {
+                drawbridgeAnim.SetBool("DrawbridgeShouldBeOpen", true);
+                //open bridge
+            }
+            if (recieveType == "PressurePlateDrawbridge" && !isInteracting)
+            {
+                drawbridgeAnim.SetBool("DrawbridgeShouldBeOpen", false);
+                //close bridge
+            }
         }
-    }
-    private void InitiateFirstButton()// turn on tutorial button
-    {
-        currentObjective = objectives[0]; 
-        currentObjective.GetComponent<Outline>().enabled = true;
-        stageInSectionOne = 1;
-        section = 1;
     }
 }

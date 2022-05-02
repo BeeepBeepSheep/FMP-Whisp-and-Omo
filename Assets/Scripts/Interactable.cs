@@ -19,7 +19,7 @@ public class Interactable : MonoBehaviour
     public bool isCraneButton = false;
     public bool isDrawBridgeButton = false;
 
-   
+
 
     void Awake()
     {
@@ -64,11 +64,11 @@ public class Interactable : MonoBehaviour
             //Debug.Log("interacted with whisp");
         }
 
-        if(collider.tag == "Whisp" && gameObject.tag == "WhispLightSwitch")
+        if (collider.tag == "Whisp" && gameObject.tag == "WhispLightSwitch")
         {
-            
+
             //Debug.Log("lightswitch");
-            if(isTorch)
+            if (isTorch)
             {
                 //Debug.Log("torch");
                 foreach (Transform child in transform)
@@ -123,13 +123,19 @@ public class Interactable : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         if (scene.name == "ChapterOne")
         {
-            if(!isCraneButton && !isDrawBridgeButton)
+            if (!isCraneButton && !isDrawBridgeButton)
             {
                 objectiveManagerChapterOne.CheckObjective(transform.tag, isInteracting);
             }
+
             else if (isCraneButton)
             {
                 objectiveManagerChapterOne.CheckObjective("PressurePlateCrane", isInteracting);
+            }
+            else if (isDrawBridgeButton)
+            {
+                objectiveManagerChapterOne.CheckObjective("PressurePlateDrawbridge", isInteracting);
+                Debug.Log("craneInterat button");
             }
         }
         // repeat for other chapters
