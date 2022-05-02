@@ -9,6 +9,7 @@ public class Interactable : MonoBehaviour
     public bool interactTypeIsHold = true;
     [SerializeField] private bool isInteracting = false;
     [SerializeField] private ObjectiveManagerChapterOne objectiveManagerChapterOne;
+    [SerializeField] private SideQuestManagerChapterOne sideQuestManagerChapterOne;
 
     [Header("Whisp Only")]
     public bool isInteractingWithWhisp = false;
@@ -85,14 +86,14 @@ public class Interactable : MonoBehaviour
         {
             if (gameObject.tag == "Jar")
             {
-                GetComponent<BreakJar>().ShatterJar();
+                sideQuestManagerChapterOne.IncreaseFreedCount();
 
-                objectiveManagerChapterOne.whispFreed++;
-                Debug.Log("whisps freed: " + objectiveManagerChapterOne.whispFreed);
+                GetComponent<BreakJar>().ShatterJar();
             }
         }
         //Debug.Log("interacted");
     }
+
     void OnTriggerExit(Collider collider)
     {
         if (interactTypeIsHold)

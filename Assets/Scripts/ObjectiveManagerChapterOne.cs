@@ -18,9 +18,6 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
     [SerializeField] private Animator prisonAnim;
     private int stageInSectionOne = 0; // puzzle 0 is tutorial, 1 is first pressure plate
 
-    [Header("Section Two")]
-    public int whispFreed = 0;
-
     [Header("Section Three")]
     [SerializeField] private Animator craneAnim;
     [SerializeField] private Animator drawbridgeAnim;
