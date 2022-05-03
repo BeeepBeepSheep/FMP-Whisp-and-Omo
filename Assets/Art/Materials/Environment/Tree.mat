@@ -99,8 +99,8 @@ Material:
     m_Ints: []
     m_Floats:
     - Brightness_Rim: 1.66
-    - Rim_Power: 0.95
-    - Toon_Ramp_Offset: 0.556
+    - Rim_Power: 5.8
+    - Toon_Ramp_Offset: 0.436
     - Toon_Ramp_Smoothness: 0
     - _AlphaClip: 0
     - _Blend: 0
