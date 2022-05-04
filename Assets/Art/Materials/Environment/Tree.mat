@@ -98,9 +98,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Brightness_Rim: 1.66
-    - Rim_Power: 5.8
-    - Toon_Ramp_Offset: 0.436
+    - Brightness_Rim: 1.16
+    - Rim_Power: 1.01
+    - Toon_Ramp_Offset: 0.591
     - Toon_Ramp_Smoothness: 0
     - _AlphaClip: 0
     - _Blend: 0
