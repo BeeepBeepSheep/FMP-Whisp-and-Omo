@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Tree 2
+  m_Name: TreeClassic
   m_Shader: {fileID: -6465566751694194690, guid: 4f9ec1d881d2d294787631d75b186db2, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -98,9 +98,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Brightness_Rim: 1.66
-    - Rim_Power: 5.8
-    - Toon_Ramp_Offset: 0.436
+    - Brightness_Rim: 1.16
+    - Rim_Power: 1.01
+    - Toon_Ramp_Offset: 0.591
     - Toon_Ramp_Smoothness: 0
     - _AlphaClip: 0
     - _Blend: 0
@@ -131,7 +131,7 @@ Material:
     m_Colors:
     - Toon_Ramp_Tint: {r: 0.49056596, g: 0.49056596, b: 0.49056596, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.795877, g: 1, b: 0.6194968, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
