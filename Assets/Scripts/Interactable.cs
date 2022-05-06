@@ -92,10 +92,10 @@ public class Interactable : MonoBehaviour
             }
         }
 
-        //final
+        //end of chapter
         if(collider.tag == "Player" && isFinalTrigger)
         {
-            Debug.Log("Game Complete");
+            objectiveManagerChapterOne.ChapterComplete();
         }
         //Debug.Log("interacted");
     }
@@ -143,6 +143,10 @@ public class Interactable : MonoBehaviour
             {
                 objectiveManagerChapterOne.CheckObjective("PressurePlateDrawbridge", isInteracting);
                 Debug.Log("craneInterat button");
+            }
+            else if (isFinalTrigger)
+            {
+                objectiveManagerChapterOne.CheckObjective("ChapterOneComplete", isInteracting);
             }
         }
         // repeat for other chapters

@@ -23,6 +23,8 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
     [SerializeField] private Animator drawbridgeAnim;
     private bool isFirstTimeBridgeOpen = true;
 
+    [SerializeField] private Animator comicAnim;
+
     private void Start()
     {
         foreach (Transform objective in objectives)
@@ -123,5 +125,10 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
                 //close bridge
             }
         }
+    }
+    public void ChapterComplete()
+    {
+        comicAnim.SetTrigger("PlayOutro");
+        playerManager.Deactivate();
     }
 }
