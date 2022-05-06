@@ -62,6 +62,7 @@ public class PlayerManager : MonoBehaviour
     {
         //tutorial part 1
 
+        Debug.Log("endofcutscene");
         omoOutline.enabled = true;
         omoAnimationController.enabled = true;
         whispOrbitController.enabled = true;

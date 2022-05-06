@@ -6,13 +6,13 @@ using UnityEngine.InputSystem;
 public class Pause : MonoBehaviour
 {
     private PlayerInputActions playerInputActions;
-    private PlayerInput playerInput;
 
     public bool gameIsPaused;
+    [SerializeField] private PlayerInput uiInput;
+    [SerializeField] private PlayerInput playerInput;
 
     private void Awake()
     {
-        playerInput = GetComponent<PlayerInput>();
 
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
@@ -27,6 +27,7 @@ public class Pause : MonoBehaviour
         Cursor.visible = true;
 
         gameIsPaused = true;
+
         // need to switch input method
 
         //playerInput.SwitchCurrentActionMap("UI");
@@ -42,6 +43,7 @@ public class Pause : MonoBehaviour
         Cursor.visible = false;
 
         gameIsPaused = false;
+
         //playerInput.SwitchCurrentActionMap("Player");
         //playerInputActions.Player.Enable();
         //playerInputActions.UI.Disable();
