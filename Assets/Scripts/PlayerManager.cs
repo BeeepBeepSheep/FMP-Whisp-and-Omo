@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
-    [Header("Main")]
+    [Header("Cutscene")]
     [SerializeField] private Outline omoOutline;
     [SerializeField] private OmoMovement omoMovement;
     [SerializeField] private OmoAnimationController omoAnimationController;
@@ -18,6 +18,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera finalVirtualCam;
     [SerializeField] private CinemachineFreeLook freeLook;
     [SerializeField] private ObjectiveManagerChapterOne objectiveManagerChapterOne;
+    [SerializeField] private PlayerInput playerInput;
 
     [Header("UI")]
     [SerializeField] private CanvasGroup hudGroup;
@@ -62,12 +63,12 @@ public class PlayerManager : MonoBehaviour
     {
         //tutorial part 1
 
-        Debug.Log("endofcutscene");
         omoOutline.enabled = true;
         omoAnimationController.enabled = true;
         whispOrbitController.enabled = true;
         cameraController.enabled = true;
         objectiveManagerChapterOne.enabled = true;
+        playerInput.enabled = true;
 
         finalVirtualCam.enabled = false;
         freeLook.enabled = true;
@@ -101,7 +102,6 @@ public class PlayerManager : MonoBehaviour
     {
         if (!hasLookedAround && introCutsceneHasEnded)
         {
-            //Debug.Log("first look");
             StartCoroutine(TutorialStage2());
             hasLookedAround = true;
         }
