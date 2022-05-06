@@ -21,6 +21,7 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
     [Header("Section Three")]
     [SerializeField] private Animator craneAnim;
     [SerializeField] private Animator drawbridgeAnim;
+    private bool isFirstTimeBridgeOpen = true;
 
     private void Start()
     {
@@ -106,6 +107,14 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
             if (recieveType == "PressurePlateDrawbridge" && isInteracting)
             {
                 drawbridgeAnim.SetBool("DrawbridgeShouldBeOpen", true);
+
+                if(isFirstTimeBridgeOpen)
+                {
+                    uiAnim.SetTrigger("BridgeToEscape2");
+                    isFirstTimeBridgeOpen = false;
+
+                    objectives[5].GetComponent<Outline>().enabled = true;
+                }
                 //open bridge
             }
             if (recieveType == "PressurePlateDrawbridge" && !isInteracting)

@@ -19,7 +19,7 @@ public class Interactable : MonoBehaviour
     [Header("Section 3")]
     public bool isCraneButton = false;
     public bool isDrawBridgeButton = false;
-
+    public bool isFinalTrigger = false;
 
 
     void Awake()
@@ -90,6 +90,12 @@ public class Interactable : MonoBehaviour
 
                 GetComponent<BreakJar>().ShatterJar();
             }
+        }
+
+        //final
+        if(collider.tag == "Player" && isFinalTrigger)
+        {
+            Debug.Log("Game Complete");
         }
         //Debug.Log("interacted");
     }
