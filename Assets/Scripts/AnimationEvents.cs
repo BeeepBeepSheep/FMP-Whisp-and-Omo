@@ -13,6 +13,6 @@ public class AnimationEvents : MonoBehaviour
     }
     public void DeactivatePlayer()
     {
-        playerManager.Deactivate();
+        playerManager.DeactivateOutro();
     }
 }

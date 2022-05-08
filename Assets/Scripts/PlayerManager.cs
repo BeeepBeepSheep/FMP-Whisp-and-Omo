@@ -94,6 +94,24 @@ public class PlayerManager : MonoBehaviour
         whisp.SetActive(false);
         sadWhisp.SetActive(true);
     }
+    public void DeactivateOutro()
+    {
+        //gameObject.GetComponent<Rigidbody>().useGravity = false;
+        //gameObject.GetComponent<CapsuleCollider>().enabled = false;
+
+        //omoOutline.enabled = false;
+        //omoAnimationController.enabled = false;
+        omoMovement.enabled = false;
+        whispOrbitController.enabled = false;
+        whispFollow.enabled = false;
+        cameraController.enabled = false;
+
+        freeLook.enabled = false;
+        finalVirtualCam.enabled = true;
+        //jarOutline.enabled = false;
+        //whisp.SetActive(false);
+        //sadWhisp.SetActive(true);
+    }
     public void IntroCutsceneEnded()
     {
         introCutsceneHasEnded = true;

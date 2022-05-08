@@ -60,10 +60,11 @@ public class Interactable : MonoBehaviour
         }
 
         //whisp only
-        if (isInteractingWithWhisp && collider.tag == "Whisp" && gameObject.tag == "WhispOnlyInteractable" || gameObject.tag == "WhispLightSwitch")
-        {
-            //Debug.Log("interacted with whisp");
-        }
+        //code not used in chapter one----
+        //if (isInteractingWithWhisp && collider.tag == "Whisp" && gameObject.tag == "WhispOnlyInteractable" || gameObject.tag == "WhispLightSwitch")
+        //{
+        //    //Debug.Log("interacted with whisp");
+        //}----
 
         if (collider.tag == "Whisp" && gameObject.tag == "WhispLightSwitch")
         {
@@ -142,10 +143,10 @@ public class Interactable : MonoBehaviour
             else if (isDrawBridgeButton)
             {
                 objectiveManagerChapterOne.CheckObjective("PressurePlateDrawbridge", isInteracting);
-                Debug.Log("craneInterat button");
             }
             else if (isFinalTrigger)
             {
+                Debug.Log("final interactable trigger");
                 objectiveManagerChapterOne.CheckObjective("ChapterOneComplete", isInteracting);
             }
         }

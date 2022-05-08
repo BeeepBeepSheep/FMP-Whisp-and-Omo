@@ -85,7 +85,6 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
 
         else if (section == 3)//crane and bridge section
         {
-            Debug.Log("section is 3");
             prisonAnim.SetBool("MainDoorShouldOpen", false);
             uiAnim.SetTrigger("PrisonToCourtyard");
 
@@ -128,7 +127,8 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
     }
     public void ChapterComplete()
     {
+        Debug.Log("objMngr chapter complete");
         comicAnim.SetTrigger("PlayOutro");
-        playerManager.Deactivate();
+        //playerManager.DeactivateOutro(); is called in animation event
     }
 }
