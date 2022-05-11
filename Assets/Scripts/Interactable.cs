@@ -10,6 +10,7 @@ public class Interactable : MonoBehaviour
     [SerializeField] private bool isInteracting = false;
     [SerializeField] private ObjectiveManagerChapterOne objectiveManagerChapterOne;
     [SerializeField] private SideQuestManagerChapterOne sideQuestManagerChapterOne;
+    [SerializeField] private Animator sidequestAnim;
 
     [Header("Whisp Only")]
     public bool isInteractingWithWhisp = false;
@@ -27,7 +28,7 @@ public class Interactable : MonoBehaviour
         {
             interactTypeIsHold = true;
         }
-        else if (gameObject.tag == "WhispLightSwitch" || gameObject.tag == "Jar")
+        else if (gameObject.tag == "WhispLightSwitch" || gameObject.tag == "Jar" || gameObject.tag == "Cannon")
         {
             interactTypeIsHold = false;
         }
@@ -39,13 +40,6 @@ public class Interactable : MonoBehaviour
             foreach (Transform child in transform)
             {
                 child.gameObject.SetActive(false);
-            }
-        }
-        if(gameObject.tag == "Jar")
-        {
-            foreach (Transform child in transform)
-            {
-                
             }
         }
     }
@@ -97,6 +91,13 @@ public class Interactable : MonoBehaviour
 
                 GetComponent<BreakJar>().ShatterJar();
             }
+        }
+
+        //cannon
+        if(gameObject.tag == "Cannon" && collider.tag == "Whisp")
+        {
+            Debug.Log("Cannon");
+            sidequestAnim.SetTrigger("CannonShoot");
         }
 
         //end of chapter

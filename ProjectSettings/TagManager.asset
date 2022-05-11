@@ -11,6 +11,7 @@ TagManager:
   - WhispLightSwitch
   - Jar
   - AlternatePressurePlate
+  - Cannon
   layers:
   - Default
   - TransparentFX
