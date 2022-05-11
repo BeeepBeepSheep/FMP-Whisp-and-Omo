@@ -35,7 +35,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""interactions"": ""Press""
                 },
                 {
-                    ""name"": ""Pause"",
+                    ""name"": ""PauseUnpause"",
                     ""type"": ""Button"",
                     ""id"": ""d8099e68-f8c6-4c2f-9e6b-9dd448fb788d"",
                     ""expectedControlType"": ""Button"",
@@ -234,7 +234,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""Pause"",
+                    ""action"": ""PauseUnpause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -245,7 +245,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""Pause"",
+                    ""action"": ""PauseUnpause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -256,7 +256,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Pause"",
+                    ""action"": ""PauseUnpause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -456,7 +456,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_PauseUnpause = m_Player.FindAction("PauseUnpause", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_WhispAbility1 = m_Player.FindAction("WhispAbility1", throwIfNotFound: true);
         m_Player_ToggleCameraShoulder = m_Player.FindAction("ToggleCameraShoulder", throwIfNotFound: true);
@@ -516,7 +516,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_PauseUnpause;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_WhispAbility1;
     private readonly InputAction m_Player_ToggleCameraShoulder;
@@ -528,7 +528,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @PauseUnpause => m_Wrapper.m_Player_PauseUnpause;
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @WhispAbility1 => m_Wrapper.m_Player_WhispAbility1;
         public InputAction @ToggleCameraShoulder => m_Wrapper.m_Player_ToggleCameraShoulder;
@@ -549,9 +549,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
-                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
-                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @PauseUnpause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseUnpause;
+                @PauseUnpause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseUnpause;
+                @PauseUnpause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseUnpause;
                 @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
@@ -577,9 +577,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @Pause.started += instance.OnPause;
-                @Pause.performed += instance.OnPause;
-                @Pause.canceled += instance.OnPause;
+                @PauseUnpause.started += instance.OnPauseUnpause;
+                @PauseUnpause.performed += instance.OnPauseUnpause;
+                @PauseUnpause.canceled += instance.OnPauseUnpause;
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
@@ -654,7 +654,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnPause(InputAction.CallbackContext context);
+        void OnPauseUnpause(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnWhispAbility1(InputAction.CallbackContext context);
         void OnToggleCameraShoulder(InputAction.CallbackContext context);

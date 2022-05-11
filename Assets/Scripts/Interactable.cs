@@ -21,7 +21,6 @@ public class Interactable : MonoBehaviour
     public bool isDrawBridgeButton = false;
     public bool isFinalTrigger = false;
 
-
     void Awake()
     {
         if (gameObject.tag == "PressurePlate")
@@ -40,6 +39,13 @@ public class Interactable : MonoBehaviour
             foreach (Transform child in transform)
             {
                 child.gameObject.SetActive(false);
+            }
+        }
+        if(gameObject.tag == "Jar")
+        {
+            foreach (Transform child in transform)
+            {
+                
             }
         }
     }

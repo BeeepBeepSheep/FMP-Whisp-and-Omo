@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.UI;
 public class Pause : MonoBehaviour
 {
     private PlayerInputActions playerInputActions;
@@ -10,6 +10,9 @@ public class Pause : MonoBehaviour
     public bool gameIsPaused;
     [SerializeField] private PlayerInput uiInput;
     [SerializeField] private PlayerInput playerInput;
+
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private Button firstButton;
 
     private void Awake()
     {
@@ -21,13 +24,26 @@ public class Pause : MonoBehaviour
     {
         UnPause();
     }
+    public void PuaseUnpauseCheck()
+    {
+        if(gameIsPaused)
+        {
+            UnPause();
+        }
+        else
+        {
+            Puase();
+        }
+    }
     public void Puase()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
         gameIsPaused = true;
+        pauseMenu.SetActive(true);
 
+        firstButton.Select();
         // need to switch input method
 
         //playerInput.SwitchCurrentActionMap("UI");
@@ -43,6 +59,7 @@ public class Pause : MonoBehaviour
         Cursor.visible = false;
 
         gameIsPaused = false;
+        pauseMenu.SetActive(false);
 
         //playerInput.SwitchCurrentActionMap("Player");
         //playerInputActions.Player.Enable();

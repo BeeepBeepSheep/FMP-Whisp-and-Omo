@@ -11,16 +11,15 @@ public class BreakJar : MonoBehaviour
     [SerializeField] private GameObject jarLid;
 
     [SerializeField] private bool isMainJar;
+    [SerializeField] private Transform jarPieceHolder;
 
-    void Start()
-    {
-    }
+    [SerializeField] private float dissableTime = 4;
 
     public void ShatterJar()
     {
         jarLid.AddComponent<Rigidbody>();
         jarLid.GetComponent<MeshCollider>().convex = true;
-        
+
         if (isMainJar)
         {
             Destroy(sadWhisp);
@@ -40,6 +39,24 @@ public class BreakJar : MonoBehaviour
             child.gameObject.SetActive(true);
         }
 
-        Destroy(gameObject);
+        StartCoroutine(DissableJarPiece());
+
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<Rigidbody>().detectCollisions = false;
+        GetComponent<MeshCollider>().enabled = false;
+
+    }
+    private IEnumerator DissableJarPiece()
+    {
+        yield return new WaitForSeconds(dissableTime);
+
+        foreach (Transform jarPiece in jarPieceHolder)
+        {
+            jarPiece.GetComponent<Rigidbody>().useGravity = false;
+            jarPiece.GetComponent<Collider>().enabled = false;
+            jarPiece.GetComponent<Rigidbody>().detectCollisions = false;
+        }
+        Debug.Log("Dissablejarpiece");
+        
     }
 }
