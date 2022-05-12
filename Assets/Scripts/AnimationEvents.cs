@@ -15,4 +15,8 @@ public class AnimationEvents : MonoBehaviour
     {
         playerManager.DeactivateOutro();
     }
+    public void SkipCutscene()
+    {
+        playerManager.SkipCutscene();
+    }
 }

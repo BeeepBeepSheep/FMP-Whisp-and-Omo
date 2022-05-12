@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
+using System.Linq;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -24,6 +27,10 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private CanvasGroup hudGroup;
     [SerializeField] private GameObject lookTutorialPromt;
     [SerializeField] private Animator uiAnim;
+    [SerializeField] private Animator comicAnim;
+    private bool isHoldingSkip = false;
+    [SerializeField] private PlayableDirector timelinePD;
+    [SerializeField] private int timeLineMarkerNum = 0;
 
     [Header("Tutorial")]
     [SerializeField] private GameObject lookPrompt;
@@ -96,11 +103,6 @@ public class PlayerManager : MonoBehaviour
     }
     public void DeactivateOutro()
     {
-        //gameObject.GetComponent<Rigidbody>().useGravity = false;
-        //gameObject.GetComponent<CapsuleCollider>().enabled = false;
-
-        //omoOutline.enabled = false;
-        //omoAnimationController.enabled = false;
         omoMovement.enabled = false;
         whispOrbitController.enabled = false;
         whispFollow.enabled = false;
@@ -108,10 +110,31 @@ public class PlayerManager : MonoBehaviour
 
         freeLook.enabled = false;
         finalVirtualCam.enabled = true;
-        //jarOutline.enabled = false;
-        //whisp.SetActive(false);
-        //sadWhisp.SetActive(true);
     }
+
+    public void SkipCutsceneInput(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (!isHoldingSkip) // pressed button
+            {
+                isHoldingSkip = true;
+            }
+            else // released button
+            {
+                isHoldingSkip = false;
+            }
+
+            comicAnim.SetBool("SkipIsPressed", isHoldingSkip);
+        }
+    }
+    public void SkipCutscene()
+    {
+        var timelineAsset = timelinePD.playableAsset as TimelineAsset;
+        var markers = timelineAsset.markerTrack.GetMarkers().ToArray();
+        timelinePD.time = markers[timeLineMarkerNum].time;
+    }
+
     public void IntroCutsceneEnded()
     {
         introCutsceneHasEnded = true;
