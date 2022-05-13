@@ -75,6 +75,6 @@ public class Pause : MonoBehaviour
     }
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene("ChapterOne");
+        SceneManager.LoadScene("MainMenu");
     }
 }
