@@ -401,49 +401,38 @@
             ]
         },
         {
-            "name": "UI",
+            "name": "MainMenu",
             "id": "75722059-8324-4847-9185-10694d01432b",
             "actions": [
                 {
-                    "name": "UnPause",
+                    "name": "StartMainMenu",
                     "type": "Button",
-                    "id": "6ae90a5f-fd72-44c7-b221-a77b87da36b5",
+                    "id": "64db012e-d91c-4541-9bc4-ccadd3493d77",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": ""
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "7c97cb82-9459-4127-a70c-6f557acff47c",
-                    "path": "<Keyboard>/tab",
+                    "id": "0a83e8fb-4294-4653-b4ec-3fd14fb2e689",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "UnPause",
+                    "groups": "Mouse and Keyboard",
+                    "action": "StartMainMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "86871a3d-5b0e-4491-ae7b-0bfa4f526124",
-                    "path": "<Keyboard>/escape",
+                    "id": "f5a95ef4-3e14-480e-883d-771207466f8c",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "UnPause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6962d314-0191-4bf4-8c39-d208a53741c4",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UnPause",
+                    "groups": "Gamepad",
+                    "action": "StartMainMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

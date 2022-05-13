@@ -414,49 +414,38 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
             ]
         },
         {
-            ""name"": ""UI"",
+            ""name"": ""MainMenu"",
             ""id"": ""75722059-8324-4847-9185-10694d01432b"",
             ""actions"": [
                 {
-                    ""name"": ""UnPause"",
+                    ""name"": ""StartMainMenu"",
                     ""type"": ""Button"",
-                    ""id"": ""6ae90a5f-fd72-44c7-b221-a77b87da36b5"",
+                    ""id"": ""64db012e-d91c-4541-9bc4-ccadd3493d77"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press""
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""7c97cb82-9459-4127-a70c-6f557acff47c"",
-                    ""path"": ""<Keyboard>/tab"",
+                    ""id"": ""0a83e8fb-4294-4653-b4ec-3fd14fb2e689"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""UnPause"",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""StartMainMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""86871a3d-5b0e-4491-ae7b-0bfa4f526124"",
-                    ""path"": ""<Keyboard>/escape"",
+                    ""id"": ""f5a95ef4-3e14-480e-883d-771207466f8c"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""UnPause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6962d314-0191-4bf4-8c39-d208a53741c4"",
-                    ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""UnPause"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""StartMainMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -504,9 +493,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_Player_testingonlyToggleMood = m_Player.FindAction("(testing only) ToggleMood", throwIfNotFound: true);
         m_Player_ReturnWhisp = m_Player.FindAction("ReturnWhisp", throwIfNotFound: true);
         m_Player_SkipCutscene = m_Player.FindAction("SkipCutscene", throwIfNotFound: true);
-        // UI
-        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_UnPause = m_UI.FindAction("UnPause", throwIfNotFound: true);
+        // MainMenu
+        m_MainMenu = asset.FindActionMap("MainMenu", throwIfNotFound: true);
+        m_MainMenu_StartMainMenu = m_MainMenu.FindAction("StartMainMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -650,38 +639,38 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     }
     public PlayerActions @Player => new PlayerActions(this);
 
-    // UI
-    private readonly InputActionMap m_UI;
-    private IUIActions m_UIActionsCallbackInterface;
-    private readonly InputAction m_UI_UnPause;
-    public struct UIActions
+    // MainMenu
+    private readonly InputActionMap m_MainMenu;
+    private IMainMenuActions m_MainMenuActionsCallbackInterface;
+    private readonly InputAction m_MainMenu_StartMainMenu;
+    public struct MainMenuActions
     {
         private @PlayerInputActions m_Wrapper;
-        public UIActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @UnPause => m_Wrapper.m_UI_UnPause;
-        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public MainMenuActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @StartMainMenu => m_Wrapper.m_MainMenu_StartMainMenu;
+        public InputActionMap Get() { return m_Wrapper.m_MainMenu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
-        public void SetCallbacks(IUIActions instance)
+        public static implicit operator InputActionMap(MainMenuActions set) { return set.Get(); }
+        public void SetCallbacks(IMainMenuActions instance)
         {
-            if (m_Wrapper.m_UIActionsCallbackInterface != null)
+            if (m_Wrapper.m_MainMenuActionsCallbackInterface != null)
             {
-                @UnPause.started -= m_Wrapper.m_UIActionsCallbackInterface.OnUnPause;
-                @UnPause.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnUnPause;
-                @UnPause.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnUnPause;
+                @StartMainMenu.started -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnStartMainMenu;
+                @StartMainMenu.performed -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnStartMainMenu;
+                @StartMainMenu.canceled -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnStartMainMenu;
             }
-            m_Wrapper.m_UIActionsCallbackInterface = instance;
+            m_Wrapper.m_MainMenuActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @UnPause.started += instance.OnUnPause;
-                @UnPause.performed += instance.OnUnPause;
-                @UnPause.canceled += instance.OnUnPause;
+                @StartMainMenu.started += instance.OnStartMainMenu;
+                @StartMainMenu.performed += instance.OnStartMainMenu;
+                @StartMainMenu.canceled += instance.OnStartMainMenu;
             }
         }
     }
-    public UIActions @UI => new UIActions(this);
+    public MainMenuActions @MainMenu => new MainMenuActions(this);
     private int m_MouseandKeyboardSchemeIndex = -1;
     public InputControlScheme MouseandKeyboardScheme
     {
@@ -712,8 +701,8 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnReturnWhisp(InputAction.CallbackContext context);
         void OnSkipCutscene(InputAction.CallbackContext context);
     }
-    public interface IUIActions
+    public interface IMainMenuActions
     {
-        void OnUnPause(InputAction.CallbackContext context);
+        void OnStartMainMenu(InputAction.CallbackContext context);
     }
 }

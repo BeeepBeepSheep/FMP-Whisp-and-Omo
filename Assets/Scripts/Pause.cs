@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class Pause : MonoBehaviour
 {
     private PlayerInputActions playerInputActions;
@@ -12,6 +14,7 @@ public class Pause : MonoBehaviour
     [SerializeField] private PlayerInput playerInput;
 
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject hud;
     [SerializeField] private Button firstButton;
 
     private void Awake()
@@ -42,6 +45,7 @@ public class Pause : MonoBehaviour
 
         gameIsPaused = true;
         pauseMenu.SetActive(true);
+        hud.SetActive(false);
 
         firstButton.Select();
         // need to switch input method
@@ -60,6 +64,7 @@ public class Pause : MonoBehaviour
 
         gameIsPaused = false;
         pauseMenu.SetActive(false);
+        hud.SetActive(true);
 
         //playerInput.SwitchCurrentActionMap("Player");
         //playerInputActions.Player.Enable();
@@ -67,5 +72,9 @@ public class Pause : MonoBehaviour
 
         Time.timeScale = 1f;
         Debug.Log("gameIsPaused = " + gameIsPaused);
+    }
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("ChapterOne");
     }
 }
