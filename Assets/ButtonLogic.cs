@@ -9,10 +9,6 @@ public class ButtonLogic : MonoBehaviour
     [SerializeField] private TMP_FontAsset unHighlightedFont;
     [SerializeField] private TMP_FontAsset highlightedFont;
 
-    private void Start()
-    {
-        text_TMP = GetComponentInChildren(typeof(TextMeshProUGUI), true) as TextMeshProUGUI;
-    }
     public void Button_Select()
     {
         text_TMP.font = highlightedFont;
