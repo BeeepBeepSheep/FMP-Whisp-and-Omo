@@ -403,40 +403,8 @@
         {
             "name": "MainMenu",
             "id": "75722059-8324-4847-9185-10694d01432b",
-            "actions": [
-                {
-                    "name": "StartMainMenu",
-                    "type": "Button",
-                    "id": "64db012e-d91c-4541-9bc4-ccadd3493d77",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "0a83e8fb-4294-4653-b4ec-3fd14fb2e689",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mouse and Keyboard",
-                    "action": "StartMainMenu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f5a95ef4-3e14-480e-883d-771207466f8c",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "StartMainMenu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
+            "actions": [],
+            "bindings": []
         }
     ],
     "controlSchemes": [

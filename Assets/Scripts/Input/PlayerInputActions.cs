@@ -416,40 +416,8 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         {
             ""name"": ""MainMenu"",
             ""id"": ""75722059-8324-4847-9185-10694d01432b"",
-            ""actions"": [
-                {
-                    ""name"": ""StartMainMenu"",
-                    ""type"": ""Button"",
-                    ""id"": ""64db012e-d91c-4541-9bc4-ccadd3493d77"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""0a83e8fb-4294-4653-b4ec-3fd14fb2e689"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""StartMainMenu"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f5a95ef4-3e14-480e-883d-771207466f8c"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""StartMainMenu"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
+            ""actions"": [],
+            ""bindings"": []
         }
     ],
     ""controlSchemes"": [
@@ -495,7 +463,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_Player_SkipCutscene = m_Player.FindAction("SkipCutscene", throwIfNotFound: true);
         // MainMenu
         m_MainMenu = asset.FindActionMap("MainMenu", throwIfNotFound: true);
-        m_MainMenu_StartMainMenu = m_MainMenu.FindAction("StartMainMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -642,12 +609,10 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     // MainMenu
     private readonly InputActionMap m_MainMenu;
     private IMainMenuActions m_MainMenuActionsCallbackInterface;
-    private readonly InputAction m_MainMenu_StartMainMenu;
     public struct MainMenuActions
     {
         private @PlayerInputActions m_Wrapper;
         public MainMenuActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @StartMainMenu => m_Wrapper.m_MainMenu_StartMainMenu;
         public InputActionMap Get() { return m_Wrapper.m_MainMenu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -657,16 +622,10 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_MainMenuActionsCallbackInterface != null)
             {
-                @StartMainMenu.started -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnStartMainMenu;
-                @StartMainMenu.performed -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnStartMainMenu;
-                @StartMainMenu.canceled -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnStartMainMenu;
             }
             m_Wrapper.m_MainMenuActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @StartMainMenu.started += instance.OnStartMainMenu;
-                @StartMainMenu.performed += instance.OnStartMainMenu;
-                @StartMainMenu.canceled += instance.OnStartMainMenu;
             }
         }
     }
@@ -703,6 +662,5 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     }
     public interface IMainMenuActions
     {
-        void OnStartMainMenu(InputAction.CallbackContext context);
     }
 }
