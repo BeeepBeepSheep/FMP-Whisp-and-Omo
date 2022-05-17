@@ -399,12 +399,6 @@
                     "isPartOfComposite": false
                 }
             ]
-        },
-        {
-            "name": "MainMenu",
-            "id": "75722059-8324-4847-9185-10694d01432b",
-            "actions": [],
-            "bindings": []
         }
     ],
     "controlSchemes": [

@@ -412,12 +412,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
-        },
-        {
-            ""name"": ""MainMenu"",
-            ""id"": ""75722059-8324-4847-9185-10694d01432b"",
-            ""actions"": [],
-            ""bindings"": []
         }
     ],
     ""controlSchemes"": [
@@ -461,8 +455,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_Player_testingonlyToggleMood = m_Player.FindAction("(testing only) ToggleMood", throwIfNotFound: true);
         m_Player_ReturnWhisp = m_Player.FindAction("ReturnWhisp", throwIfNotFound: true);
         m_Player_SkipCutscene = m_Player.FindAction("SkipCutscene", throwIfNotFound: true);
-        // MainMenu
-        m_MainMenu = asset.FindActionMap("MainMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -605,31 +597,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
-
-    // MainMenu
-    private readonly InputActionMap m_MainMenu;
-    private IMainMenuActions m_MainMenuActionsCallbackInterface;
-    public struct MainMenuActions
-    {
-        private @PlayerInputActions m_Wrapper;
-        public MainMenuActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputActionMap Get() { return m_Wrapper.m_MainMenu; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(MainMenuActions set) { return set.Get(); }
-        public void SetCallbacks(IMainMenuActions instance)
-        {
-            if (m_Wrapper.m_MainMenuActionsCallbackInterface != null)
-            {
-            }
-            m_Wrapper.m_MainMenuActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-            }
-        }
-    }
-    public MainMenuActions @MainMenu => new MainMenuActions(this);
     private int m_MouseandKeyboardSchemeIndex = -1;
     public InputControlScheme MouseandKeyboardScheme
     {
@@ -659,8 +626,5 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnTestingonlyToggleMood(InputAction.CallbackContext context);
         void OnReturnWhisp(InputAction.CallbackContext context);
         void OnSkipCutscene(InputAction.CallbackContext context);
-    }
-    public interface IMainMenuActions
-    {
     }
 }

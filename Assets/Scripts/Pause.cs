@@ -15,7 +15,6 @@ public class Pause : MonoBehaviour
 
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject hud;
-    [SerializeField] private Button firstButton;
 
     private void Awake()
     {
@@ -47,7 +46,6 @@ public class Pause : MonoBehaviour
         pauseMenu.SetActive(true);
         hud.SetActive(false);
 
-        firstButton.Select();
         // need to switch input method
 
         //playerInput.SwitchCurrentActionMap("UI");

@@ -1076,7 +1076,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 6ab305624697b434490e5da996b152a2, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -1097,6 +1097,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unHighlightedFont: {fileID: 11400000, guid: a233810313df50f48bab7e9f8b97e8fa, type: 2}
   highlightedFont: {fileID: 11400000, guid: ef52c087cf2ddfc4e8c5a366385bc2f6, type: 2}
+  isFirstSelected: 0
+  myEventSystem: {fileID: 895683018}
 --- !u!114 &1261954096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1338,7 +1340,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 6ab305624697b434490e5da996b152a2, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -1359,6 +1361,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unHighlightedFont: {fileID: 11400000, guid: a233810313df50f48bab7e9f8b97e8fa, type: 2}
   highlightedFont: {fileID: 11400000, guid: ef52c087cf2ddfc4e8c5a366385bc2f6, type: 2}
+  isFirstSelected: 0
+  myEventSystem: {fileID: 895683018}
 --- !u!114 &1364412147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1600,7 +1604,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 6ab305624697b434490e5da996b152a2, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -1621,6 +1625,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unHighlightedFont: {fileID: 11400000, guid: a233810313df50f48bab7e9f8b97e8fa, type: 2}
   highlightedFont: {fileID: 11400000, guid: ef52c087cf2ddfc4e8c5a366385bc2f6, type: 2}
+  isFirstSelected: 1
+  myEventSystem: {fileID: 895683018}
 --- !u!114 &1460518985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1719,8 +1725,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Play
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a233810313df50f48bab7e9f8b97e8fa, type: 2}
-  m_sharedMaterial: {fileID: 2320440505494530413, guid: a233810313df50f48bab7e9f8b97e8fa, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ef52c087cf2ddfc4e8c5a366385bc2f6, type: 2}
+  m_sharedMaterial: {fileID: 2320440505494530413, guid: ef52c087cf2ddfc4e8c5a366385bc2f6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2395,7 +2401,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 6ab305624697b434490e5da996b152a2, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -2415,7 +2421,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unHighlightedFont: {fileID: 11400000, guid: a233810313df50f48bab7e9f8b97e8fa, type: 2}
-  highlightedFont: {fileID: 11400000, guid: 1e1707a6cd8c1bd4aa817a4f063a3902, type: 2}
+  highlightedFont: {fileID: 11400000, guid: ef52c087cf2ddfc4e8c5a366385bc2f6, type: 2}
+  isFirstSelected: 0
+  myEventSystem: {fileID: 895683018}
 --- !u!114 &2045448663
 MonoBehaviour:
   m_ObjectHideFlags: 0
