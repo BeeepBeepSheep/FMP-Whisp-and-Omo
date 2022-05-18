@@ -17,6 +17,7 @@ public class Pause : MonoBehaviour
     [SerializeField] private GameObject hud;
     [SerializeField] private ButtonLogic resumeButton;
     [SerializeField] private AudioSource buttonSound;
+    private bool isFirstTimeUnpause = true;
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class Pause : MonoBehaviour
     }
     void Start()
     {
+        isFirstTimeUnpause = true;
         UnPause();
     }
     public void PuaseUnpauseCheck()
@@ -61,6 +63,17 @@ public class Pause : MonoBehaviour
         hud.SetActive(true);
 
         Time.timeScale = 1f;
+        if(!isFirstTimeUnpause)
+        {
+            buttonSound.Play();
+            isFirstTimeUnpause = false;
+        }
+    }
+    public void PlayButtonSoundPuased()
+    {
+        Time.timeScale = 1f;
+        buttonSound.Play();
+        Time.timeScale = 0f;
     }
     public void LoadMainMenu()
     {

@@ -102,6 +102,7 @@ public class Interactable : MonoBehaviour
         if(gameObject.tag == "Cannon" && collider.tag == "Whisp")
         {
             sidequestAnim.SetTrigger("CannonShoot");
+            GetComponent<Outline>().enabled = false;
             cannonSoundEffect.Play();
         }
 
