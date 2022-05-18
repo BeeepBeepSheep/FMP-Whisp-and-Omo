@@ -15,6 +15,7 @@ public class Pause : MonoBehaviour
 
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject hud;
+    [SerializeField] private ButtonLogic resumeButton;
 
     private void Awake()
     {
@@ -46,11 +47,7 @@ public class Pause : MonoBehaviour
         pauseMenu.SetActive(true);
         hud.SetActive(false);
 
-        // need to switch input method
-
-        //playerInput.SwitchCurrentActionMap("UI");
-        //playerInputActions.Player.Disable();
-        //playerInputActions.UI.Enable();
+        resumeButton.Button_Select();
 
         Time.timeScale = 0f;
         Debug.Log("gameIsPaused = " + gameIsPaused);
