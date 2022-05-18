@@ -8,13 +8,16 @@ public class AudioManager : MonoBehaviour
     public AudioMixer mixer;
     [Header("MainMenu Menu")]
     public AudioSource mainMenuMusic;
-    // Start is called before the first frame update
-    void Start()
+
+    public AudioSource currantTrack;
+
+    [SerializeField] private AudioSource prisonSong;
+    public void StartGame()
     {
-        
+        currantTrack = prisonSong;
+        currantTrack.Play();
     }
 
-    // Update is called once per frame
     void Update()
     {
         

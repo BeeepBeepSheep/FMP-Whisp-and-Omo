@@ -19,6 +19,7 @@ public class Pause : MonoBehaviour
     [SerializeField] private AudioSource buttonSound;
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private AudioSource introCutsceneMusic;
+    [SerializeField] private AudioManager AudioManager;
     private bool isFirstTimeUnpause = true;
 
     private void Awake()
@@ -59,6 +60,7 @@ public class Pause : MonoBehaviour
         {
             introCutsceneMusic.Pause();
         }
+        AudioManager.currantTrack.Pause();
     }
     public void UnPause()
     {
@@ -81,6 +83,8 @@ public class Pause : MonoBehaviour
         {
             introCutsceneMusic.UnPause();
         }
+        AudioManager.currantTrack.UnPause();
+
     }
     public void PlayButtonSoundPuased()
     {

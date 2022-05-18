@@ -44,6 +44,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Outline jarOutline;
     [SerializeField] private GameObject whisp;
     [SerializeField] private GameObject sadWhisp;
+    [SerializeField] private AudioManager audioManager;
 
     private bool hasLookedAround = false;
     private bool hasWalkedAround = false;
@@ -138,6 +139,7 @@ public class PlayerManager : MonoBehaviour
     public void IntroCutsceneEnded()
     {
         introCutsceneHasEnded = true;
+        audioManager.StartGame();
     }
     public void FirstTimeLook()
     {
