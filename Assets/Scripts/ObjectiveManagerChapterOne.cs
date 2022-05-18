@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class ObjectiveManagerChapterOne : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
     [Header("Section One")]
     [SerializeField] private Animator prisonAnim;
     private int stageInSectionOne = 0; // puzzle 0 is tutorial, 1 is first pressure plate
+    [SerializeField] private AudioSource gateSound;
 
     [Header("Section Three")]
     [SerializeField] private Animator craneAnim;
@@ -51,7 +53,7 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
             {
                 stageInSectionOne = 2;
                 prisonAnim.SetBool("OpenCellDoor", true);
-
+                gateSound.Play();
                 uiAnim.SetTrigger("SendTooComplete");
                 //do open cell doors
             }
@@ -74,6 +76,7 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
             if (recieveType == "PressurePlate" && isInteracting)
             {
                 prisonAnim.SetBool("MainDoorShouldOpen", true);
+                gateSound.Play();
 
                 //do open main doors
             }
@@ -113,8 +116,8 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
                 {
                     uiAnim.SetTrigger("BridgeToEscape2");
                     isFirstTimeBridgeOpen = false;
-
                     objectives[5].GetComponent<Outline>().enabled = true;
+                    objectives[6].GetComponent<Outline>().enabled = true;
                 }
                 //open bridge
             }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class BreakJar : MonoBehaviour
 {
@@ -14,11 +15,18 @@ public class BreakJar : MonoBehaviour
     [SerializeField] private Transform jarPieceHolder;
 
     [SerializeField] private float dissableTime = 4;
+    [SerializeField] private AudioSource jarBreakSound;
 
+    private void Start()
+    {
+        jarBreakSound = GetComponent<AudioSource>();
+    }
     public void ShatterJar()
     {
         jarLid.AddComponent<Rigidbody>();
         jarLid.GetComponent<MeshCollider>().convex = true;
+
+        jarBreakSound.Play();
 
         if (isMainJar)
         {

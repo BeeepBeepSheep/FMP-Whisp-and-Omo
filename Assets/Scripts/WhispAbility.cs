@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Audio;
 
 public class WhispAbility : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class WhispAbility : MonoBehaviour
 
     public GameObject newWhispMovePoint;
     public LayerMask rayIgnore;
+
+    [SerializeField] private AudioSource whispAbilitySound;
 
     [SerializeField] private PlayerManager playerManager;
 
@@ -25,6 +28,7 @@ public class WhispAbility : MonoBehaviour
                     hit.transform.GetComponent<Interactable>().isInteractingWithWhisp = true;
                 }
 
+                whispAbilitySound.Play();
                 GameObject whispTargetPoint = Instantiate(newWhispMovePoint, hit.point, Quaternion.LookRotation(hit.normal));
                 whispFollow.currentTarget = whispTargetPoint.transform;
             }

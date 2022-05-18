@@ -67,14 +67,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""interactions"": ""Press""
                 },
                 {
-                    ""name"": ""(testing only) ToggleMood"",
-                    ""type"": ""Button"",
-                    ""id"": ""a3b617e0-bb15-459d-b0e5-25bbad961f42"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press""
-                },
-                {
                     ""name"": ""ReturnWhisp"",
                     ""type"": ""Button"",
                     ""id"": ""9cf5eeb1-5a8e-40c7-8d3f-1fb93d471d33"",
@@ -336,28 +328,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ff7dbea5-7e4c-4582-9a68-3c5f5d489140"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""(testing only) ToggleMood"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8d62a56e-457d-43fa-9e47-22b86a23e8ff"",
-                    ""path"": ""<Gamepad>/dpad/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""(testing only) ToggleMood"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""56762864-8e21-4b34-81a3-a02dac20b24e"",
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
@@ -452,7 +422,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_WhispAbility1 = m_Player.FindAction("WhispAbility1", throwIfNotFound: true);
         m_Player_ToggleCameraShoulder = m_Player.FindAction("ToggleCameraShoulder", throwIfNotFound: true);
-        m_Player_testingonlyToggleMood = m_Player.FindAction("(testing only) ToggleMood", throwIfNotFound: true);
         m_Player_ReturnWhisp = m_Player.FindAction("ReturnWhisp", throwIfNotFound: true);
         m_Player_SkipCutscene = m_Player.FindAction("SkipCutscene", throwIfNotFound: true);
     }
@@ -510,7 +479,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_WhispAbility1;
     private readonly InputAction m_Player_ToggleCameraShoulder;
-    private readonly InputAction m_Player_testingonlyToggleMood;
     private readonly InputAction m_Player_ReturnWhisp;
     private readonly InputAction m_Player_SkipCutscene;
     public struct PlayerActions
@@ -523,7 +491,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @WhispAbility1 => m_Wrapper.m_Player_WhispAbility1;
         public InputAction @ToggleCameraShoulder => m_Wrapper.m_Player_ToggleCameraShoulder;
-        public InputAction @testingonlyToggleMood => m_Wrapper.m_Player_testingonlyToggleMood;
         public InputAction @ReturnWhisp => m_Wrapper.m_Player_ReturnWhisp;
         public InputAction @SkipCutscene => m_Wrapper.m_Player_SkipCutscene;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -553,9 +520,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @ToggleCameraShoulder.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleCameraShoulder;
                 @ToggleCameraShoulder.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleCameraShoulder;
                 @ToggleCameraShoulder.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleCameraShoulder;
-                @testingonlyToggleMood.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTestingonlyToggleMood;
-                @testingonlyToggleMood.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTestingonlyToggleMood;
-                @testingonlyToggleMood.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTestingonlyToggleMood;
                 @ReturnWhisp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnWhisp;
                 @ReturnWhisp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnWhisp;
                 @ReturnWhisp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturnWhisp;
@@ -584,9 +548,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @ToggleCameraShoulder.started += instance.OnToggleCameraShoulder;
                 @ToggleCameraShoulder.performed += instance.OnToggleCameraShoulder;
                 @ToggleCameraShoulder.canceled += instance.OnToggleCameraShoulder;
-                @testingonlyToggleMood.started += instance.OnTestingonlyToggleMood;
-                @testingonlyToggleMood.performed += instance.OnTestingonlyToggleMood;
-                @testingonlyToggleMood.canceled += instance.OnTestingonlyToggleMood;
                 @ReturnWhisp.started += instance.OnReturnWhisp;
                 @ReturnWhisp.performed += instance.OnReturnWhisp;
                 @ReturnWhisp.canceled += instance.OnReturnWhisp;
@@ -623,7 +584,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnWhispAbility1(InputAction.CallbackContext context);
         void OnToggleCameraShoulder(InputAction.CallbackContext context);
-        void OnTestingonlyToggleMood(InputAction.CallbackContext context);
         void OnReturnWhisp(InputAction.CallbackContext context);
         void OnSkipCutscene(InputAction.CallbackContext context);
     }

@@ -6,8 +6,17 @@ using UnityEngine.Audio;
 public class PlaySoundInAnimation : MonoBehaviour
 {
     [SerializeField] private AudioSource footstepSound;
+    [SerializeField] private OmoMovement omoMovement;
+
+    private void Start()
+    {
+        omoMovement = GetComponent<OmoMovement>();
+    }
     public void PlayFootStepSound()
     {
-        footstepSound.Play();
+        if(omoMovement.IsGrounded())
+        {
+            footstepSound.Play();
+        }
     }
 }

@@ -16,10 +16,10 @@ public class Pause : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject hud;
     [SerializeField] private ButtonLogic resumeButton;
+    [SerializeField] private AudioSource buttonSound;
 
     private void Awake()
     {
-
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
     }
