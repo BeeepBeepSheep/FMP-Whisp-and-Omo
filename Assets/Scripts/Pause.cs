@@ -17,6 +17,9 @@ public class Pause : MonoBehaviour
     [SerializeField] private GameObject hud;
     [SerializeField] private ButtonLogic resumeButton;
     [SerializeField] private AudioSource buttonSound;
+    [SerializeField] private PlayerManager playerManager;
+    [SerializeField] private AudioSource introCutsceneMusic;
+
     private bool isFirstTimeUnpause = true;
 
     private void Awake()
@@ -52,6 +55,11 @@ public class Pause : MonoBehaviour
         resumeButton.Button_Select();
 
         Time.timeScale = 0f;
+
+        if(!playerManager.introCutsceneHasEnded)
+        {
+            introCutsceneMusic.Pause();
+        }
     }
     public void UnPause()
     {
@@ -63,10 +71,16 @@ public class Pause : MonoBehaviour
         hud.SetActive(true);
 
         Time.timeScale = 1f;
+
         if(!isFirstTimeUnpause)
         {
             buttonSound.Play();
             isFirstTimeUnpause = false;
+        }
+
+        if (!playerManager.introCutsceneHasEnded)
+        {
+            introCutsceneMusic.UnPause();
         }
     }
     public void PlayButtonSoundPuased()
