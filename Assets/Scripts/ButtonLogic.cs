@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.Audio;
 
 public class ButtonLogic : MonoBehaviour
 {
@@ -12,11 +13,12 @@ public class ButtonLogic : MonoBehaviour
     [SerializeField] private TMP_FontAsset highlightedFont;
     [SerializeField] private bool isFirstSelected = false;
     [SerializeField] private EventSystem myEventSystem;
-    [SerializeField] private Animator buttonAnim;
+    private Animator buttonAnim;
 
     void Start()
     {
         text_TMP = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        buttonAnim = GetComponent<Animator>();
     }
    
     public void Button_Select()
@@ -26,5 +28,6 @@ public class ButtonLogic : MonoBehaviour
     public void Button_Deselect()
     {
         text_TMP.font = unHighlightedFont;
+        buttonAnim.SetTrigger("Normal");
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class Interactable : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class Interactable : MonoBehaviour
     [SerializeField] private ObjectiveManagerChapterOne objectiveManagerChapterOne;
     [SerializeField] private SideQuestManagerChapterOne sideQuestManagerChapterOne;
     [SerializeField] private Animator sidequestAnim;
+
+    [Header("Side quest")]
+    private AudioSource cannonSoundEffect;
 
     [Header("Whisp Only")]
     public bool isInteractingWithWhisp = false;
@@ -31,6 +35,7 @@ public class Interactable : MonoBehaviour
         else if (gameObject.tag == "WhispLightSwitch" || gameObject.tag == "Jar" || gameObject.tag == "Cannon")
         {
             interactTypeIsHold = false;
+            cannonSoundEffect = GetComponent<AudioSource>();
         }
     }
     void Start()
@@ -96,8 +101,8 @@ public class Interactable : MonoBehaviour
         //cannon
         if(gameObject.tag == "Cannon" && collider.tag == "Whisp")
         {
-            Debug.Log("Cannon");
             sidequestAnim.SetTrigger("CannonShoot");
+            cannonSoundEffect.Play();
         }
 
         //end of chapter

@@ -50,7 +50,6 @@ public class Pause : MonoBehaviour
         resumeButton.Button_Select();
 
         Time.timeScale = 0f;
-        Debug.Log("gameIsPaused = " + gameIsPaused);
     }
     public void UnPause()
     {
@@ -61,15 +60,11 @@ public class Pause : MonoBehaviour
         pauseMenu.SetActive(false);
         hud.SetActive(true);
 
-        //playerInput.SwitchCurrentActionMap("Player");
-        //playerInputActions.Player.Enable();
-        //playerInputActions.UI.Disable();
-
         Time.timeScale = 1f;
-        Debug.Log("gameIsPaused = " + gameIsPaused);
     }
     public void LoadMainMenu()
     {
+        UnPause();
         SceneManager.LoadScene("MainMenu");
     }
 }
