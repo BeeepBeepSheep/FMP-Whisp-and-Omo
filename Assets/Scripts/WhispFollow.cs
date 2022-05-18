@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Audio;
 
 public class WhispFollow : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class WhispFollow : MonoBehaviour
     bool isHoldingInput = false;
 
     public Animator uiAnimator;
+
+    [SerializeField] private AudioSource whispAbilitySound;
 
     void Start()
     {
@@ -57,6 +60,10 @@ public class WhispFollow : MonoBehaviour
             }
 
             uiAnimator.SetBool("ReturnIsPressed", isHoldingInput);
+        }
+        if(context.started)
+        {
+            whispAbilitySound.Play();
         }
     }
     public void TeleportToOmo()

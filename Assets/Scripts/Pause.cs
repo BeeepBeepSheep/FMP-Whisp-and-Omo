@@ -19,7 +19,6 @@ public class Pause : MonoBehaviour
     [SerializeField] private AudioSource buttonSound;
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private AudioSource introCutsceneMusic;
-
     private bool isFirstTimeUnpause = true;
 
     private void Awake()
@@ -34,7 +33,7 @@ public class Pause : MonoBehaviour
     }
     public void PuaseUnpauseCheck()
     {
-        if(gameIsPaused)
+        if (gameIsPaused)
         {
             UnPause();
         }
@@ -56,7 +55,7 @@ public class Pause : MonoBehaviour
 
         Time.timeScale = 0f;
 
-        if(!playerManager.introCutsceneHasEnded)
+        if (!playerManager.introCutsceneHasEnded)
         {
             introCutsceneMusic.Pause();
         }
@@ -72,7 +71,7 @@ public class Pause : MonoBehaviour
 
         Time.timeScale = 1f;
 
-        if(!isFirstTimeUnpause)
+        if (!isFirstTimeUnpause)
         {
             buttonSound.Play();
             isFirstTimeUnpause = false;
