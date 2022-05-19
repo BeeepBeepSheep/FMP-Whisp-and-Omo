@@ -13,6 +13,7 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
 
     [SerializeField] private Animator uiAnim;
     [SerializeField] private Animator audioAnim;
+    [SerializeField] private CanvasController canvasController;
 
     [Header("Section One")]
     [SerializeField] private Animator prisonAnim;
@@ -131,7 +132,11 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
     public void ChapterComplete()
     {
         Debug.Log("objMngr chapter complete");
+        canvasController.ChapterOneComplete();
         comicAnim.SetTrigger("PlayOutro");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         //playerManager.DeactivateOutro(); is called in animation event
     }
 }

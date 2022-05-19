@@ -10,11 +10,12 @@ public class Pause : MonoBehaviour
     private PlayerInputActions playerInputActions;
 
     public bool gameIsPaused;
+    public bool canPause = true;
     [SerializeField] private PlayerInput uiInput;
     [SerializeField] private PlayerInput playerInput;
 
     [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private GameObject hud;
+    public GameObject hud;
     [SerializeField] private ButtonLogic resumeButton;
     [SerializeField] private AudioSource buttonSound;
     [SerializeField] private PlayerManager playerManager;
@@ -35,13 +36,16 @@ public class Pause : MonoBehaviour
     }
     public void PuaseUnpauseCheck()
     {
-        if (gameIsPaused)
+        if (canPause)
         {
-            UnPause();
-        }
-        else
-        {
-            Puase();
+            if (gameIsPaused)
+            {
+                UnPause();
+            }
+            else
+            {
+                Puase();
+            }
         }
     }
     public void Puase()

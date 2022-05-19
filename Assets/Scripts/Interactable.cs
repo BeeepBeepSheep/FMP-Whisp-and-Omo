@@ -116,6 +116,7 @@ public class Interactable : MonoBehaviour
             sidequestAnim.SetTrigger("CannonShoot");
             GetComponent<Outline>().enabled = false;
             cannonSoundEffect.Play();
+            Destroy(this);
         }
 
         //end of chapter
