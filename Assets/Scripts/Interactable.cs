@@ -15,6 +15,8 @@ public class Interactable : MonoBehaviour
 
     [Header("Side quest")]
     private AudioSource cannonSoundEffect;
+    private AudioSource torchIgnite;
+    private bool torchIsLit = false;
 
     [Header("Whisp Only")]
     public bool isInteractingWithWhisp = false;
@@ -35,7 +37,11 @@ public class Interactable : MonoBehaviour
         else if (gameObject.tag == "WhispLightSwitch" || gameObject.tag == "Jar" || gameObject.tag == "Cannon")
         {
             interactTypeIsHold = false;
-            cannonSoundEffect = GetComponent<AudioSource>();
+
+            if (gameObject.tag == "Cannon")
+            {
+                cannonSoundEffect = GetComponent<AudioSource>();
+            }
         }
     }
     void Start()
@@ -45,6 +51,7 @@ public class Interactable : MonoBehaviour
             foreach (Transform child in transform)
             {
                 child.gameObject.SetActive(false);
+                torchIgnite = GetComponent<AudioSource>();
             }
         }
     }
@@ -82,6 +89,12 @@ public class Interactable : MonoBehaviour
                 {
                     child.gameObject.SetActive(true);
                 }
+
+                if(!torchIsLit)
+                {
+                    torchIgnite.Play();
+                }
+                torchIsLit = true;
                 GetComponent<Outline>().enabled = false;
                 StartCoroutine(TurnTorchOff());
             }
@@ -168,6 +181,8 @@ public class Interactable : MonoBehaviour
     IEnumerator TurnTorchOff()
     {
         yield return new WaitForSeconds(torchLifeTime);
+
+        torchIsLit = false;
 
         GetComponent<Outline>().enabled = true;
         foreach (Transform child in transform)
