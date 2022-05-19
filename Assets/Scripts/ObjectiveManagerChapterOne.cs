@@ -25,6 +25,9 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
     [SerializeField] private Animator drawbridgeAnim;
     private bool isFirstTimePrisonEscape = true;
     private bool isFirstTimeBridgeOpen = true;
+    [SerializeField] private AudioSource playerFootstepSound;
+    [SerializeField] private AudioSource drawbridgeSound;
+    [SerializeField] private AudioSource craneSound;
 
     [SerializeField] private Animator comicAnim;
 
@@ -84,6 +87,7 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
             else if (recieveType == "PressurePlate" && !isInteracting)
             {
                 prisonAnim.SetBool("MainDoorShouldOpen", false);
+                gateSound.Play();
             }
         }
 
@@ -101,11 +105,13 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
             if (recieveType == "PressurePlateCrane" && isInteracting)
             {
                 craneAnim.SetBool("DoRaise", false);
+                craneSound.Play();
                 //lower crane
             }
             if (recieveType == "PressurePlateCrane" && !isInteracting)
             {
                 craneAnim.SetBool("DoRaise", true);
+                craneSound.Play();
                 //raise crane
             }
 
@@ -121,10 +127,12 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
                     objectives[6].GetComponent<Outline>().enabled = true;
                 }
                 //open bridge
+                drawbridgeSound.Play();
             }
             if (recieveType == "PressurePlateDrawbridge" && !isInteracting)
             {
                 drawbridgeAnim.SetBool("DrawbridgeShouldBeOpen", false);
+                drawbridgeSound.Play();
                 //close bridge
             }
         }

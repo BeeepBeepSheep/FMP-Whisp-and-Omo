@@ -15,6 +15,14 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private float timeBetweenTracks = 1.5f;
     [SerializeField] private AudioSource prisonSong;
     [SerializeField] private AudioSource courtyardSong;
+    [SerializeField] private AudioSource footStepSound;
+    [SerializeField] private float footStepMaxVolume = 0.4f;
+    [SerializeField] private float footStepMinVolume = 0.2f;
+
+    private void Start()
+    {
+        footStepMaxVolume = footStepSound.volume;
+    }
     public void StartGame()
     {
         UnityEditorInternal.ComponentUtility.CopyComponent(prisonSong);
@@ -34,7 +42,15 @@ public class AudioManager : MonoBehaviour
         
         currantTrack.Play();
     }
+    public void ToggleFottstepVolume(bool isInside)
+    {
+        if(isInside)
+        {
+            footStepSound.volume = footStepMaxVolume;
+        }
+        else
+        {
+            footStepSound.volume = footStepMinVolume;
+        }
+    }
 }
-
-//UnityEditorInternal.ComponentUtility.CopyComponent(prisonSong);
-//UnityEditorInternal.ComponentUtility.PasteComponentAsNew(transform.GetChild(0).gameObject);

@@ -6,6 +6,8 @@ public class MusicTriggerPrisonExit : MonoBehaviour
 {
     [Header("chapterOne")]
     [SerializeField] private Animator audioAnim;
+    [SerializeField] private AudioManager audioManager;
+    private bool isInside = true;
     private bool firstTimeEscape = true;
 
     void OnTriggerEnter(Collider collider)
@@ -15,5 +17,15 @@ public class MusicTriggerPrisonExit : MonoBehaviour
             audioAnim.SetTrigger("musicFade");
             firstTimeEscape = false;
         }
+
+        if(isInside)
+        {
+            isInside = false;
+        }
+        else
+        {
+            isInside = true;
+        }
+        audioManager.ToggleFottstepVolume(isInside);
     }
 }

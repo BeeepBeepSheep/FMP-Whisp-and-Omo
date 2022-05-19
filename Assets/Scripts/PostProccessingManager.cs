@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PostProccessingManager : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class PostProccessingManager : MonoBehaviour
     [Header("objective")]
     [SerializeField] private ObjectiveManagerChapterOne objectiveManager;
     private bool firstTimeEscape = true;
-
+    
     public void ToggleOutside()
     {
         if (isInside)
