@@ -81,10 +81,9 @@ public class Interactable : MonoBehaviour
         if (collider.tag == "Whisp" && gameObject.tag == "WhispLightSwitch")
         {
 
-            //Debug.Log("lightswitch");
+            //torch
             if (isTorch)
             {
-                //Debug.Log("torch");
                 foreach (Transform child in transform)
                 {
                     child.gameObject.SetActive(true);

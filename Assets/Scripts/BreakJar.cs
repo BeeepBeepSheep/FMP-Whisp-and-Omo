@@ -64,7 +64,7 @@ public class BreakJar : MonoBehaviour
             jarPiece.GetComponent<Collider>().enabled = false;
             jarPiece.GetComponent<Rigidbody>().detectCollisions = false;
         }
-        Debug.Log("Dissablejarpiece");
+        //Debug.Log("Dissablejarpiece");
         
     }
 }

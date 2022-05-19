@@ -14,6 +14,7 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
     //section value is changed in post proccessing manager
 
     [SerializeField] private Animator uiAnim;
+    [SerializeField] private AudioManager audioManager;
 
     [Header("Section One")]
     [SerializeField] private Animator prisonAnim;
@@ -23,6 +24,7 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
     [Header("Section Three")]
     [SerializeField] private Animator craneAnim;
     [SerializeField] private Animator drawbridgeAnim;
+    private bool isFirstTimePrisonEscape = true;
     private bool isFirstTimeBridgeOpen = true;
 
     [SerializeField] private Animator comicAnim;
@@ -97,6 +99,12 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
             objectives[3].GetComponent<Outline>().enabled = true;
             objectives[4].GetComponent<Outline>().enabled = true;
 
+            if(isFirstTimePrisonEscape)
+            {
+                audioManager.SwitchToCourtyard();
+
+                isFirstTimePrisonEscape = false;
+            }
             if (recieveType == "PressurePlateCrane" && isInteracting)
             {
                 craneAnim.SetBool("DoRaise", false);

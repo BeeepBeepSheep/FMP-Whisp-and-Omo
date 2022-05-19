@@ -9,12 +9,29 @@ public class AudioManager : MonoBehaviour
     [Header("MainMenu Menu")]
     public AudioSource mainMenuMusic;
 
+    [Header("Chapter One")]
     public AudioSource currantTrack;
 
+    [SerializeField] private float timeBetweenTracks = 1.5f;
     [SerializeField] private AudioSource prisonSong;
+    [SerializeField] private AudioSource courtyardSong;
     public void StartGame()
     {
-        currantTrack = prisonSong;
+        UnityEditorInternal.ComponentUtility.CopyComponent(prisonSong);
+        UnityEditorInternal.ComponentUtility.PasteComponentValues(currantTrack);
+        currantTrack = transform.GetChild(0).GetComponent<AudioSource>();
+
+        currantTrack.Play();
+    }
+    public void SwitchToCourtyard()
+    {
+        currantTrack.Stop();
+        UnityEditorInternal.ComponentUtility.CopyComponent(courtyardSong);
+        UnityEditorInternal.ComponentUtility.PasteComponentValues(currantTrack);
+        currantTrack = transform.GetChild(0).GetComponent<AudioSource>();
+
+        //yield return new WaitForSeconds(timeBetweenTracks);
+        
         currantTrack.Play();
     }
 
@@ -23,3 +40,6 @@ public class AudioManager : MonoBehaviour
         
     }
 }
+
+//UnityEditorInternal.ComponentUtility.CopyComponent(prisonSong);
+//UnityEditorInternal.ComponentUtility.PasteComponentAsNew(transform.GetChild(0).gameObject);
