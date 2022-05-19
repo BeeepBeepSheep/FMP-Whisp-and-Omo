@@ -171,6 +171,7 @@ public class PlayerManager : MonoBehaviour
             //Debug.Log("first walk");
             StartCoroutine(TutorialStage3());
             hasWalkedAround = true;
+            omoMovement.canJump = true;
         }
     }
     private IEnumerator TutorialStage3()

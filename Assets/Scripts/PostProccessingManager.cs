@@ -26,13 +26,16 @@ public class PostProccessingManager : MonoBehaviour
     }
     void OnTriggerEnter(Collider collider)
     {
-        ToggleOutside();
-
-        if (firstTimeEscape)
+        if (collider.tag == "Player")
         {
-            firstTimeEscape = false;
-            objectiveManager.section = 3;
-            objectiveManager.CheckObjective(null, false);
+            ToggleOutside();
+
+            if (firstTimeEscape)
+            {
+                firstTimeEscape = false;
+                objectiveManager.section = 3;
+                objectiveManager.CheckObjective(null, false);
+            }
         }
     }
 }

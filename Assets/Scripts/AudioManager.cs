@@ -34,11 +34,6 @@ public class AudioManager : MonoBehaviour
         
         currantTrack.Play();
     }
-
-    void Update()
-    {
-        
-    }
 }
 
 //UnityEditorInternal.ComponentUtility.CopyComponent(prisonSong);

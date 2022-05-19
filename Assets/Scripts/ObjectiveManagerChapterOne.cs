@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
-
 public class ObjectiveManagerChapterOne : MonoBehaviour
 {
     [Header("element 0 is first presure plate")]
@@ -14,7 +12,7 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
     //section value is changed in post proccessing manager
 
     [SerializeField] private Animator uiAnim;
-    [SerializeField] private AudioManager audioManager;
+    [SerializeField] private Animator audioAnim;
 
     [Header("Section One")]
     [SerializeField] private Animator prisonAnim;
@@ -99,12 +97,6 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
             objectives[3].GetComponent<Outline>().enabled = true;
             objectives[4].GetComponent<Outline>().enabled = true;
 
-            if(isFirstTimePrisonEscape)
-            {
-                audioManager.SwitchToCourtyard();
-
-                isFirstTimePrisonEscape = false;
-            }
             if (recieveType == "PressurePlateCrane" && isInteracting)
             {
                 craneAnim.SetBool("DoRaise", false);

@@ -19,6 +19,7 @@ public class OmoMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 10;
     private Vector3 forceDirection = Vector3.zero;
     private InputAction moveAction;
+    public bool canJump = false;
 
     [SerializeField] private Camera cam;
 
@@ -85,7 +86,7 @@ public class OmoMovement : MonoBehaviour
     }
     public void Jump(InputAction.CallbackContext context)
     {
-        if (IsGrounded() && context.started)
+        if (IsGrounded() && context.started && canJump)
         {
             forceDirection += Vector3.up * jumpForce;
         }
