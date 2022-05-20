@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -21,7 +22,10 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        footStepMaxVolume = footStepSound.volume;
+        if (SceneManager.GetActiveScene().name == "ChapterOne")
+        {
+            footStepMaxVolume = footStepSound.volume;
+        }
     }
     public void StartGame()
     {
