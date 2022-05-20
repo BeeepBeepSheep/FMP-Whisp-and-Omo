@@ -38,10 +38,6 @@ public class LevelLoader : MonoBehaviour
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
 
-        //if (SceneManager.GetActiveScene().name == "ChapterOne")
-        //{
-        //    pauseScript.UnPause();
-        //}
         while (!operation.isDone)
         {
             float progress = Mathf.Clamp01(operation.progress / .9f);
