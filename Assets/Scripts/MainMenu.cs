@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] private LevelLoader levelLoader;
     void Awake()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -14,7 +13,7 @@ public class MainMenu : MonoBehaviour
     }
     public void LoadChapterOne()
     {
-        SceneManager.LoadScene("ChapterOne");
+        StartCoroutine(levelLoader.LoadEsynchronously("ChapterOne"));
     }
     public void QuitGame()
     {

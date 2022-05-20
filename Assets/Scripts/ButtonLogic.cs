@@ -9,11 +9,8 @@ using UnityEngine.Audio;
 public class ButtonLogic : MonoBehaviour
 {
     private TextMeshProUGUI text_TMP;
-    [SerializeField] private float tickCheckRate;
     [SerializeField] private TMP_FontAsset unHighlightedFont;
     [SerializeField] private TMP_FontAsset highlightedFont;
-    [SerializeField] private bool isFirstSelected = false;
-    [SerializeField] private EventSystem myEventSystem;
     private Animator buttonAnim;
 
     void Start()

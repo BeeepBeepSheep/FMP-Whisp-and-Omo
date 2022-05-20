@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource currantTrack;
 
     [SerializeField] private float timeBetweenTracks = 1.5f;
+    [SerializeField] private AudioSource cutscenesong;
     [SerializeField] private AudioSource prisonSong;
     [SerializeField] private AudioSource courtyardSong;
     [SerializeField] private AudioSource footStepSound;
@@ -24,7 +25,12 @@ public class AudioManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "ChapterOne")
         {
+            currantTrack = cutscenesong;
             footStepMaxVolume = footStepSound.volume;
+        }
+        else if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            currantTrack = mainMenuMusic;
         }
     }
     public void StartGame()

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour
 {
@@ -23,6 +22,7 @@ public class Pause : MonoBehaviour
     [SerializeField] private AudioManager AudioManager;
     [SerializeField] private OmoMovement omoMovement;   
     private bool isFirstTimeUnpause = true;
+    [SerializeField] private LevelLoader levelLoader;
 
     private void Awake()
     {
@@ -41,10 +41,12 @@ public class Pause : MonoBehaviour
             if (gameIsPaused)
             {
                 UnPause();
+                return;
             }
             else
             {
                 Puase();
+                return;
             }
         }
     }
@@ -81,8 +83,8 @@ public class Pause : MonoBehaviour
 
         if (!isFirstTimeUnpause)
         {
-            buttonSound.Play();
             isFirstTimeUnpause = false;
+            buttonSound.Play();
         }
 
         if (!playerManager.introCutsceneHasEnded)
@@ -104,6 +106,9 @@ public class Pause : MonoBehaviour
     }
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1f;
+        buttonSound.Play();
+        gameIsPaused = true;
+        StartCoroutine(levelLoader.LoadEsynchronously("MainMenu"));
     }
 }
