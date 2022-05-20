@@ -139,7 +139,6 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
     }
     public void ChapterComplete()
     {
-        Debug.Log("objMngr chapter complete");
         canvasController.ChapterOneComplete();
         comicAnim.SetTrigger("PlayOutro");
         Cursor.lockState = CursorLockMode.None;

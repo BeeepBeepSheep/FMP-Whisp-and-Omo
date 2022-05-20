@@ -382,6 +382,96 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""MainMenu"",
+            ""id"": ""b6b3f150-af42-4da4-a70f-3bc0158ba5a6"",
+            ""actions"": [
+                {
+                    ""name"": ""ShoulderLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""8c1f11cf-896d-43f9-8154-7da39d223587"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ShoulderRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""2c032876-f163-45a9-b05f-b7d7a61b9daa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""21e29055-f9f2-4753-9d72-50a98ade8b4a"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""ShoulderLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a88ddfd6-86ae-4de9-af9f-1defd4759560"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""ShoulderLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1827cd6e-7524-4a75-9d81-b6aa8f27770d"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ShoulderLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""142b1d72-4300-4235-a5ca-a30ae5177903"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""ShoulderRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9ad6e36-9609-438a-9306-51531a333516"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShoulderRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3da19763-be81-48b1-9ee0-14f214a9e69f"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShoulderRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -424,6 +514,10 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_Player_ToggleCameraShoulder = m_Player.FindAction("ToggleCameraShoulder", throwIfNotFound: true);
         m_Player_ReturnWhisp = m_Player.FindAction("ReturnWhisp", throwIfNotFound: true);
         m_Player_SkipCutscene = m_Player.FindAction("SkipCutscene", throwIfNotFound: true);
+        // MainMenu
+        m_MainMenu = asset.FindActionMap("MainMenu", throwIfNotFound: true);
+        m_MainMenu_ShoulderLeft = m_MainMenu.FindAction("ShoulderLeft", throwIfNotFound: true);
+        m_MainMenu_ShoulderRight = m_MainMenu.FindAction("ShoulderRight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -558,6 +652,47 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // MainMenu
+    private readonly InputActionMap m_MainMenu;
+    private IMainMenuActions m_MainMenuActionsCallbackInterface;
+    private readonly InputAction m_MainMenu_ShoulderLeft;
+    private readonly InputAction m_MainMenu_ShoulderRight;
+    public struct MainMenuActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public MainMenuActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ShoulderLeft => m_Wrapper.m_MainMenu_ShoulderLeft;
+        public InputAction @ShoulderRight => m_Wrapper.m_MainMenu_ShoulderRight;
+        public InputActionMap Get() { return m_Wrapper.m_MainMenu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MainMenuActions set) { return set.Get(); }
+        public void SetCallbacks(IMainMenuActions instance)
+        {
+            if (m_Wrapper.m_MainMenuActionsCallbackInterface != null)
+            {
+                @ShoulderLeft.started -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnShoulderLeft;
+                @ShoulderLeft.performed -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnShoulderLeft;
+                @ShoulderLeft.canceled -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnShoulderLeft;
+                @ShoulderRight.started -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnShoulderRight;
+                @ShoulderRight.performed -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnShoulderRight;
+                @ShoulderRight.canceled -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnShoulderRight;
+            }
+            m_Wrapper.m_MainMenuActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ShoulderLeft.started += instance.OnShoulderLeft;
+                @ShoulderLeft.performed += instance.OnShoulderLeft;
+                @ShoulderLeft.canceled += instance.OnShoulderLeft;
+                @ShoulderRight.started += instance.OnShoulderRight;
+                @ShoulderRight.performed += instance.OnShoulderRight;
+                @ShoulderRight.canceled += instance.OnShoulderRight;
+            }
+        }
+    }
+    public MainMenuActions @MainMenu => new MainMenuActions(this);
     private int m_MouseandKeyboardSchemeIndex = -1;
     public InputControlScheme MouseandKeyboardScheme
     {
@@ -586,5 +721,10 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnToggleCameraShoulder(InputAction.CallbackContext context);
         void OnReturnWhisp(InputAction.CallbackContext context);
         void OnSkipCutscene(InputAction.CallbackContext context);
+    }
+    public interface IMainMenuActions
+    {
+        void OnShoulderLeft(InputAction.CallbackContext context);
+        void OnShoulderRight(InputAction.CallbackContext context);
     }
 }

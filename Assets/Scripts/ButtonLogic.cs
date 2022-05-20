@@ -18,7 +18,6 @@ public class ButtonLogic : MonoBehaviour
         text_TMP = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         buttonAnim = GetComponent<Animator>();
     }
-   
     public void Button_Select()
     {
         text_TMP.font = highlightedFont;
@@ -26,6 +25,9 @@ public class ButtonLogic : MonoBehaviour
     public void Button_Deselect()
     {
         text_TMP.font = unHighlightedFont;
-        buttonAnim.SetTrigger("Normal");
+        if (gameObject.tag != "ShoulderButton")
+        {
+            buttonAnim.SetTrigger("Normal");
+        }
     }
 }

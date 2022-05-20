@@ -28,6 +28,7 @@ public class Pause : MonoBehaviour
     {
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
+        levelLoader.gameObject.SetActive(true);
     }
     void Start()
     {
