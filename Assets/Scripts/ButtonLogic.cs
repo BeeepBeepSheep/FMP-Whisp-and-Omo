@@ -25,9 +25,5 @@ public class ButtonLogic : MonoBehaviour
     public void Button_Deselect()
     {
         text_TMP.font = unHighlightedFont;
-        if (gameObject.tag != "ShoulderButton")
-        {
-            buttonAnim.SetTrigger("Normal");
-        }
     }
 }

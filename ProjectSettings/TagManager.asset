@@ -12,7 +12,6 @@ TagManager:
   - Jar
   - AlternatePressurePlate
   - Cannon
-  - ShoulderButton
   layers:
   - Default
   - TransparentFX
