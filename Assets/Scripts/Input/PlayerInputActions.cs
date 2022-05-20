@@ -262,22 +262,22 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""67c328a2-a7e3-4545-a059-c0cd2acbbfdc"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""id"": ""61b736ee-c4f2-4fd8-9743-141bfc7c0394"",
+                    ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": ""InvertVector2(invertX=false)"",
-                    ""groups"": ""Mouse and Keyboard"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""61b736ee-c4f2-4fd8-9743-141bfc7c0394"",
-                    ""path"": ""<Gamepad>/rightStick"",
+                    ""id"": ""92a8983a-c1f5-4751-aea7-cb5977a7f87d"",
+                    ""path"": ""<Pointer>/delta"",
                     ""interactions"": """",
                     ""processors"": ""InvertVector2(invertX=false)"",
-                    ""groups"": ""Gamepad"",
+                    ""groups"": ""Mouse and Keyboard"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
