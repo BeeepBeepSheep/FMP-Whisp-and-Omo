@@ -14,6 +14,7 @@ public class MusicTriggerPrisonExit : MonoBehaviour
     {
         if (firstTimeEscape && collider.tag == "Player")
         {
+            audioManager.hasVolumeControl = false;
             audioAnim.SetTrigger("musicFade");
             firstTimeEscape = false;
         }

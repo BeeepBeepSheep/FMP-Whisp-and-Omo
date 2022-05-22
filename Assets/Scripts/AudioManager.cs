@@ -13,7 +13,9 @@ public class AudioManager : MonoBehaviour
     [Header("Chapter One")]
     public AudioSource currantTrack;
 
-    [SerializeField] private float timeBetweenTracks = 1.5f;
+    public float musicVolume;
+    [SerializeField] private float timeCheck = 0.1f;
+    public bool hasVolumeControl;
     [SerializeField] private AudioSource cutscenesong;
     [SerializeField] private AudioSource prisonSong;
     [SerializeField] private AudioSource courtyardSong;
@@ -26,7 +28,9 @@ public class AudioManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "ChapterOne")
         {
             currantTrack = cutscenesong;
+            hasVolumeControl = false;
             footStepMaxVolume = footStepSound.volume;
+
         }
         else if (SceneManager.GetActiveScene().name == "MainMenu")
         {
@@ -35,32 +39,35 @@ public class AudioManager : MonoBehaviour
     }
     public void StartGame()
     {
-        UnityEditorInternal.ComponentUtility.CopyComponent(prisonSong);
-        UnityEditorInternal.ComponentUtility.PasteComponentValues(currantTrack);
-        currantTrack = transform.GetChild(0).GetComponent<AudioSource>();
-
+        hasVolumeControl = true;
+        StartCoroutine(CheckVolume());
+        currantTrack.Stop();
+        currantTrack = prisonSong;
         currantTrack.Play();
     }
     public void SwitchToCourtyard()
     {
         currantTrack.Stop();
-        UnityEditorInternal.ComponentUtility.CopyComponent(courtyardSong);
-        UnityEditorInternal.ComponentUtility.PasteComponentValues(currantTrack);
-        currantTrack = transform.GetChild(0).GetComponent<AudioSource>();
-
-        //yield return new WaitForSeconds(timeBetweenTracks);
-        
+        currantTrack = courtyardSong;
         currantTrack.Play();
     }
     public void ToggleFottstepVolume(bool isInside)
     {
-        if(isInside)
+        if (isInside)
         {
             footStepSound.volume = footStepMaxVolume;
         }
         else
         {
             footStepSound.volume = footStepMinVolume;
+        }
+    }
+    IEnumerator CheckVolume()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(timeCheck);
+            currantTrack.volume = musicVolume;
         }
     }
 }

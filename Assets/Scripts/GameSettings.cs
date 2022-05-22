@@ -51,6 +51,8 @@ public class GameSettings : MonoBehaviour
         GetInvert_X_Axis();
         GetInvert_Y_Axis();
 
+        GetFullscreen();
+
         ShowControlsSettings();
     }
     public void ToggleSettings()
@@ -207,6 +209,34 @@ public class GameSettings : MonoBehaviour
         }
     }
 
+    private bool GetFullscreen()
+    {
+        if (PlayerPrefs.GetInt("Fullscreen", 1) == 0) // if 0 false, if 1 true
+        {
+            fullscreen_checkmark.SetActive(false);
+            Screen.fullScreen = false;
+            return false;
+        }
+        else
+        {
+            fullscreen_checkmark.SetActive(true);
+            Screen.fullScreen = true;
+            return true;
+        }
+    }
+    public void ToggleFullScreen()
+    {
+        if (GetFullscreen()) // if fullscreen
+        {
+            PlayerPrefs.SetInt("Fullscreen", 0);
+            GetFullscreen(); // inverted true to false
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Fullscreen", 1);
+            GetFullscreen(); // inverted false to true
+        }
+    }
     public void ClearAllPlayerPrefs()
     {
         PlayerPrefs.DeleteAll();
