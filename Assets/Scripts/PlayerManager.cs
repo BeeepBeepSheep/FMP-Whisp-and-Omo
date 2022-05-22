@@ -115,19 +115,15 @@ public class PlayerManager : MonoBehaviour
 
     public void SkipCutsceneInput(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.started)// pressed button
         {
-            if (!isHoldingSkip) // pressed button
-            {
-                isHoldingSkip = true;
-            }
-            else // released button
-            {
-                isHoldingSkip = false;
-            }
-
-            comicAnim.SetBool("SkipIsPressed", isHoldingSkip);
+            isHoldingSkip = true;
         }
+        if (context.canceled)// released button
+        {
+            isHoldingSkip = false;
+        }
+        comicAnim.SetBool("SkipIsPressed", isHoldingSkip);
     }
     public void SkipCutscene()
     {

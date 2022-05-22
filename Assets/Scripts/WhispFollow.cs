@@ -38,33 +38,26 @@ public class WhispFollow : MonoBehaviour
 
     public void ResetTarget(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.started)
         {
-            if (!isHoldingInput) // pressed button
+            isHoldingInput = true;
+
+            currentTarget = omoTarget;
+
+            GameObject[] oldTargets;
+            oldTargets = GameObject.FindGameObjectsWithTag("WhispTargetUseless");
+
+            foreach (GameObject oldTarget in oldTargets)
             {
-                isHoldingInput = true;
-
-                currentTarget = omoTarget;
-
-                GameObject[] oldTargets;
-                oldTargets = GameObject.FindGameObjectsWithTag("WhispTargetUseless");
-
-                foreach (GameObject oldTarget in oldTargets)
-                {
-                    Destroy(oldTarget);
-                }
+                Destroy(oldTarget);
             }
-            else // released button
-            {
-                isHoldingInput = false;
-            }
-
-            uiAnimator.SetBool("ReturnIsPressed", isHoldingInput);
-        }
-        if(context.started)
-        {
             whispAbilitySound.Play();
         }
+        if (context.canceled)
+        {
+            isHoldingInput = false;
+        }
+        uiAnimator.SetBool("ReturnIsPressed", isHoldingInput);
     }
     public void TeleportToOmo()
     {
