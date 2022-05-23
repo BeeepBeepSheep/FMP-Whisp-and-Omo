@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
 using TMPro;
+using UnityEngine.Rendering.Universal;
 
 public class GameSettings : MonoBehaviour
 {
@@ -43,6 +44,8 @@ public class GameSettings : MonoBehaviour
     [SerializeField] private int curantQuality;
     [SerializeField] private RenderPipelineAsset[] qualityLevels;
     [SerializeField] private TMP_Dropdown qualityDropdown;
+    [SerializeField] private GameObject motionBlur_checkmark;
+    [SerializeField] private GameObject motionBlurVolume;
 
     [Header("Audio")]
     [SerializeField] private AudioMixer masterMixer;
@@ -69,11 +72,12 @@ public class GameSettings : MonoBehaviour
         GetInvert_Y_Axis();
 
         GetFullscreen();
+        GetMotionBlur();
 
         curantQuality = PlayerPrefs.GetInt("Quality Level", 2);
         qualityDropdown.value = QualitySettings.GetQualityLevel();
         ChangeQuality(curantQuality);
-
+        
         SetMasterVol(masterVol);
         SetMusicVol(musicVol);
         SetEffectsVol(effectsVol);
@@ -263,6 +267,22 @@ public class GameSettings : MonoBehaviour
 
         PlayerPrefs.SetInt("Quality Level", value);
     }
+    private bool GetMotionBlur()
+    {
+        if (PlayerPrefs.GetInt("MotionBlur", 1) == 0) // if 0 false, if 1 true
+        {
+            motionBlur_checkmark.SetActive(false);
+
+            motionBlurVolume.SetActive(false);
+            return false;
+        }
+        else
+        {
+            motionBlur_checkmark.SetActive(true);
+            motionBlurVolume.SetActive(true);
+            return true;
+        }
+    }
     public void ToggleFullScreen()
     {
         if (GetFullscreen()) // if fullscreen
@@ -276,7 +296,19 @@ public class GameSettings : MonoBehaviour
             GetFullscreen(); // inverted false to true
         }
     }
-
+    public void ToggleMotionBlur()
+    {
+        if (GetMotionBlur()) // if motionblur is on
+        {
+            PlayerPrefs.SetInt("MotionBlur", 0);
+            GetMotionBlur(); // inverted true to false
+        }
+        else
+        {
+            PlayerPrefs.SetInt("MotionBlur", 1);
+            GetMotionBlur(); // inverted false to true
+        }
+    }
     public void SetMasterVol(float newValue)
     {
         masterVol = PlayerPrefs.GetFloat("MasterVol", 0);
