@@ -17,6 +17,7 @@ public class GameSettings : MonoBehaviour
     public Button videoButton;
     public Button audioButton;
     [SerializeField] private EventSystem eventSystem;
+    [SerializeField] private MainMenu mainMenuScript;
 
     [Header("Sections")]
     [HideInInspector] public int selectedIndex; // 1 = contols, 2 = video, 3 = audio
@@ -67,6 +68,15 @@ public class GameSettings : MonoBehaviour
     [SerializeField] private RectTransform pilar;
     [SerializeField] private float pilarNewPos_X;
     [SerializeField] private float pilarOldPos_X = 0;
+
+    [Header("Chater One Progress")]
+    private int chapterOneMainProgress;
+    private int chapterOneSideQuestProgress;
+    [SerializeField] private TextMeshProUGUI chapterOneMainProgress_text;
+    [SerializeField] private TextMeshProUGUI chapterOneSideQuestProgress_text;
+    [SerializeField] private string chapterOneProgress_Label = "Progress: ";
+    [SerializeField] private string chapterOneSideQuestProgress_Label = "Whisps Freed: ";
+
     void Start()
     {
         settingsBackground.SetActive(false);
@@ -90,7 +100,7 @@ public class GameSettings : MonoBehaviour
         curantQuality = PlayerPrefs.GetInt("Quality Level", 2);
         qualityDropdown.value = QualitySettings.GetQualityLevel();
         ChangeQuality(curantQuality);
-        
+
         SetMasterVol(masterVol);
         SetMusicVol(musicVol);
         SetEffectsVol(effectsVol);
@@ -99,6 +109,8 @@ public class GameSettings : MonoBehaviour
         musicVol_Slider.value = musicVol;
         effectsVol_Slider.value = effectsVol;
         environmentVol_Slider.value = environmentVol;
+
+        GetChapterOneProgress();
 
         ShowControlsSettings();
         HideSettings();
@@ -143,7 +155,7 @@ public class GameSettings : MonoBehaviour
         //sensitivity
         sensX_value = PlayerPrefs.GetInt("Sensitivity X");
         sensY_value = PlayerPrefs.GetInt("Sensitivity Y");
-        
+
         sensSlider_X.value = sensX_value;
         sensSlider_Y.value = sensY_value;
 
@@ -342,7 +354,7 @@ public class GameSettings : MonoBehaviour
     }
     public void SetMasterVol(float newValue)
     {
-        masterVol = PlayerPrefs.GetFloat("MasterVol", 0);
+        masterVol = PlayerPrefs.GetFloat("MasterVol", -25);
 
         PlayerPrefs.SetFloat("MasterVol", newValue);
         masterMixer.SetFloat("MasterVol", newValue);
@@ -368,7 +380,25 @@ public class GameSettings : MonoBehaviour
         PlayerPrefs.SetFloat("EnvironmentVol", newValue);
         masterMixer.SetFloat("EnvironmentVol", newValue);
     }
+    private void GetChapterOneProgress()
+    {
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            chapterOneMainProgress = PlayerPrefs.GetInt("Chapter One Main Progress", 0);
+            chapterOneSideQuestProgress = PlayerPrefs.GetInt("Chapter One SideQuestProgress", 0);
 
+            chapterOneMainProgress_text.text = chapterOneProgress_Label + chapterOneMainProgress.ToString() + "%";
+            chapterOneSideQuestProgress_text.text = chapterOneSideQuestProgress_Label + chapterOneSideQuestProgress.ToString() + "/5";
+        }
+    }
+    public void SetChapter_Main_Progress(int newValue)
+    {
+        PlayerPrefs.SetInt("Chapter One Main Progress", newValue);
+    }
+    public void SetChapterOne_Sidequest_Progress(int newValue)
+    {
+        PlayerPrefs.SetInt("Chapter One SideQuestProgress", newValue);
+    }
     public void ClearAllPlayerPrefs()
     {
         PlayerPrefs.DeleteAll();

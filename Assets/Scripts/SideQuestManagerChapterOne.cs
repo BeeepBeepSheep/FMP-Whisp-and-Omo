@@ -7,6 +7,7 @@ public class SideQuestManagerChapterOne : MonoBehaviour
     [SerializeField] private Animator uiAnim;
     [SerializeField] private int whispsFreed = 0;
     [SerializeField] private Transform[] uiCounts;
+    [SerializeField] private GameSettings gameSettings;
 
     public void IncreaseFreedCount()
     {
@@ -23,6 +24,8 @@ public class SideQuestManagerChapterOne : MonoBehaviour
             {
                 uiCount.gameObject.SetActive(false);
             }
+
+            gameSettings.SetChapterOne_Sidequest_Progress(whispsFreed);
 
             switch (whispsFreed)
             {

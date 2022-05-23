@@ -15,6 +15,9 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
     [SerializeField] private Animator audioAnim;
     [SerializeField] private CanvasController canvasController;
 
+    [Header("Record Progress")]
+    [SerializeField] private GameSettings gameSettings;
+
     [Header("Section One")]
     [SerializeField] private Animator prisonAnim;
     private int stageInSectionOne = 0; // puzzle 0 is tutorial, 1 is first pressure plate
@@ -70,7 +73,7 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
                 //do close cell doors
             }
 
-            //Debug.Log("stage is: " + stageInSectionOne);
+            gameSettings.SetChapter_Main_Progress(25);
         }
 
         else if (section == 2)//hallway
@@ -89,6 +92,7 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
                 prisonAnim.SetBool("MainDoorShouldOpen", false);
                 gateSound.Play();
             }
+            gameSettings.SetChapter_Main_Progress(50);
         }
 
         else if (section == 3)//crane and bridge section
@@ -135,6 +139,7 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
                 drawbridgeSound.Play();
                 //close bridge
             }
+            gameSettings.SetChapter_Main_Progress(75);
         }
     }
     public void ChapterComplete()
@@ -144,6 +149,7 @@ public class ObjectiveManagerChapterOne : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
+        gameSettings.SetChapter_Main_Progress(100);
         //playerManager.DeactivateOutro(); is called in animation event
     }
 }

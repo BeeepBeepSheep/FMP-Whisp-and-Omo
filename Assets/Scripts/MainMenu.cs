@@ -3,19 +3,63 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using UnityEngine.Audio;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private Button playButton;
+    [SerializeField] private ButtonLogic playButton;
+    [SerializeField] private ButtonLogic settingsButton;
     [SerializeField] private LevelLoader levelLoader;
     [SerializeField] private GameSettings gameSettings;
     [SerializeField] private EventSystem eventSystem;
+    [SerializeField] private AudioSource buttonSound;
+
+    [Header("Chapters")]
+    [SerializeField] private GameObject chapterSelection;
+    public bool chaptersIsShowing = false;
+    [SerializeField] private GameObject chapterOneButton;
+
     void Awake()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 1f;
         levelLoader.gameObject.SetActive(true);
+    }
+    private void Start()
+    {
+        HideChapters();
+    }
+    public void ToggleShowChapters()
+    {
+        if (chaptersIsShowing)
+        {
+            HideChapters();
+            return;
+        }
+        else
+        {
+            ShowChapters();
+            return;
+        }
+    }
+    private void ShowChapters()
+    {
+        Debug.Log("show");
+        chaptersIsShowing = true;
+        chapterSelection.SetActive(true);
+        gameSettings.HideSettings();
+
+        buttonSound.Play();
+    }
+    public void HideChapters()
+    {
+        Debug.Log("hide");
+        chaptersIsShowing = false;
+        chapterSelection.SetActive(false);
+
+        buttonSound.Play();
     }
     public void LoadChapterOne()
     {
@@ -25,33 +69,28 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
-    //public void GenericSelectRight()
-    //{
-    //    Debug.Log("genericRight");
-    //    if(!gameSettings.settingsIsOn)
-    //    {
-    //        eventSystem.SetSelectedGameObject(null);
-    //        eventSystem.SetSelectedGameObject(playButton.gameObject);
-    //    }
-    //    else if (gameSettings.settingsIsOn)
-    //    {
-    //        switch (gameSettings.selectedIndex)
-    //        {
-    //            case 1:
-    //                eventSystem.SetSelectedGameObject(null);
-    //                eventSystem.SetSelectedGameObject(gameSettings.controlsButton.gameObject);
-    //                break;
-    //            case 2:
-    //                eventSystem.SetSelectedGameObject(null);
-    //                eventSystem.SetSelectedGameObject(gameSettings.videoButton.gameObject);
-    //                break;
-    //            case 3:
-    //                eventSystem.SetSelectedGameObject(null);
-    //                eventSystem.SetSelectedGameObject(gameSettings.audioButton.gameObject);
-    //                break;
-    //            default:
-    //                break;
-    //        }
-    //    }
-    //}
+    public void BackButton(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (gameSettings.settingsIsOn)
+            {
+                gameSettings.HideSettings();
+
+                eventSystem.SetSelectedGameObject(null);
+                eventSystem.SetSelectedGameObject(settingsButton.gameObject);
+                settingsButton.Button_Select();
+                buttonSound.Play();
+            }
+            else if (chaptersIsShowing)
+            {
+                HideChapters();
+
+                eventSystem.SetSelectedGameObject(null);
+                eventSystem.SetSelectedGameObject(settingsButton.gameObject);
+                playButton.Button_Select();
+                buttonSound.Play();
+            }
+        }
+    }
 }
