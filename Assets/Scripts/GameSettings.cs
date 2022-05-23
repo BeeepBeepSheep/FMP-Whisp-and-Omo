@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
+using UnityEngine.Rendering;
+using TMPro;
 
 public class GameSettings : MonoBehaviour
 {
@@ -35,8 +38,22 @@ public class GameSettings : MonoBehaviour
     [SerializeField] private GameObject invert_X_Button_checkmark;
     [SerializeField] private GameObject invert_Y_Button_checkmark;
 
-    [Header("Fullscreen")]
+    [Header("Video")]
     [SerializeField] private GameObject fullscreen_checkmark;
+    [SerializeField] private int curantQuality;
+    [SerializeField] private RenderPipelineAsset[] qualityLevels;
+    [SerializeField] private TMP_Dropdown qualityDropdown;
+
+    [Header("Audio")]
+    [SerializeField] private AudioMixer masterMixer;
+    private float masterVol;
+    private float musicVol;
+    private float effectsVol;
+    private float environmentVol;
+    [SerializeField] private Slider masterVol_Slider;
+    [SerializeField] private Slider musicVol_Slider;
+    [SerializeField] private Slider effectsVol_Slider;
+    [SerializeField] private Slider environmentVol_Slider;
 
     void Start()
     {
@@ -52,6 +69,20 @@ public class GameSettings : MonoBehaviour
         GetInvert_Y_Axis();
 
         GetFullscreen();
+
+        curantQuality = PlayerPrefs.GetInt("Quality Level", 2);
+        qualityDropdown.value = QualitySettings.GetQualityLevel();
+        ChangeQuality(curantQuality);
+
+        SetMasterVol(masterVol);
+        SetMusicVol(musicVol);
+        SetEffectsVol(effectsVol);
+        SetEnvironmentVol(environmentVol);
+        masterVol_Slider.value = masterVol;
+        musicVol_Slider.value = musicVol;
+        effectsVol_Slider.value = effectsVol;
+        environmentVol_Slider.value = environmentVol;
+
 
         ShowControlsSettings();
     }
@@ -224,6 +255,14 @@ public class GameSettings : MonoBehaviour
             return true;
         }
     }
+    public void ChangeQuality(int value)
+    {
+        curantQuality = PlayerPrefs.GetInt("Quality Level", 2);
+        QualitySettings.SetQualityLevel(value);
+        QualitySettings.renderPipeline = qualityLevels[value];
+
+        PlayerPrefs.SetInt("Quality Level", value);
+    }
     public void ToggleFullScreen()
     {
         if (GetFullscreen()) // if fullscreen
@@ -237,6 +276,36 @@ public class GameSettings : MonoBehaviour
             GetFullscreen(); // inverted false to true
         }
     }
+
+    public void SetMasterVol(float newValue)
+    {
+        masterVol = PlayerPrefs.GetFloat("MasterVol", 0);
+
+        PlayerPrefs.SetFloat("MasterVol", newValue);
+        masterMixer.SetFloat("MasterVol", newValue);
+    }
+    public void SetMusicVol(float newValue)
+    {
+        musicVol = PlayerPrefs.GetFloat("MusicVol", 0);
+
+        PlayerPrefs.SetFloat("MusicVol", newValue);
+        masterMixer.SetFloat("MusicVol", newValue);
+    }
+    public void SetEffectsVol(float newValue)
+    {
+        effectsVol = PlayerPrefs.GetFloat("EffectsVol", 0);
+
+        PlayerPrefs.SetFloat("EffectsVol", newValue);
+        masterMixer.SetFloat("EffectsVol", newValue);
+    }
+    public void SetEnvironmentVol(float newValue)
+    {
+        environmentVol = PlayerPrefs.GetFloat("EnvironmentVol", 0);
+
+        PlayerPrefs.SetFloat("EnvironmentVol", newValue);
+        masterMixer.SetFloat("EnvironmentVol", newValue);
+    }
+
     public void ClearAllPlayerPrefs()
     {
         PlayerPrefs.DeleteAll();
