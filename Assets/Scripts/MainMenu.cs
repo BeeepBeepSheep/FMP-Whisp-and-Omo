@@ -46,7 +46,6 @@ public class MainMenu : MonoBehaviour
     }
     private void ShowChapters()
     {
-        Debug.Log("show");
         chaptersIsShowing = true;
         chapterSelection.SetActive(true);
         gameSettings.HideSettings();
@@ -55,7 +54,6 @@ public class MainMenu : MonoBehaviour
     }
     public void HideChapters()
     {
-        Debug.Log("hide");
         chaptersIsShowing = false;
         chapterSelection.SetActive(false);
 
