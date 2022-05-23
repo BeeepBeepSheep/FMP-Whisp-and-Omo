@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,7 +7,6 @@ using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
 using TMPro;
-using UnityEngine.Rendering.Universal;
 
 public class GameSettings : MonoBehaviour
 {
@@ -41,11 +41,16 @@ public class GameSettings : MonoBehaviour
 
     [Header("Video")]
     [SerializeField] private GameObject fullscreen_checkmark;
+    private bool isFullscreen;
     [SerializeField] private int curantQuality;
     [SerializeField] private RenderPipelineAsset[] qualityLevels;
     [SerializeField] private TMP_Dropdown qualityDropdown;
     [SerializeField] private GameObject motionBlur_checkmark;
     [SerializeField] private GameObject motionBlurVolume;
+
+    [SerializeField] private TMP_Dropdown resolutionDropdown;
+    [SerializeField] private int resolutionIndex;
+    [SerializeField] List<ResolutionItem> resolutions = new List<ResolutionItem>();
 
     [Header("Audio")]
     [SerializeField] private AudioMixer masterMixer;
@@ -58,6 +63,10 @@ public class GameSettings : MonoBehaviour
     [SerializeField] private Slider effectsVol_Slider;
     [SerializeField] private Slider environmentVol_Slider;
 
+    [Header("In Game")]
+    [SerializeField] private RectTransform pilar;
+    [SerializeField] private float pilarNewPos_X;
+    [SerializeField] private float pilarOldPos_X = 0;
     void Start()
     {
         settingsBackground.SetActive(false);
@@ -72,6 +81,10 @@ public class GameSettings : MonoBehaviour
         GetInvert_Y_Axis();
 
         GetFullscreen();
+
+        resolutionDropdown.value = resolutionIndex;
+        ChangeResolution(resolutionIndex);
+
         GetMotionBlur();
 
         curantQuality = PlayerPrefs.GetInt("Quality Level", 2);
@@ -87,33 +100,42 @@ public class GameSettings : MonoBehaviour
         effectsVol_Slider.value = effectsVol;
         environmentVol_Slider.value = environmentVol;
 
-
         ShowControlsSettings();
+        HideSettings();
     }
     public void ToggleSettings()
     {
         if (settingsIsOn)
         {
             HideSettings();
-            settingsIsOn = false;
             return;
         }
         else
         {
             ShowSettings();
-            settingsIsOn = true;
             return;
         }
     }
     public void ShowSettings()
     {
-        settingsBackground.SetActive(true);
+        settingsIsOn = true;
         eventSystem.SetSelectedGameObject(null);
         eventSystem.SetSelectedGameObject(controlsButton.gameObject);
+        settingsBackground.SetActive(true);
+
+        if (SceneManager.GetActiveScene().name != "MainMenu")//if in level
+        {
+            pilar.localPosition = new Vector3(pilarNewPos_X, 0, 0);
+        }
     }
     public void HideSettings()
     {
+        settingsIsOn = false;
         settingsBackground.SetActive(false);
+        if (SceneManager.GetActiveScene().name != "MainMenu")
+        {
+            pilar.localPosition = new Vector3(pilarOldPos_X, 0, 0);
+        }
     }
 
     public void ShowControlsSettings()
@@ -249,15 +271,24 @@ public class GameSettings : MonoBehaviour
         if (PlayerPrefs.GetInt("Fullscreen", 1) == 0) // if 0 false, if 1 true
         {
             fullscreen_checkmark.SetActive(false);
+            isFullscreen = false;
             Screen.fullScreen = false;
             return false;
         }
         else
         {
             fullscreen_checkmark.SetActive(true);
+            isFullscreen = true;
             Screen.fullScreen = true;
             return true;
         }
+    }
+    public void ChangeResolution(int newResolutionIndex)
+    {
+        resolutionIndex = PlayerPrefs.GetInt("Currant Resolution Index", 1);
+        Screen.SetResolution(resolutions[newResolutionIndex].horizontal, resolutions[newResolutionIndex].virtocle, isFullscreen);
+
+        PlayerPrefs.SetInt("Currant Resolution Index", newResolutionIndex);
     }
     public void ChangeQuality(int value)
     {
@@ -343,4 +374,11 @@ public class GameSettings : MonoBehaviour
         PlayerPrefs.DeleteAll();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+}
+
+[System.Serializable]
+public class ResolutionItem
+{
+    public int horizontal;
+    public int virtocle;
 }

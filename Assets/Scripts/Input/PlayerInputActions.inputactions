@@ -68,6 +68,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "UIBack",
+                    "type": "Button",
+                    "id": "0b28a3c6-dd32-4d88-9c67-880315152478",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -208,7 +216,7 @@
                     "id": "a0fa6e83-6d1c-4775-9c0a-1d06c1f434ed",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "StickDeadzone(min=0.05,max=0.9)",
                     "groups": "Gamepad",
                     "action": "Movement",
                     "isComposite": false,
@@ -252,7 +260,7 @@
                     "id": "61b736ee-c4f2-4fd8-9743-141bfc7c0394",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "InvertVector2(invertX=false,invertY=false)",
+                    "processors": "InvertVector2(invertX=false,invertY=false),StickDeadzone",
                     "groups": "Gamepad",
                     "action": "Look",
                     "isComposite": false,
@@ -365,6 +373,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SkipCutscene",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eea3281b-c2fd-41d4-b861-94cf38fbe89e",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UIBack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

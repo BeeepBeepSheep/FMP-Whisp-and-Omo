@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Pause : MonoBehaviour
 {
@@ -16,13 +17,16 @@ public class Pause : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     public GameObject hud;
     [SerializeField] private ButtonLogic resumeButton;
+    [SerializeField] private ButtonLogic settingsButton;
     [SerializeField] private AudioSource buttonSound;
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private AudioSource introCutsceneMusic;
     [SerializeField] private AudioManager AudioManager;
-    [SerializeField] private OmoMovement omoMovement;   
+    [SerializeField] private OmoMovement omoMovement;
     private bool isFirstTimeUnpause = true;
     [SerializeField] private LevelLoader levelLoader;
+    [SerializeField] private GameSettings gameSettings;
+    [SerializeField] private EventSystem eventSystem;
 
     private void Awake()
     {
@@ -60,7 +64,11 @@ public class Pause : MonoBehaviour
         pauseMenu.SetActive(true);
         hud.SetActive(false);
 
+        eventSystem.SetSelectedGameObject(null);
+        eventSystem.SetSelectedGameObject(resumeButton.gameObject);
+
         resumeButton.Button_Select();
+        gameSettings.HideSettings();
 
         Time.timeScale = 0f;
 
@@ -79,6 +87,7 @@ public class Pause : MonoBehaviour
         gameIsPaused = false;
         pauseMenu.SetActive(false);
         hud.SetActive(true);
+        gameSettings.HideSettings();
 
         Time.timeScale = 1f;
 
@@ -93,11 +102,32 @@ public class Pause : MonoBehaviour
             introCutsceneMusic.UnPause();
         }
 
-        if(playerManager.introCutsceneHasEnded)
+        if (playerManager.introCutsceneHasEnded)
         {
             omoMovement.canJump = true; // fixes super jump
         }
         AudioManager.currantTrack.UnPause();
+    }
+    public void UnPause_BackButton(InputAction.CallbackContext context)
+    {
+        if (context.started && gameIsPaused)
+        {
+            if (gameSettings.settingsIsOn)
+            {
+                gameSettings.HideSettings();
+
+                eventSystem.SetSelectedGameObject(null);
+                eventSystem.SetSelectedGameObject(settingsButton.gameObject);
+                settingsButton.Button_Select();
+                buttonSound.Play();
+                return;
+            }
+            else
+            {
+                UnPause();
+                buttonSound.Play();
+            }
+        }
     }
     public void PlayButtonSoundPuased()
     {

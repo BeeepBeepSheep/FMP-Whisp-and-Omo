@@ -81,6 +81,14 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)""
+                },
+                {
+                    ""name"": ""UIBack"",
+                    ""type"": ""Button"",
+                    ""id"": ""0b28a3c6-dd32-4d88-9c67-880315152478"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -221,7 +229,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""id"": ""a0fa6e83-6d1c-4775-9c0a-1d06c1f434ed"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone(min=0.05,max=0.9)"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
@@ -265,7 +273,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""id"": ""61b736ee-c4f2-4fd8-9743-141bfc7c0394"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": ""InvertVector2(invertX=false,invertY=false)"",
+                    ""processors"": ""InvertVector2(invertX=false,invertY=false),StickDeadzone"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
@@ -380,6 +388,17 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""action"": ""SkipCutscene"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eea3281b-c2fd-41d4-b861-94cf38fbe89e"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UIBack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -424,6 +443,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_Player_ToggleCameraShoulder = m_Player.FindAction("ToggleCameraShoulder", throwIfNotFound: true);
         m_Player_ReturnWhisp = m_Player.FindAction("ReturnWhisp", throwIfNotFound: true);
         m_Player_SkipCutscene = m_Player.FindAction("SkipCutscene", throwIfNotFound: true);
+        m_Player_UIBack = m_Player.FindAction("UIBack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -481,6 +501,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_ToggleCameraShoulder;
     private readonly InputAction m_Player_ReturnWhisp;
     private readonly InputAction m_Player_SkipCutscene;
+    private readonly InputAction m_Player_UIBack;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -493,6 +514,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @ToggleCameraShoulder => m_Wrapper.m_Player_ToggleCameraShoulder;
         public InputAction @ReturnWhisp => m_Wrapper.m_Player_ReturnWhisp;
         public InputAction @SkipCutscene => m_Wrapper.m_Player_SkipCutscene;
+        public InputAction @UIBack => m_Wrapper.m_Player_UIBack;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -526,6 +548,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @SkipCutscene.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSkipCutscene;
                 @SkipCutscene.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSkipCutscene;
                 @SkipCutscene.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSkipCutscene;
+                @UIBack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUIBack;
+                @UIBack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUIBack;
+                @UIBack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUIBack;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -554,6 +579,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @SkipCutscene.started += instance.OnSkipCutscene;
                 @SkipCutscene.performed += instance.OnSkipCutscene;
                 @SkipCutscene.canceled += instance.OnSkipCutscene;
+                @UIBack.started += instance.OnUIBack;
+                @UIBack.performed += instance.OnUIBack;
+                @UIBack.canceled += instance.OnUIBack;
             }
         }
     }
@@ -586,5 +614,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnToggleCameraShoulder(InputAction.CallbackContext context);
         void OnReturnWhisp(InputAction.CallbackContext context);
         void OnSkipCutscene(InputAction.CallbackContext context);
+        void OnUIBack(InputAction.CallbackContext context);
     }
 }
