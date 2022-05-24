@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class FPSCount : MonoBehaviour
 {
-    public Text fpsText;
+    [SerializeField] private TextMeshProUGUI fpsText;
     public float deltaTime;
 
     void Update()

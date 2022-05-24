@@ -49,6 +49,9 @@ public class GameSettings : MonoBehaviour
     [SerializeField] private GameObject motionBlur_checkmark;
     [SerializeField] private GameObject motionBlurVolume;
 
+    [SerializeField] private GameObject fps;
+    [SerializeField] private GameObject fps_Tick;
+
     [SerializeField] private TMP_Dropdown resolutionDropdown;
     [SerializeField] private int resolutionIndex;
     [SerializeField] List<ResolutionItem> resolutions = new List<ResolutionItem>();
@@ -96,6 +99,7 @@ public class GameSettings : MonoBehaviour
         ChangeResolution(resolutionIndex);
 
         GetMotionBlur();
+        GetShowFPS();
 
         curantQuality = PlayerPrefs.GetInt("Quality Level", 2);
         qualityDropdown.value = QualitySettings.GetQualityLevel();
@@ -391,6 +395,35 @@ public class GameSettings : MonoBehaviour
             chapterOneSideQuestProgress_text.text = chapterOneSideQuestProgress_Label + chapterOneSideQuestProgress.ToString() + "/5";
         }
     }
+    private bool GetShowFPS()
+    {
+        if (PlayerPrefs.GetInt("Show FPS", 0) == 0) // if 0 false, if 1 true
+        {
+            fps.SetActive(false);
+            fps_Tick.SetActive(false);
+            return false;
+        }
+        else
+        {
+            fps.SetActive(true);
+            fps_Tick.SetActive(true);
+            return true;
+        }
+
+    }
+    public void ToggleFPS()
+    {
+        if (GetShowFPS()) // if motionblur is on
+        {
+            PlayerPrefs.SetInt("Show FPS", 0);
+            GetShowFPS(); // inverted true to false
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Show FPS", 1);
+            GetShowFPS(); // inverted false to true
+        }
+    }
     public void SetChapter_Main_Progress(int newValue)
     {
         PlayerPrefs.SetInt("Chapter One Main Progress", newValue);
@@ -398,11 +431,6 @@ public class GameSettings : MonoBehaviour
     public void SetChapterOne_Sidequest_Progress(int newValue)
     {
         PlayerPrefs.SetInt("Chapter One SideQuestProgress", newValue);
-    }
-    public void ClearAllPlayerPrefs()
-    {
-        PlayerPrefs.DeleteAll();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
 
