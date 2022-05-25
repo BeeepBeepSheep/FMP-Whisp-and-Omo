@@ -11,6 +11,7 @@ using TMPro;
 public class GameSettings : MonoBehaviour
 {
     [Header("UI")]
+    [SerializeField] private string portfolioURL = "https://www.lueke.live/page1.html#top";
     public bool settingsIsOn = false;
     [SerializeField] private GameObject settingsBackground;
     public Button controlsButton;
@@ -431,6 +432,10 @@ public class GameSettings : MonoBehaviour
     public void SetChapterOne_Sidequest_Progress(int newValue)
     {
         PlayerPrefs.SetInt("Chapter One SideQuestProgress", newValue);
+    }
+    public void LoadPortfolio()
+    {
+        System.Diagnostics.Process.Start(portfolioURL);
     }
 }
 
