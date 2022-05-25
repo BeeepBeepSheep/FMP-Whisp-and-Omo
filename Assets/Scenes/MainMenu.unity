@@ -28053,7 +28053,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -56.58, y: 30}
+  m_AnchoredPosition: {x: -56.579956, y: 30}
   m_SizeDelta: {x: 72.4, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &494255556
@@ -28881,7 +28881,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &540288308
 RectTransform:
   m_ObjectHideFlags: 0
@@ -42151,7 +42151,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -43498,8 +43498,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 133.6, y: 28.3}
-  m_SizeDelta: {x: 89.1, y: 20}
+  m_AnchoredPosition: {x: 145.9, y: 28.3}
+  m_SizeDelta: {x: 107.73, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &895550817
 MonoBehaviour:
@@ -43521,7 +43521,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Retrieve Whisp
+  m_text: 'Retrieve Whisp
+
+    (Hold to Teleport)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a233810313df50f48bab7e9f8b97e8fa, type: 2}
   m_sharedMaterial: {fileID: 2320440505494530413, guid: a233810313df50f48bab7e9f8b97e8fa, type: 2}
@@ -44037,7 +44039,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &945894729
 RectTransform:
   m_ObjectHideFlags: 0
@@ -44134,8 +44136,8 @@ RectTransform:
   m_Father: {fileID: 185487426}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -62132,7 +62134,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sound Edditor
+  m_text: Sound Editor
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a233810313df50f48bab7e9f8b97e8fa, type: 2}
   m_sharedMaterial: {fileID: 2320440505494530413, guid: a233810313df50f48bab7e9f8b97e8fa, type: 2}
@@ -65380,7 +65382,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -79685,8 +79687,8 @@ RectTransform:
   m_Father: {fileID: 1940024453}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -102519,7 +102521,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lueke Studios PResents
+  m_text: Lueke Studios Presents
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a233810313df50f48bab7e9f8b97e8fa, type: 2}
   m_sharedMaterial: {fileID: 2320440505494530413, guid: a233810313df50f48bab7e9f8b97e8fa, type: 2}

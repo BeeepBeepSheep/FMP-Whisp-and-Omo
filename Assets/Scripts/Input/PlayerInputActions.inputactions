@@ -356,17 +356,6 @@
                 },
                 {
                     "name": "",
-                    "id": "09b11895-e15e-48ee-8cfb-0751f3269dc8",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "SkipCutscene",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "72e70dfa-22fb-4cf2-8311-86fbac2dd3bd",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
